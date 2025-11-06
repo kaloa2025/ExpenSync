@@ -53,7 +53,6 @@ namespace expenseTrackerPOC.Controllers.Auth
                 var (token, refreshToken) = await jwtService.GenerateTokenAsync(user);
 
                 //4. Mail User about Login Attempt
-
                 await emailService.SendLoginAttemptMail(user);
 
                 //5. Return

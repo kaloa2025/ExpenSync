@@ -1,13 +1,23 @@
 ﻿using expenseTrackerPOC.Data.Dtos;
 using expenseTrackerPOC.Models;
 using expenseTrackerPOC.Services.Auth.Interfaces;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace expenseTrackerPOC.Services.Auth
 {
     public class JwtService : IJwtService
     {
-        public Task<(string accessToken, string refreshToken)> GenerateTokenAsync(UserDto user)
+        private IAuthService authService;
+
+        public JwtService(IAuthService authService)
+        {
+            this.authService = authService;
+        }
+
+        public async Task<(string accessToken, string refreshToken)> GenerateTokenAsync(UserDto user)
         {
             var claims = new List<Claim>
             {
@@ -16,7 +26,7 @@ namespace expenseTrackerPOC.Services.Auth
                 new(ClaimTypes.Name, user.UserName),
                 new(ClaimTypes.Role, user.Role),
                 new("userId", user.Id.ToString()),
-                new("sessionId", Guid.NewGuid().ToString()), // For session tracking
+                new("sessionId", Guid.NewGuid().ToString()),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new(JwtRegisteredClaimNames.Iat, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
             };
@@ -30,18 +40,18 @@ namespace expenseTrackerPOC.Services.Auth
         public string GenerateJwtToken(IEnumerable<Claim> claims, TimeSpan expiry)
         {
             var key = ;
-            var creds = new SigningCredentials(key, SecutityAlgorithms.HmaSha256);
-            var token = new JwtSecurityToken(
-                issuer :
-                audience :
-                claims : claims
-                expires : DateTime.UtcNow.Add(expiry)
-                singingCredentials :creds
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtToken(
+                issuer : "",
+                audience :"",
+                claims : claims,
+                expires : DateTime.UtcNow.Add(expiry),
+                signingCredentials :creds
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public async Task<string> GenerateRefreshToken(int  userId)
+        public async Task<string> GenerateRefreshTokenAsync(int userId)
         {
             var refreshToken = new RefreshToken
             {
@@ -49,8 +59,8 @@ namespace expenseTrackerPOC.Services.Auth
                 UserId = userId,
                 ExpiryDate = DateTime.UtcNow.AddDays(30),
                 CreatedDate = DateTime.UtcNow
-            }
-            await _userService.SaveRefreshTokenAsync(refreshToken);
+            };
+            await authService.SaveRefreshTokenAsync(refreshToken);
             return refreshToken.Token;
         }
 

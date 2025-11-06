@@ -5,6 +5,7 @@ namespace expenseTrackerPOC.Services.Auth.Interfaces
 {
     public interface IAuthService
     {
+        Task SaveRefreshTokenAsync(RefreshToken refreshToken);
         Task<UserDto> ValidateCredentialsAsync(LoginRequest loginRequest);
     }
 }
