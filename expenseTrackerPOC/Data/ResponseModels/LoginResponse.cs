@@ -1,4 +1,5 @@
 ﻿using expenseTrackerPOC.Data.Dtos;
+using expenseTrackerPOC.Models;
 
 namespace expenseTrackerPOC.Data.ResponseModels
 {
@@ -7,8 +8,6 @@ namespace expenseTrackerPOC.Data.ResponseModels
         public bool Success { get; set; }
 
         public string? Token { get; set; }
-
-        public string? RefreshToken { get; set; }
 
         public UserDto? User { get; set; }
 

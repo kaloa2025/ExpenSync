@@ -11,8 +11,8 @@ namespace expenseTrackerPOC.Models
         public string Email { get; set; }
         [Required]
         public string HashPassword { get; set; }
-
+        public string Role { get; set; } = "User";
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
-
+        public List<RefreshToken> RefreshTokens { get; set; } = new();
     }
 }

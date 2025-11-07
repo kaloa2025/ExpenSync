@@ -9,7 +9,7 @@ namespace expenseTrackerPOC.Models
         [MaxLength(255)]
         public string? TransactionDescription { get; set; }
 
-        [Column(TypeName ="decimal(18,2")]
+        [Column(TypeName ="decimal(18,2)")]
         public decimal TransactionAmount { get; set; }
         
         //ForeignKeys

@@ -7,7 +7,7 @@ namespace expenseTrackerPOC.Services.Core
     {
         public Task SendLoginAttemptMail(UserDto user)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public Task SendWelcomeMail(UserDto user)

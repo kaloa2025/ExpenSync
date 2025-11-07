@@ -5,7 +5,10 @@ namespace expenseTrackerPOC.Data
 {
     public class ExpenseTrackerDbContext : DbContext
     {
+        public ExpenseTrackerDbContext(DbContextOptions<ExpenseTrackerDbContext> options) : base(options) { }
+
         public DbSet<User> Users { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ExpenseType> ExpenseTypes { get; set; }
@@ -14,6 +17,16 @@ namespace expenseTrackerPOC.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure relationships
+
+            modelBuilder.Entity<RefreshToken>()
+               .HasOne(rt => rt.User)
+               .WithMany(u => u.RefreshTokens)
+               .HasForeignKey(rt => rt.UserId);
+
+            modelBuilder.Entity<RefreshToken>()
+                .HasIndex(rt => rt.Token)
+                .IsUnique();
+
             modelBuilder.Entity<Transaction>()
                 .HasOne(t => t.User)
                 .WithMany(u => u.Transactions)
