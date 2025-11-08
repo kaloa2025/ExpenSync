@@ -14,5 +14,7 @@ namespace expenseTrackerPOC.Services.Auth.Interfaces
         Task<UserDto?> GetUserByRefreshTokenAsync(string refreshToken);
         Task RevokeRefreshTokenAsync(RefreshToken refreshToken, string? reason = null);
         Task RemoveOldRefreshTokensAsync(int userId);
+        Task<bool> CheckUserEmailAlreadyExistsAsync(string email);
+        Task<UserDto> CreateUserAsync(SignUpRequest signUpRequest);
     }
 }

@@ -81,6 +81,78 @@ namespace expenseTrackerPOC.Controllers.Auth
             }
         }
 
+
+        [HttpPost("signup")]
+        public async Task<ActionResult<SignUpResponse>> Register([FromBody] SignUpRequest signUpRequest)
+        {
+            try
+            {
+                //1. Validate Model
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(new LoginResponse
+                    {
+                        Success = false,
+                        Message = "Invalid Input Data",
+                        Errors = ModelState.SelectMany(x => x.Value.Errors.Select(e => e.ErrorMessage)).ToList()
+                    });
+                }
+
+                //2. Check User Exists
+                var userExists = await authService.CheckUserEmailAlreadyExistsAsync(signUpRequest.Email);
+                if(userExists)
+                {
+                    return StatusCode(409, new SignUpResponse
+                    {
+                        Success = false,
+                        Message = "An User with same email exists, Please Login if you are a returning User.",
+                    });
+                }
+
+                //2. Add User
+                var user = await authService.CreateUserAsync(signUpRequest);
+                if (user == null)
+                {
+                    return Unauthorized(new SignUpResponse
+                    {
+                        Success = false,
+                        Message = "Unable to create new User, Please Try again after some time."
+                    });
+                }
+
+                //3. Generate JWT
+                var (token, refreshToken) = await jwtService.GenerateTokenAsync(user);
+
+                //4. Save RefreshToken in db
+                //await authService.SaveRefreshTokenAsync(refreshToken);
+                //await authService.RemoveOldRefreshTokensAsync(user.Id);
+
+                //5. Send Welcome Mail
+                //await emailService.SendWelcomeMail(user);
+
+                //6. Return
+                return Ok(new SignUpResponse
+                {
+                    Success = true,
+                    Token = token,
+                    User = user,
+                });
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new SignUpResponse
+                {
+                    Success = false,
+                    Message = "An error Occured during SignUp",
+                    Errors = new List<string> { ex.Message }
+                });
+            }
+        }
+
+
+
+
         [HttpPost("refresh-token")]
         public async Task<ActionResult<RefreshTokenResponse>> RefreshToken()
         {
@@ -222,18 +294,3 @@ namespace expenseTrackerPOC.Controllers.Auth
 
     }
 }
-
-
-
-//[Authorize]
-//[ApiController]
-//public class UserController : ControllerBase
-//{
-//    [HttpGet("profile")]
-//    public IActionResult GetProfile()
-//    {
-//        var userId = User.FindFirst("userId")?.Value;
-//        var email = User.FindFirst(ClaimTypes.Email)?.Value;
-//        // Use claims data
-//    }
-//}
