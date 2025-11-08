@@ -100,12 +100,22 @@ namespace expenseTrackerPOC.Controllers.Auth
 
                 //2. Check User Exists
                 var userExists = await authService.CheckUserEmailAlreadyExistsAsync(signUpRequest.Email);
-                if(userExists)
+                if(userExists.exists)
                 {
                     return StatusCode(409, new SignUpResponse
                     {
                         Success = false,
-                        Message = "An User with same email exists, Please Login if you are a returning User.",
+                        Message = userExists.Message,
+                    });
+                }
+
+                //3. Check User Exists
+                if (signUpRequest.Password != signUpRequest.RePassword || !signUpRequest.Password.Equals(signUpRequest.RePassword))
+                {
+                    return StatusCode(400, new SignUpResponse
+                    {
+                        Success = false,
+                        Message = "Password doesn't matches Re-entered Password, Please check and try again.",
                     });
                 }
 
@@ -136,6 +146,7 @@ namespace expenseTrackerPOC.Controllers.Auth
                     Success = true,
                     Token = token,
                     User = user,
+                    Message = "User created Successfully!"
                 });
 
             }
