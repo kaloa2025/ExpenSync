@@ -12,7 +12,12 @@ namespace expenseTrackerPOC.Models
         [Required]
         public string HashPassword { get; set; }
         public string Role { get; set; } = "User";
+
+        public int? PasswordResetOtp {  get; set; }
+        public DateTime? PasswordResetExpiry { get; set; }
+        public bool IsOtpVerified { get; set; } = false;
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
         public List<RefreshToken> RefreshTokens { get; set; } = new();
+        public ICollection<Category>? Categories { get; set; }
     }
 }

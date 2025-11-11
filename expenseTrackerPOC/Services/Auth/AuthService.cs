@@ -15,29 +15,58 @@ namespace expenseTrackerPOC.Services.Auth
         {
             this.dbContext = dbContext;
         }
-        public Task<RefreshToken?> GetRefreshTokenAsync(string token)
+        public async Task<RefreshToken?> GetRefreshTokenAsync(string token)
         {
-            throw new NotImplementedException();
+            return await dbContext.RefreshTokens.Include(rt => rt.User).FirstOrDefaultAsync(rt => rt.Token == token);
         }
 
-        public Task<UserDto?> GetUserByRefreshTokenAsync(string refreshToken)
+        public async Task<UserDto?> GetUserByRefreshTokenAsync(string refreshToken)
         {
-            throw new NotImplementedException();
+            var token = await dbContext.RefreshTokens.Include(rt => rt.User).FirstOrDefaultAsync(rt => rt.Token == refreshToken);
+            if(token == null)
+            {
+                return null;
+            }
+            return new UserDto
+            {
+                Id = token.User.UserId,
+                Email = token.User.Email,
+                UserName = token.User.Username,
+                Role = token.User.Role,
+            };
         }
 
-        public Task RemoveOldRefreshTokensAsync(int userId)
+        public async Task RemoveOldRefreshTokensAsync(int userId, string newToken)
         {
-            throw new NotImplementedException();
+            var tokens = await dbContext.RefreshTokens.Where(rt=>rt.UserId == userId && rt.Token!= newToken).ToListAsync();
+            if (tokens.Any())
+            {
+                dbContext.RefreshTokens.RemoveRange(tokens);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
-        public Task RevokeRefreshTokenAsync(RefreshToken refreshToken, string? reason = null)
+        public async Task RevokeRefreshTokenAsync(RefreshToken refreshToken, string? reason = null)
         {
-            throw new NotImplementedException();
+            if(refreshToken == null)
+            {
+                throw new ArgumentNullException(nameof(RefreshToken));
+            }
+            refreshToken.Revoked = DateTime.UtcNow;
+            refreshToken.ReasonRevoked = reason ?? "Revoked";
+            refreshToken.IsRevoked.Equals(true);
+
+            dbContext.RefreshTokens.Update(refreshToken);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task SaveRefreshTokenAsync(RefreshToken refreshToken)
+        public async Task SaveRefreshTokenAsync(RefreshToken refreshToken)
         {
-            throw new NotImplementedException();
+            if (refreshToken == null)
+                throw new ArgumentNullException(nameof(refreshToken));
+
+            await dbContext.RefreshTokens.AddAsync(refreshToken);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<UserDto?> ValidateCredentialsAsync(Data.RequestModels.LoginRequest loginRequest)

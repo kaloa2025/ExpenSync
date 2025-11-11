@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using expenseTrackerPOC.Data;
 
@@ -11,9 +12,11 @@ using expenseTrackerPOC.Data;
 namespace expenseTrackerPOC.Migrations
 {
     [DbContext(typeof(ExpenseTrackerDbContext))]
-    partial class ExpenseTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251108202645_Creation")]
+    partial class Creation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,23 +92,6 @@ namespace expenseTrackerPOC.Migrations
                     b.ToTable("ExpenseTypes");
                 });
 
-            modelBuilder.Entity("expenseTrackerPOC.Models.ModeOfPayment", b =>
-                {
-                    b.Property<int>("ModeOfPaymentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ModeOfPaymentId"));
-
-                    b.Property<string>("ModeOfPaymentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ModeOfPaymentId");
-
-                    b.ToTable("ModeOfPayments");
-                });
-
             modelBuilder.Entity("expenseTrackerPOC.Models.RefreshToken", b =>
                 {
                     b.Property<int>("Id")
@@ -169,13 +155,6 @@ namespace expenseTrackerPOC.Migrations
                     b.Property<int>("ExpenseTypeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModeOfPaymentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReciverSenderName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("TransactionAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -198,8 +177,6 @@ namespace expenseTrackerPOC.Migrations
 
                     b.HasIndex("ExpenseTypeId");
 
-                    b.HasIndex("ModeOfPaymentId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
@@ -221,15 +198,6 @@ namespace expenseTrackerPOC.Migrations
                     b.Property<string>("HashPassword")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsOtpVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("PasswordResetExpiry")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("PasswordResetOtp")
-                        .HasColumnType("int");
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -288,12 +256,6 @@ namespace expenseTrackerPOC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("expenseTrackerPOC.Models.ModeOfPayment", "ModeOfPayment")
-                        .WithMany("Transactions")
-                        .HasForeignKey("ModeOfPaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("expenseTrackerPOC.Models.User", "User")
                         .WithMany("Transactions")
                         .HasForeignKey("UserId")
@@ -303,8 +265,6 @@ namespace expenseTrackerPOC.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("ExpenseType");
-
-                    b.Navigation("ModeOfPayment");
 
                     b.Navigation("User");
                 });
@@ -320,11 +280,6 @@ namespace expenseTrackerPOC.Migrations
                 });
 
             modelBuilder.Entity("expenseTrackerPOC.Models.ExpenseType", b =>
-                {
-                    b.Navigation("Transactions");
-                });
-
-            modelBuilder.Entity("expenseTrackerPOC.Models.ModeOfPayment", b =>
                 {
                     b.Navigation("Transactions");
                 });

@@ -55,11 +55,12 @@ namespace expenseTrackerPOC.Controllers.Auth
                 var (token, refreshToken) = await jwtService.GenerateTokenAsync(user);
 
                 //4. Save RefreshToken in db
-                //await authService.SaveRefreshTokenAsync(refreshToken);
-                //await authService.RemoveOldRefreshTokensAsync(user.Id);
+                await authService.SaveRefreshTokenAsync(refreshToken);
+                await authService.RemoveOldRefreshTokensAsync(user.Id, refreshToken.Token);
+                SetRefreshTokenCookie(refreshToken.Token);
 
                 //5. Mail User about Login Attempt
-                //await emailService.SendLoginAttemptMail(user);
+                await emailService.SendLoginAttemptMail(user);
 
                 //6. Return
                 return Ok(new LoginResponse
@@ -134,11 +135,12 @@ namespace expenseTrackerPOC.Controllers.Auth
                 var (token, refreshToken) = await jwtService.GenerateTokenAsync(user);
 
                 //4. Save RefreshToken in db
-                //await authService.SaveRefreshTokenAsync(refreshToken);
-                //await authService.RemoveOldRefreshTokensAsync(user.Id);
+                await authService.SaveRefreshTokenAsync(refreshToken);
+                await authService.RemoveOldRefreshTokensAsync(user.Id, refreshToken.Token);
+                SetRefreshTokenCookie(refreshToken.Token);
 
                 //5. Send Welcome Mail
-                //await emailService.SendWelcomeMail(user);
+                await emailService.SendWelcomeMail(user);
 
                 //6. Return
                 return Ok(new SignUpResponse
@@ -160,9 +162,6 @@ namespace expenseTrackerPOC.Controllers.Auth
                 });
             }
         }
-
-
-
 
         [HttpPost("refresh-token")]
         public async Task<ActionResult<RefreshTokenResponse>> RefreshToken()
@@ -207,9 +206,9 @@ namespace expenseTrackerPOC.Controllers.Auth
 
                 // 5. Revoke old refresh token and save new one
                 await authService.RevokeRefreshTokenAsync(oldRefreshToken, "Replaced by new token");
-                newRefreshToken.ReplacedByToken = newRefreshToken.Token;
+                oldRefreshToken.ReplacedByToken = newRefreshToken.Token;
                 await authService.SaveRefreshTokenAsync(newRefreshToken);
-                await authService.RemoveOldRefreshTokensAsync(user.Id);
+                await authService.RemoveOldRefreshTokensAsync(user.Id, newRefreshToken.Token);
 
                 // 6. Set new refresh token in cookie
                 SetRefreshTokenCookie(newRefreshToken.Token);

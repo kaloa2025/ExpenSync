@@ -15,7 +15,6 @@ namespace expenseTrackerPOC.Services.Auth.Interfaces
         Task<RefreshToken?> GetRefreshTokenAsync(string token);
         Task<UserDto?> GetUserByRefreshTokenAsync(string refreshToken);
         Task RevokeRefreshTokenAsync(RefreshToken refreshToken, string? reason = null);
-        Task RemoveOldRefreshTokensAsync(int userId);
-
+        Task RemoveOldRefreshTokensAsync(int userId, string newToken);
     }
 }

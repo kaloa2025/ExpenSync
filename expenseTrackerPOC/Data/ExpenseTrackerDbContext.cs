@@ -13,10 +13,20 @@ namespace expenseTrackerPOC.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<ExpenseType> ExpenseTypes { get; set; }
         public DbSet<CategoryIcon> CategoryIcons { get; set; }
+        public DbSet<ModeOfPayment> ModeOfPayments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure relationships
+            modelBuilder.Entity<Category>()
+               .HasOne(c => c.User)
+               .WithMany(u => u.Categories)
+               .HasForeignKey(c => c.UserId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Category>()
+                .HasIndex(c => new { c.UserId, c.CategoryName })
+                .IsUnique();
 
             modelBuilder.Entity<RefreshToken>()
                .HasOne(rt => rt.User)
@@ -41,6 +51,11 @@ namespace expenseTrackerPOC.Data
                 .HasOne(t => t.ExpenseType)
                 .WithMany(e => e.Transactions)
                 .HasForeignKey(t => t.ExpenseTypeId);
+
+            modelBuilder.Entity<Transaction>()
+                .HasOne(t => t.ModeOfPayment)
+                .WithMany(e => e.Transactions)
+                .HasForeignKey(t => t.ModeOfPaymentId);
 
             modelBuilder.Entity<Category>()
                 .HasOne(c => c.Icon)
