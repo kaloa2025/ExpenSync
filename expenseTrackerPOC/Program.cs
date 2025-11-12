@@ -1,4 +1,5 @@
 using expenseTrackerPOC.Data;
+using expenseTrackerPOC.Middlewares;
 using expenseTrackerPOC.Models;
 using expenseTrackerPOC.Models.Configurations;
 using expenseTrackerPOC.Services.Auth;
@@ -16,10 +17,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Host.UseSerilog((context, config) =>
+{ 
+    config.WriteTo.Console()
+          .WriteTo.File("Logs/log-.txt", rollingInterval: RollingInterval.Day)
+          .Enrich.FromLogContext();
+});
+
+Log.Information("Starting ExpenseTrackerPOC in {Environment}", builder.Environment.EnvironmentName);
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSettings.SectionName));
 builder.Services.AddDbContext<ExpenseTrackerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -61,7 +70,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngularApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:4200") 
+            policy.WithOrigins("https://localhost:4200","http://localhost:4200", "http://localhost:4200") 
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   .AllowCredentials();
@@ -77,7 +86,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+app.UseCors("AllowAngularApp");
 app.UseHttpsRedirection();
 
 // Authentication must be registered before the app starts, Makes the JWT authentication service available throughout the app
@@ -87,20 +96,8 @@ app.UseHttpsRedirection();
 // Extracts claims and makes them available via HttpContext.User
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseMiddleware<RequestLoggingMiddleware>();
+app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllers();
-app.UseCors("AllowAngularApp");
 app.Run();
 
-
-//options.Events = new JwtBearerEvents
-//{
-//OnAuthenticationFailed = context =>
-//{
-//if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
-//{
-//context.Response.Headers.Add("Token-Expired", "true");
-//}
-//return Task.CompletedTask;
-//}
-//};
-//});

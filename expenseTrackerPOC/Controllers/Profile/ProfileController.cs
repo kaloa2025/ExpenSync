@@ -30,71 +30,58 @@ namespace expenseTrackerPOC.Controllers.Profile
         [HttpPut("edit")]
         public async Task<ActionResult<EditProfileResponse>> EditProfile([FromBody] EditProfileRequest editProfileRequest)
         {
-            try
+            //1. Validate Model
+            if (!ModelState.IsValid)
             {
-                //1. Validate Model
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(new EditProfileResponse
-                    {
-                        Success = false,
-                        Message = "Invalid Input Data",
-                        Errors = ModelState.SelectMany(x => x.Value.Errors.Select(e => e.ErrorMessage)).ToList()
-                    });
-                }
-
-                var Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (Id == null)
-                {
-                    return BadRequest(new EditProfileResponse
-                    {
-                        Success = false,
-                        Message = "Invalid Request"
-                    });
-                }
-
-                int userId = Convert.ToInt32(Id);
-
-                //2. Check User Exists
-                var userExists = await profileService.CheckUserExistsAsync(editProfileRequest.Email, userId);
-                if (!userExists.exists)
-                {
-                    return StatusCode(403, new EditProfileResponse
-                    {
-                        Success = false,
-                        Message = userExists.Message,
-                    });
-                }
-
-                //3. Edit User
-                var updatedUser = await profileService.EditUserDetailsAsync(editProfileRequest, userId);
-                if (updatedUser.user == null)
-                {
-                    return Unauthorized(new EditProfileResponse
-                    {
-                        Success = false,
-                        Message = updatedUser.Message,
-                    });
-                }
-
-                //4. Return
-                return Ok(new EditProfileResponse
-                {
-                    Success = true,
-                    User = updatedUser.user,
-                    Message = "User details updated Successfully!"
-                });
-
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new EditProfileResponse
+                return BadRequest(new EditProfileResponse
                 {
                     Success = false,
-                    Message = "An error Occured during Profile Update",
-                    Errors = new List<string> { ex.Message }
+                    Message = "Invalid Input Data",
+                    Errors = ModelState.SelectMany(x => x.Value.Errors.Select(e => e.ErrorMessage)).ToList()
                 });
             }
+
+            var Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (Id == null)
+            {
+                return BadRequest(new EditProfileResponse
+                {
+                    Success = false,
+                    Message = "Invalid Request"
+                });
+            }
+
+            int userId = Convert.ToInt32(Id);
+
+            //2. Check User Exists
+            var userExists = await profileService.CheckUserExistsAsync(editProfileRequest.Email, userId);
+            if (!userExists.exists)
+            {
+                return StatusCode(403, new EditProfileResponse
+                {
+                    Success = false,
+                    Message = userExists.Message,
+                });
+            }
+
+            //3. Edit User
+            var updatedUser = await profileService.EditUserDetailsAsync(editProfileRequest, userId);
+            if (updatedUser.user == null)
+            {
+                return Unauthorized(new EditProfileResponse
+                {
+                    Success = false,
+                    Message = updatedUser.Message,
+                });
+            }
+
+            //4. Return
+            return Ok(new EditProfileResponse
+            {
+                Success = true,
+                User = updatedUser.user,
+                Message = "User details updated Successfully!"
+            });
         }
     }
 }
