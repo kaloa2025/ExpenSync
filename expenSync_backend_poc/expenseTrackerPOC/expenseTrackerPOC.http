@@ -1,0 +1,6 @@
+@expenseTrackerPOC_HostAddress = http://localhost:5276
+
+GET {{expenseTrackerPOC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
