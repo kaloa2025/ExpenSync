@@ -1,0 +1,204 @@
+<div class="main-component">
+    <div class = "navbar">
+        <div class="logo" (click)="toggleExpense()">NEW TRANSACTION</div>
+        <div class="signout-btn" (click)="logout()">LOG OUT</div>
+    </div>
+        <div class = "container">
+            <div class = "left-profile-section">
+                <div class = "profile-display">
+                    <div class="heading">HELLO,</div>
+                    <form [formGroup]="profileForm" class = "details">
+                        <div class="label">Username</div>
+                        <input class="username" formControlName="username" placeholder={{username}}/>
+                        <div class="label">Email</div>
+                        <div class="email" placeholder="Email">{{email}}</div>
+                    </form>
+                    <div class="update-bttn" (click)="editMode?updateProfile():editFormActivate()">{{editMode?'UPDATE':'EDIT'}}</div>
+                </div>
+                <hr>
+                <div class="quick-links">
+                    <div (click)="toggleExpense()"[ngClass]="{'open':isExpenseOpen}">± New Expense</div>
+                    <div>◙ Get Report</div>
+                </div>
+            </div>
+            <div class = "right-service-section">
+                <div class = "left-service-section">
+                    <div class="scan-expense-section"> 
+                        <div class="scan-bttn" (click)="scanUploadImage()">SCAN/UPLOAD</div>
+                        <div class="description">Scan your Receipt, Add Transaction Now!</div>
+                    </div>
+                    <div class="category-section">
+                        <div class="category-header">
+                            <div class="icon" *ngIf="showAddCategory" (click)="toggleAddCategory()">x</div>
+                            <div class="icon" *ngIf="!showAddCategory" (click)="toggleAddCategory()">+</div>
+                            <div class="new-category-bttn" (click)="toggleAddCategory()" [ngClass]="{'active':showAddCategory}">New Category</div>
+                        </div>
+                        <div class="add-category-section" *ngIf="showAddCategory">
+                            <div class="new-category-icon">ICON</div>
+                            <div class="icon-label">Select an ion suitable for this category</div>
+                            <div class="name-label">Name</div>
+                            <input class="category-name" type="text" placeholder="Enter Category Name" name="category-name"/>
+                            <div class="bttns">
+                                <div class="add-category-bttn" (click)="saveCategory(editCategoryData)">{{ editMode ? 'Save Changes' : 'Add Category' }}</div>
+                                <div class="cancel-bttn" (click)="showAddCategory = false; editMode=false;">Cancel</div>
+                            </div>
+                        </div>
+                        <input class="search-bar" placeholder="Search Category" name="search-bar"/>
+                        <div class="category-list">
+                            <div class="category-tag" (click)="selectCategory(1)">
+                                <img class="category-icon" src="/assets/microsoft-logo.png">
+                                <div class="category-name">cate1</div>
+                            </div>
+                            <div class="category-tag" (click)="selectCategory(2)">
+                                <img class="category-icon" src="/assets/microsoft-logo.png">
+                                <div class="category-name">category2</div>
+                            </div>
+                            <div class="category-tag" (click)="selectCategory(3)">
+                                <img class="category-icon" src="/assets/microsoft-logo.png">
+                                <div class="category-name">category3</div>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedCategoryIndex!=null" class="category-actions">
+                            <div (click)="editCategory()" class="editbttn">Edit</div>
+                            <div (click)="confirmDeleteCategory()" class="deletebttn">Delete</div>
+                        </div>
+                    </div>
+                    <div class="delete-popup" *ngIf="showDeletePopup">
+                    <div class="popup-content">
+                        <p>Are you sure you want to delete this category : {{selectCategory.name}}?</p>
+                        <button (click)="deleteCategory()">Yes, Delete</button>
+                        <button (click)="cancelDelete()">Cancel</button>
+                    </div>
+                    </div>
+                    <div class="bar-graph-section">
+                        <div class="bar-graph-heading">GRAPH</div>
+                          <div class="bar-graph">
+                            <div class="bar">10%</div>
+                            <div class="bar">24%</div>
+                            <div class="bar">40%</div>
+                            <div class="bar">30%</div>
+                            <div class="bar">18%</div>
+                        </div>
+                        <div class="grpah-description">This Grpah computes expenses tracked for each category</div>
+                    </div>
+                </div>
+                <div class = "right-service-service-section">
+                    <div class="new-heading-icon" (click)="toggleExpense()">⨉</div>
+                    <div class="new-expense" *ngIf="isExpenseOpen"> 
+                        <div class="new-expense-form">
+                            <div class="header">
+                                <div class="heading">NEW TRANSACTION</div>
+                            </div>
+                            <div class="amount-section">
+                                <input placeholder="0.0" class="amount">
+                                <div class="amount-symbol">RS</div>
+                            </div>
+                            <div class="form">
+                                <input class="description" placeholder="Description (Optional)">
+                                <input class="revicer-name" placeholder="Enter Receiver's / Sender's Name">
+                                <div class="expense-date">
+                                    <input type="number" placeholder="dd" class="date" maxlength="2">
+                                    <input type="number" placeholder="mm" class="month" maxlength="2">
+                                    <input type="number" placeholder="yyyy" class="year" maxlength="4">
+                                </div>
+                                <div class="expense-type">
+                                    <div class="type-option">⇱ Expense</div>
+                                    <div class="type-option">⇲ Income</div>
+                                    <div class="type-option">⇵ Investment</div>
+                                    <div class="type-option">± Other</div>
+                                </div>
+                                <select class="category-select" id="category-dropdown" name="categoryOption">
+                                    <option value="option1">category1</option>
+                                    <option value="option1">category2</option>
+                                </select>
+                                <select class="mode-of-payment-select" id="mode-of-payment-dropdown" name="modeOfPaymentOption">
+                                    <option value="option1">UPI</option>
+                                    <option value="option1">CASH</option>
+                                </select>
+                                <div class="add-bttn">
+                                    Add Expense
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calender">
+                            <div class="header">
+                                <select class="month">
+                                    <option value="1">Jan</option>
+                                </select>
+                                <select class="year">
+                                    <option value="1">2025</option>
+                                </select>
+                            </div>
+                            <div class="weekdays">
+                                <div class="week-days">
+                                    <div class="icon">M</div>
+                                    <div class="icon">T</div>
+                                    <div class="icon">W</div>
+                                    <div class="icon">T</div>
+                                    <div class="icon">F</div>
+                                    <div class="icon">S</div>
+                                    <div class="icon">S</div>
+                                </div>
+                                <div class="dates">
+                                    <div class="icon">1</div>
+                                    <div class="icon">2</div>
+                                    <div class="icon">3</div>
+                                    <div class="icon">4</div>
+                                    <div class="icon">5</div>
+                                    <div class="icon">6</div>
+                                    <div class="icon">7</div>
+                                </div>
+                            </div>
+                            <div class="today-bttn">Select Today</div>
+                        </div>
+                    </div>
+                    <div class="history-section">
+                        <div class="heading">PREVIOUS TRANSACTIONS</div>                        
+                        <div class="transaction-history-container">
+                        <!-- Oct 14th -->
+                        <div class="th-date-group">
+                            <div class="th-date-header">
+                                <div class="th-date-dot"></div>
+                                <div class="th-date-label">Oct 14th</div>
+                            </div>
+                            <div class="th-transactions">
+                                <div class="th-transaction-card">
+                                    <div class="th-transaction-header">
+                                        <div class="th-transaction-left">
+                                            <div>
+                                                <div>  
+                                                    <div class="th-recipient">from Sarah</div>
+                                                     <div class="th-transaction-time">Dec 10</div>
+                                                </div>
+                                                <div class="th-amount-badge th-income">
+                                                    <span class="th-amount-symbol">⇲ </span>
+                                                    <span class="th-amount">₹5,500</span>
+                                                </div>
+                                            </div>
+                                            <div class="th-type-badge th-income">Income</div>
+                                        </div>
+                                    </div>
+                                    <div class="th-transaction-footer">
+                                         <div class="th-categories">
+                                            <div class="th-category-tag">
+                                                <img class="th-category-icon" src="/assets/microsoft-logo.png"/>
+                                                <span>Freelance</span>
+                                            </div>
+                                            <div class="th-actions">
+                                        <button class="th-action-btn th-edit">Edit</button>
+                                        <button class="th-action-btn th-delete">Delete</button>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div>DISCLAIMER : This communication (including any attachments) is for the use of the intended recipient(s) only and may contain information that is confidential, privileged or legally protected. Any unauthorized use or dissemination of this communication is strictly prohibited. If you have received this communication in error, please immediately notify the sender by return e-mail message and delete all copies of the original communication including attachments. Thank you for your cooperation.</div>
+    </div>
+</div>
