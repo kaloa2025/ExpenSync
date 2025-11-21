@@ -7,8 +7,18 @@ import { AuthService } from "./auth.service";
 export class AuthInterceptor implements HttpInterceptor
 {
     constructor(private auth:AuthService){}
+
     intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>>
     {
+        const isAuthRequest =
+        req.url.includes('/auth/login') ||
+        req.url.includes('/auth/signup') ||
+        req.url.includes('/auth/refresh');
+
+        if (isAuthRequest) {
+        return next.handle(req);
+        }
+
         const token = localStorage.getItem('accessToken');
         let authReq = req;
         if(token)
@@ -17,16 +27,6 @@ export class AuthInterceptor implements HttpInterceptor
                 setHeaders:{Authorization: `Bearer ${token}`}
             });
         }
-
-        const isAuthRequest =
-        req.url.includes('/auth/login') ||
-        req.url.includes('/auth/signup') ||
-        req.url.includes('/auth/refresh');
-
-        if (isAuthRequest) {
-        return next.handle(authReq);
-        }
-
 
         return next.handle(authReq).pipe(
             catchError(err=>{

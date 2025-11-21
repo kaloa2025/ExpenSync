@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, lastValueFrom, Observable, of, Subject, throwError } from 'rxjs';
 import { catchError, finalize, switchMap, tap } from 'rxjs/operators';
 import { LoginRequest, SignUpRequest, SignUpResponse, LoginResponse, JwtClaims } from './auth.models';
 import { jwtDecode } from 'jwt-decode';
@@ -25,7 +25,6 @@ export class AuthService {
   authState$ = this.authStateSubject.asObservable();
 
   private refreshing = false;
-  // emits new access token or null on failure
   private refreshSubject = new Subject<string|null>();
 
   private autoLogoutTimer?:any;
@@ -33,30 +32,19 @@ export class AuthService {
   private warningSubject = new BehaviorSubject<number|null>(null);
   sessionWarning$ = this.warningSubject.asObservable();
 
-  constructor(private http: HttpClient, private router:Router) 
+  constructor(private http: HttpClient, private router:Router)
   {
     this.loadFromStorage();
-  }
-
-  signUp(signUpRequest: SignUpRequest): Observable<SignUpResponse> {
-    return this.http
-      .post<SignUpResponse>(`${this.apiUrl}/auth/signup`, signUpRequest)
-      .pipe(
-        tap(res => {
-          if (res.success && res.token) {
-            this.setSession(res.token, undefined);  // store token
-          }
-        })
-      );
   }
 
   private normalizeClaims(raw: any) {
     return {
       userId: raw["userId"] ??
+              raw["sub"]??
               raw["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"] ??
               null,
 
-      email: raw["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"] ?? null,
+      email: raw["email"]??raw["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress"] ?? null,
 
       userName: raw["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"] ?? null,
 
@@ -69,6 +57,18 @@ export class AuthService {
     };
   }
 
+
+  signUp(signUpRequest: SignUpRequest): Observable<SignUpResponse> {
+    return this.http
+      .post<SignUpResponse>(`${this.apiUrl}/auth/signup`, signUpRequest)
+      .pipe(
+        tap(res => {
+          if (res.success && res.token) {
+            this.setSession(res.token);
+          }
+        })
+      );
+  }
 
   logIn(logInRequest: LoginRequest):Observable<LoginResponse>
   {
@@ -84,15 +84,17 @@ export class AuthService {
     );
   }
 
-   private setSession(token: string, refreshToken?: string) 
+   private setSession(token: string, refreshToken?: string)
    {
     const rawClaims = decodeJwt(token) || {};
     const claims = this.normalizeClaims(rawClaims);
-    
+
     const state: AuthState = { token, refreshToken, claims };
+
     localStorage.setItem('accessToken', token);
     if (refreshToken) localStorage.setItem('refreshToken', refreshToken);
     localStorage.setItem('userClaims', JSON.stringify(claims));
+
     this.authStateSubject.next(state);
 
     this.startAutoLogoutTimer(token);
@@ -101,9 +103,6 @@ export class AuthService {
 
   logout(redirect = true)
   {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('userClaims');
     localStorage.clear();
     this.authStateSubject.next(null);
     this.clearAutoLogoutTimer();
@@ -117,18 +116,20 @@ export class AuthService {
   {
     const token = localStorage.getItem('accessToken');
     if(!token) return;
-    if(isTokenExpired(token))
+
+    const storedClaims = localStorage.getItem('userClaims');
+    let claims;
+
+    if(storedClaims)
     {
-       // try refresh immediately or clear session
-      // We'll attempt refresh lazily when a request fails or call refresh now:
-      // For simplicity here, we'll set state with decoded claims and still allow refresh later
-      const claims = decodeJwt(token) || {};
-      this.authStateSubject.next({ token, refreshToken: localStorage.getItem('refreshToken') || undefined, claims });
-      // start timer if expiry exists to auto-logout
-      this.startAutoLogoutTimer(token);
-      return;
+      claims = JSON.parse(storedClaims);
     }
-    const claims = decodeJwt(token)||{};
+    else
+    {
+      claims=this.normalizeClaims(decodeJwt(token));
+      localStorage.setItem('userClaims',JSON.stringify(claims));
+    }
+
     this.authStateSubject.next({token, refreshToken: localStorage.getItem('refreshToken')||undefined, claims});
     this.startAutoLogoutTimer(token);
   }
@@ -214,7 +215,7 @@ export class AuthService {
     );
   }
   // Auto logout timer based on token exp
-  
+
   private startAutoLogoutTimer(token: string) {
     this.clearAutoLogoutTimer();
     const expiry = getTokenExpiry(token);
@@ -274,6 +275,6 @@ export class AuthService {
       this.sessionWarningTimer = null;
     }
 
-    this.warningSubject.next(null); 
+    this.warningSubject.next(null);
   }
 }

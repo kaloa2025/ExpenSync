@@ -9,6 +9,7 @@ namespace expenseTrackerPOC.Services.Core.Interfaces
     {
         public Task<AddNewCategoryResponse> AddNewCategory(AddNewCategoryRequest addNewCategoryRequest, int userId);
         public Task<FetchCategoriesResponse> FetchAllCategories(int userId);
+        public Task<FetchAllIconsResponse> FetchAllIcons();
         public Task<FetchCategoryResponse> FetchCategoryById(int categoryId, int userId);
         public Task<UpdateCategoryResponse> UpdateCategory(int categoryId, UpdateCategoryRequest updateCategoryRequest, int userId);
     }

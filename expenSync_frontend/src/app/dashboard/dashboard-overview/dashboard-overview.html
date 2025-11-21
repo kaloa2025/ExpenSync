@@ -9,9 +9,9 @@
                     <div class="heading">HELLO,</div>
                     <form [formGroup]="profileForm" class = "details">
                         <div class="label">Username</div>
-                        <input class="username" formControlName="username" placeholder={{username}}/>
+                        <input class="username" formControlName="username" [placeholder]="username" />
                         <div class="label">Email</div>
-                        <div class="email" placeholder="Email">{{email}}</div>
+                        <div class="email">{{ email || 'Email' }}</div>
                     </form>
                     <div class="update-bttn" (click)="editMode?updateProfile():editFormActivate()">{{editMode?'UPDATE':'EDIT'}}</div>
                 </div>
@@ -23,7 +23,7 @@
             </div>
             <div class = "right-service-section">
                 <div class = "left-service-section">
-                    <div class="scan-expense-section"> 
+                    <div class="scan-expense-section">
                         <div class="scan-bttn" (click)="scanUploadImage()">SCAN/UPLOAD</div>
                         <div class="description">Scan your Receipt, Add Transaction Now!</div>
                     </div>
@@ -35,7 +35,17 @@
                         </div>
                         <div class="add-category-section" *ngIf="showAddCategory">
                             <div class="new-category-icon">ICON</div>
-                            <div class="icon-label">Select an ion suitable for this category</div>
+                            <div class="icon-list">
+                                <div
+                                    *ngFor="let icon of availableIcons"
+                                    (click)="selectedIconId = icon.iconId"
+                                    [class.selected]="selectedIconId === icon.iconId"
+                                    class="icon-option"
+                                >
+                                    <img [src]="icon.iconImageUrl" class = "icon-image"/>
+                                </div>
+                            </div>
+                            <div class="icon-label">Select an icon suitable for this category</div>
                             <div class="name-label">Name</div>
                             <input class="category-name" type="text" placeholder="Enter Category Name" name="category-name"/>
                             <div class="bttns">
@@ -43,22 +53,20 @@
                                 <div class="cancel-bttn" (click)="showAddCategory = false; editMode=false;">Cancel</div>
                             </div>
                         </div>
-                        <input class="search-bar" placeholder="Search Category" name="search-bar"/>
+                        <input class="search-bar" placeholder="Search Category" name="search-bar" (input)="onSearch($event.target.value)"/>
                         <div class="category-list">
-                            <div class="category-tag" (click)="selectCategory(1)">
-                                <img class="category-icon" src="/assets/microsoft-logo.png">
-                                <div class="category-name">cate1</div>
-                            </div>
-                            <div class="category-tag" (click)="selectCategory(2)">
-                                <img class="category-icon" src="/assets/microsoft-logo.png">
-                                <div class="category-name">category2</div>
-                            </div>
-                            <div class="category-tag" (click)="selectCategory(3)">
-                                <img class="category-icon" src="/assets/microsoft-logo.png">
-                                <div class="category-name">category3</div>
+                            <div
+                              class="category-tag"
+                              *ngFor="let c of filteredCategories"
+                              [ngClass]="{ 'selected': selectedCategoryId === c.categoryId }"
+                              (click)="selectCategory(c.categoryId)"
+                            >
+                                <img class="category-icon" [src]="c.iconUrl || '/assets/microsoft-logo.png'">
+                                <div class="category-name">{{ c.categoryName }}</div>
                             </div>
                         </div>
-                        <div *ngIf="selectedCategoryIndex!=null" class="category-actions">
+
+                        <div *ngIf="selectedCategoryId!=null" class="category-actions">
                             <div (click)="editCategory()" class="editbttn">Edit</div>
                             <div (click)="confirmDeleteCategory()" class="deletebttn">Delete</div>
                         </div>
@@ -84,7 +92,7 @@
                 </div>
                 <div class = "right-service-service-section">
                     <div class="new-heading-icon" (click)="toggleExpense()">⨉</div>
-                    <div class="new-expense" *ngIf="isExpenseOpen"> 
+                    <div class="new-expense" *ngIf="isExpenseOpen">
                         <div class="new-expense-form">
                             <div class="header">
                                 <div class="heading">NEW TRANSACTION</div>
@@ -153,7 +161,7 @@
                         </div>
                     </div>
                     <div class="history-section">
-                        <div class="heading">PREVIOUS TRANSACTIONS</div>                        
+                        <div class="heading">PREVIOUS TRANSACTIONS</div>
                         <div class="transaction-history-container">
                         <!-- Oct 14th -->
                         <div class="th-date-group">
@@ -166,7 +174,7 @@
                                     <div class="th-transaction-header">
                                         <div class="th-transaction-left">
                                             <div>
-                                                <div>  
+                                                <div>
                                                     <div class="th-recipient">from Sarah</div>
                                                      <div class="th-transaction-time">Dec 10</div>
                                                 </div>

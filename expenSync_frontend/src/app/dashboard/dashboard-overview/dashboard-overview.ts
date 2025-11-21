@@ -4,6 +4,8 @@ import { flush } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { Category, Icon } from '../../../services/dashboard/dashboard.models';
+import { DashboardCategory } from '../../../services/dashboard/dashboard.category';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -15,11 +17,17 @@ export class DashboardOverview implements OnInit, OnDestroy{
 
   profileForm : FormGroup;
 
+  categories : Category[] = [];
+  filteredCategories : Category[] = [];
+  selectedCategoryId : number | null = null;
+  availableIcons : Icon[] | null= [];
+  selectedIconId : number | null = null;
+
   showAddCategory = false;
   editMode = false;
+
   editCategoryData : any = null;
   isExpenseOpen = false;
-  selectedCategoryIndex: number | null = null;
   showDeletePopup = false;
 
   username : string|null = '';
@@ -27,7 +35,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
 
   private authSub?: Subscription;
 
-  constructor(private fb:FormBuilder, private authService:AuthService)
+  constructor(private fb:FormBuilder, private authService:AuthService, private categoryService : DashboardCategory)
   {
     this.profileForm=this.fb.group({
       username:[{value:this.username, disabled : true}],
@@ -44,10 +52,37 @@ export class DashboardOverview implements OnInit, OnDestroy{
         this.profileForm.patchValue({username : this.username});
       }
     )
+
+    this.loadCategories();
+    this.loadIcons();
   }
 
   ngOnDestroy(): void {
     if (this.authSub) this.authSub.unsubscribe();
+  }
+
+  loadIcons()
+  {
+    this.categoryService.getAllIcons().subscribe(res=>this.availableIcons=res.icons);
+  }
+
+  loadCategories()
+  {
+    this.categoryService.getAllCategories().subscribe({
+      next:(res)=>{
+        if(res.success && res.categories)
+        {
+          this.categories = res.categories;
+          this.filteredCategories = res.categories;
+        }
+      },
+      error:()=> alert('Failed to load categories'),
+    });
+  }
+
+  onSearch(query : string)
+  {
+    this.filteredCategories = this.categories.filter((c)=>c.categoryName.toLowerCase().includes(query.toLowerCase()));
   }
 
   toggleAddCategory()
@@ -95,14 +130,14 @@ export class DashboardOverview implements OnInit, OnDestroy{
     this.isExpenseOpen=!this.isExpenseOpen;
   }
 
-  selectCategory(index:number)
+  selectCategory(categoryId:number)
   {
-    this.selectedCategoryIndex = index;
+    this.selectedCategoryId = categoryId;
   }
 
-  clearCategory()
+  clearSelected()
   {
-    this.selectedCategoryIndex = null;
+    this.selectedCategoryId = null;
   }
 
   confirmDeleteCategory()
@@ -117,32 +152,53 @@ export class DashboardOverview implements OnInit, OnDestroy{
 
   deleteCategory()
   {
-    if(this.selectedCategoryIndex!==null)
+    if(this.selectedCategoryId!==null)
     {
       alert("Category Deleted Successfully!");
-      this.selectedCategoryIndex=null;
+      this.selectedCategoryId=null;
       this.showDeletePopup=false;
     }
   }
 
   editCategory()
   {
-     if (this.selectedCategoryIndex !== null) {
-    this.editMode = true;
-    this.showAddCategory = true;
-  }
+    if (this.selectedCategoryId !== null) {
+      this.editMode = true;
+      this.showAddCategory = true;
+      if(!this.selectedIconId)
+      {
+        alert("Please select an Icon");
+        return;
+      }
+    }
   }
 
   saveCategory(editedCategory :any)
   {
-    if (this.editMode && this.selectedCategoryIndex !== null) {
-    this.editMode = false;
-    this.showAddCategory = false;
-    this.editCategoryData = null;
-    this.selectedCategoryIndex = null;
-  } else {
-    // Add new category logic
-  }
+    if(!this.selectedIconId)
+    {
+      alert("Please select an Icon");
+      return;
+    }
+    if (this.editMode && this.selectedCategoryId !== null)
+    {
+      this.editMode = false;
+      this.showAddCategory = false;
+      this.editCategoryData = null;
+      this.selectedCategoryId = null;
+    } else {
+      const payload = {
+        categoryName: this.selectCategory.name,
+        iconId: this.selectedIconId
+      };
+
+      this.categoryService.addCategory(payload).subscribe({
+        next: () => {
+            this.loadCategories();
+            this.showAddCategory = false;
+        }
+      });
+    }
   }
 
   logout()

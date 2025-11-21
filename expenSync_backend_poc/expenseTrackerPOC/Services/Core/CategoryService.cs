@@ -1,4 +1,5 @@
-﻿using expenseTrackerPOC.Data;
+﻿using Azure.Core;
+using expenseTrackerPOC.Data;
 using expenseTrackerPOC.Data.Dtos;
 using expenseTrackerPOC.Data.RequestModels;
 using expenseTrackerPOC.Data.ResponseModels;
@@ -17,119 +18,168 @@ namespace expenseTrackerPOC.Services.Core
             this.dbContext = dbContext;
         }
 
+        public async Task<FetchAllIconsResponse> FetchAllIcons()
+        {
+            var icons = await dbContext.CategoryIcons.ToListAsync();
+            if (icons.Any())
+            {
+                return new FetchAllIconsResponse
+                {
+                    Success = true,
+                    Message = "Icons fetched successfully!",
+                    icons = icons
+                };
+            }
+            return new FetchAllIconsResponse
+            {
+                Success = false,
+                Message = "No Icons for now, Try Again later",
+            };
+        }
+
         public async Task<AddNewCategoryResponse> AddNewCategory(AddNewCategoryRequest addNewCategoryRequest, int userId)
         {
-            Category category = new Category
+            var category = new Category
             {
                 UserId = userId,
                 CategoryName = addNewCategoryRequest.CategoryName,
                 IconId = addNewCategoryRequest.IconId
             };
 
-            //1. Add Category
-            var categoryAdded = (await dbContext.Categories.AddAsync(category)).Entity;
+            await dbContext.Categories.AddAsync(category);
             await dbContext.SaveChangesAsync();
 
-            if (categoryAdded == null)
+            // Fetch with Icon
+            var saved = await dbContext.Categories
+                .Include(x => x.Icon)
+                .FirstOrDefaultAsync(x => x.CategoryId == category.CategoryId);
+
+            var dto = new CategoryDto
             {
-                return new AddNewCategoryResponse
-                {
-                    Success = false,
-                    Message = "Couldn't Add New Category, Try again later.",
-                    Category = null
-                };
-            }
+                CategoryId = saved.CategoryId,
+                CategoryName = saved.CategoryName,
+                UserId = saved.UserId,
+                IconId = saved.IconId,
+                IconUrl = saved.Icon?.IconImageUrl,
+                IsDefault = saved.IsDefault == 1
+            };
 
             return new AddNewCategoryResponse
             {
                 Success = true,
-                Message = "Category Added Scuccessfully",
-                Category = categoryAdded
+                Message = "Category Added Successfully",
+                Category = dto
             };
         }
 
         public async Task<FetchCategoriesResponse> FetchAllCategories(int userId)
         {
-            var categries = await dbContext.Categories.Where(x=>x.IsDefault==1 || x.UserId==userId).OrderBy(c => c.CategoryName).ToListAsync();
+            var categries = await dbContext.Categories.Include(x => x.Icon).Where(x=>x.IsDefault==1 || x.UserId==userId).OrderBy(c => c.CategoryName).ToListAsync();
 
             if (categries == null || !categries.Any())
             {
+
                 return new FetchCategoriesResponse
                 {
                     Success = false,
                     Message = "No Categories for now, Come back later.",
-                    categories = new List<Category>()
+                    categories = null
                 };
             }
+            
+            var dtoList = categries.Select(c => new CategoryDto
+            {
+                CategoryId = c.CategoryId,
+                CategoryName = c.CategoryName,
+                UserId = c.UserId,
+                IconId = c.IconId,
+                IconUrl = c.Icon?.IconImageUrl,
+                IsDefault = c.IsDefault == 1
+            }).ToList();
+
             return new FetchCategoriesResponse
             {
                 Success = true,
                 Message = "Categories fetched successfully",
-                categories = categries
+                categories = dtoList
             };
         }
 
         public async Task<FetchCategoryResponse> FetchCategoryById(int categoryId, int userId)
         {
-            
-            var category = await dbContext.Categories.FirstOrDefaultAsync(x => x.CategoryId == categoryId && (x.UserId == userId || x.IsDefault == 1));
+            var category = await dbContext.Categories
+                .Include(c => c.Icon)
+                .FirstOrDefaultAsync(c =>
+                    c.CategoryId == categoryId &&
+                    (c.UserId == userId || c.IsDefault == 1)
+                );
 
             if (category == null)
             {
                 return new FetchCategoryResponse
                 {
                     Success = false,
-                    Message = "No such Category found, Come back later.",
+                    Message = "No such category found.",
                     Category = null
                 };
             }
+
+            var dto = new CategoryDto
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName,
+                UserId = category.UserId,
+                IconId = category.IconId,
+                IconUrl = category.Icon?.IconImageUrl,
+                IsDefault = category.IsDefault == 1
+            };
+
             return new FetchCategoryResponse
             {
                 Success = true,
                 Message = "Category fetched successfully",
-                Category = category
+                Category = dto
             };
         }
 
         public async Task<UpdateCategoryResponse> UpdateCategory(int categoryId, UpdateCategoryRequest updateCategoryRequest, int userId)
         {
-            if (updateCategoryRequest == null)
+            var category = await dbContext.Categories
+                .FirstOrDefaultAsync(c =>
+                    c.CategoryId == categoryId &&
+                    (c.UserId == userId || c.IsDefault == 1)
+                );
+
+            if (category == null)
             {
                 return new UpdateCategoryResponse
                 {
                     Success = false,
-                    Message = "Invalid Data submitted",
+                    Message = "No category found!"
                 };
             }
 
-            // 1. Find the existing user
-            var categoryExists = await FetchCategoryById(categoryId, userId);
-
-            if (categoryExists.Success == false)
-            {
-                return new UpdateCategoryResponse
-                {
-                    Success = false,
-                    Message = "No Category Found!",
-                };
-            }
-
-            var category = categoryExists.Category;
-
-            // 2. Update category details
             category.CategoryName = updateCategoryRequest.CategoryName;
             category.IconId = updateCategoryRequest.IconId;
 
-            // 3. Save changes
             dbContext.Categories.Update(category);
             await dbContext.SaveChangesAsync();
 
-            // 4. Return updated category
+            var dto = new CategoryDto
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName,
+                UserId = category.UserId,
+                IconId = category.IconId,
+                IconUrl = (await dbContext.CategoryIcons.FindAsync(category.IconId))?.IconImageUrl,
+                IsDefault = category.IsDefault == 1
+            };
+
             return new UpdateCategoryResponse
             {
                 Success = true,
-                Message = "Category Updated Successfully",
-                category = category
+                Message = "Category updated successfully",
+                Category = dto
             };
         }
     }

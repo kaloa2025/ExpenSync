@@ -60,7 +60,8 @@ namespace expenseTrackerPOC.Data
             modelBuilder.Entity<Category>()
                 .HasOne(c => c.Icon)
                 .WithMany(i => i.Categories)
-                .HasForeignKey(c => c.IconId);
+                .HasForeignKey(c => c.IconId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using expenseTrackerPOC.Models;
+﻿using expenseTrackerPOC.Data.Dtos;
+using expenseTrackerPOC.Models;
 
 namespace expenseTrackerPOC.Data.ResponseModels
 {
@@ -7,7 +8,7 @@ namespace expenseTrackerPOC.Data.ResponseModels
         public Boolean Success {  get; set; }
         public String Message { get; set; }
         public List<string> Errors { get; set; }
-        public Category category { get; set; }
+        public CategoryDto Category { get; set; }
 
     }
 }

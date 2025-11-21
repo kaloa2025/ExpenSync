@@ -29,6 +29,17 @@ namespace expenseTrackerPOC.Controllers.Core
             this.categoryService = categoryService;
         }
 
+        [HttpGet("getAllIcons")]
+        public async Task<ActionResult<FetchAllIconsResponse>> GetAllIcons()
+        {
+            var fetched_Icons = await categoryService.FetchAllIcons();
+            if(!fetched_Icons.Success)
+            {
+                return NotFound(fetched_Icons.icons);
+            }
+            return Ok(fetched_Icons);
+        }
+
         [HttpGet("getAllCategories")]
         public async Task<ActionResult<FetchCategoriesResponse>> GetAllCategories()
         {

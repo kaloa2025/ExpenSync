@@ -3,10 +3,10 @@ using expenseTrackerPOC.Models;
 
 namespace expenseTrackerPOC.Data.ResponseModels
 {
-    public class FetchCategoriesResponse
+    public class FetchAllIconsResponse
     {
         public bool Success { get; set; }
-        public List<CategoryDto>? categories { get; set; }
+        public List<CategoryIcon>? icons { get; set; }
 
         public string? Message { get; set; }
 
