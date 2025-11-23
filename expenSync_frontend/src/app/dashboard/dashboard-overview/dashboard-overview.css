@@ -422,49 +422,6 @@
   margin-left: 10%;
 }
 
-/* bar-graph-section */
-.bar-graph-section
-{
-    padding: 2%;
-    border-radius: 10px;
-}
-
-/* bar-graph */
-.bar-graph-heading {
-    font-size: 25px;
-    font-weight: 900;
-    margin-bottom: 5%;
-    letter-spacing: 1px;
-}
-.bar-graph {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-around;
-      border: 1px solid #b8b8b8;
-      padding: 3%;
-      margin-bottom: 3%;
-    }
-
-    /* Individual bars */
-    .bar {
-      background-color: #373737;
-      text-align: center;
-      width: 15%;
-      color: white;
-    }
-
-    /* Bar heights */
-    .bar:nth-child(1) { height: 50px; }
-    .bar:nth-child(2) { height: 120px; }
-    .bar:nth-child(3) { height: 200px; }
-    .bar:nth-child(4) { height: 150px; }
-    .bar:nth-child(5) { height: 90px; }
-
-/* grpah-description */
-.grpah-description {
-    color: #b8b8b8;
-    font-size: x-small;
-}
 
 .right-service-service-section .new-heading-icon
 {
@@ -1059,4 +1016,113 @@ input[disabled] {
 .new-category-icon
 {
   margin-bottom: 4%;
+}
+
+.toast-popup {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  animation: fadeInOut 2.5s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+}
+
+/* bar-graph-section */
+.bar-graph-section
+{
+    padding: 2%;
+    border-radius: 10px;
+}
+
+/* bar-graph */
+.bar-graph-heading {
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 5%;
+    letter-spacing: 1px;
+}
+
+/* grpah-description */
+.grpah-description {
+    color: #b8b8b8;
+    font-size: x-small;
+}
+
+/* Main graph wrapper */
+.vertical-graph {
+  display: flex;
+  height: 70%;
+  gap: 2%;
+}
+
+/* One bar + label block */
+.v-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+/* Background full-height bar */
+.v-bar-bg {
+  width: 100%;
+  height: 100px;
+  background: #e9e9e9;
+  border-radius: 3px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+/* Actual filled bar */
+.v-bar {
+  width: 100%;
+  border-radius: 3px;
+  height: 0%;
+  transition: height 0.4s ease-out;
+  background: linear-gradient(180deg, #19afff, #6d5dfc, #ff6ec4);
+}
+
+/* Value label */
+.v-bar-value {
+  font-size: 0.65rem;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* Icon/Category label */
+.v-bar-label {
+  margin-top: 8px;
+  font-size: 0.7rem;
+  color: #777;
+}
+
+/* Empty graph */
+.empty-graph-message {
+  font-size: 0.75rem;
+  text-align: center;
+  color: #999;
+  margin-top: 1rem;
 }

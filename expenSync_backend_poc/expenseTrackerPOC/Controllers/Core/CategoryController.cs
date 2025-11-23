@@ -146,5 +146,29 @@ namespace expenseTrackerPOC.Controllers.Core
             }
             return Ok(updated_Category);
         }
+
+        [HttpDelete("deleteCategory/{CategoryId}")]
+        public async Task<ActionResult<DeleteCategoryResponse>> DeleteCategory(int CategoryId)
+        {
+            var Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (Id == null)
+            {
+                return BadRequest(new UpdateCategoryResponse
+                {
+                    Success = false,
+                    Message = "Invalid Request"
+                });
+            }
+
+            int userId = Convert.ToInt32(Id);
+
+            var deleted_Category = await categoryService.DeleteCategory(CategoryId, userId);
+            if (!deleted_Category.Success)
+            {
+                return NotFound(deleted_Category);
+            }
+            return Ok(deleted_Category);
+        }
+
     }
 }

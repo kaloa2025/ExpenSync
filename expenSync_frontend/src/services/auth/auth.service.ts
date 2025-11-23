@@ -112,6 +112,21 @@ export class AuthService {
     }
   }
 
+  public updateClaims(newClaims : Partial<any>)
+  {
+    const currentState = this.authStateSubject.value;
+    if(!currentState) return;
+
+    const updateClaims = {...currentState.claims, ...newClaims};
+
+    localStorage.setItem('userClaims', JSON.stringify(updateClaims));
+
+    this.authStateSubject.next({
+      ...currentState,
+      claims:updateClaims
+    });
+  }
+
   private loadFromStorage()
   {
     const token = localStorage.getItem('accessToken');
@@ -277,4 +292,5 @@ export class AuthService {
 
     this.warningSubject.next(null);
   }
+
 }

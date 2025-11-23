@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddNewCategoryRequest, AddNewCategoryResponse, FetchCategoriesResponse, FetchCategoryResponse, FetchIconsResponse, UpdateCategoryRequest, UpdateCategoryResponse } from './dashboard.models';
+import { AddNewCategoryRequest, AddNewCategoryResponse, DeleteCategoryResponse, FetchCategoriesResponse, FetchCategoryResponse, FetchIconsResponse, UpdateCategoryRequest, UpdateCategoryResponse } from './dashboard.models';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,10 @@ export class DashboardCategory {
 
   getCategory(categoryId: number): Observable<FetchCategoryResponse> {
     return this.http.get<FetchCategoryResponse>(`${this.apiUrl}/getCategory/${categoryId}`);
+  }
+
+  deleteCategory(categoryId:number):Observable<DeleteCategoryResponse>{
+    return this.http.delete<DeleteCategoryResponse>(`${this.apiUrl}/deleteCategory/${categoryId}`,);
   }
 
   addCategory(req: AddNewCategoryRequest): Observable<AddNewCategoryResponse> {

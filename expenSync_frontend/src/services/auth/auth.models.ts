@@ -59,6 +59,6 @@ export interface LoginResponse {
 
 export interface EditProfileRequest
 {
-  username:string;
-  email:string;
+  userName:any;
+  email:any;
 }

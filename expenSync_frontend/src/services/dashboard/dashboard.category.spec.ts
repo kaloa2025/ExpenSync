@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DashboardCategory } from './dashboard.category';
+import { DashboardCategory } from './dashboard.category.service';
 
 describe('DashboardCategory', () => {
   let service: DashboardCategory;

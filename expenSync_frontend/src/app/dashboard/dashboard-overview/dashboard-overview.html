@@ -1,3 +1,7 @@
+<div class="toast-popup" *ngIf="toastMessage">
+  {{ toastMessage }}
+</div>
+
 <div class="main-component">
     <div class = "navbar">
         <div class="logo" (click)="toggleExpense()">NEW TRANSACTION</div>
@@ -13,7 +17,7 @@
                         <div class="label">Email</div>
                         <div class="email">{{ email || 'Email' }}</div>
                     </form>
-                    <div class="update-bttn" (click)="editMode?updateProfile():editFormActivate()">{{editMode?'UPDATE':'EDIT'}}</div>
+                    <div class="update-bttn" (click)="editProfileMode?updateProfile():editProfileFormActivate()">{{editProfileMode?'UPDATE':'EDIT PROFILE'}}</div>
                 </div>
                 <hr>
                 <div class="quick-links">
@@ -31,7 +35,7 @@
                         <div class="category-header">
                             <div class="icon" *ngIf="showAddCategory" (click)="toggleAddCategory()">x</div>
                             <div class="icon" *ngIf="!showAddCategory" (click)="toggleAddCategory()">+</div>
-                            <div class="new-category-bttn" (click)="toggleAddCategory()" [ngClass]="{'active':showAddCategory}">New Category</div>
+                            <div class="new-category-bttn" (click)="toggleAddCategory()" [ngClass]="{'active':showAddCategory}">{{selectedCategoryId==null?'New Category':'Edit Category'}}</div>
                         </div>
                         <div class="add-category-section" *ngIf="showAddCategory">
                             <div class="new-category-icon">ICON</div>
@@ -47,10 +51,10 @@
                             </div>
                             <div class="icon-label">Select an icon suitable for this category</div>
                             <div class="name-label">Name</div>
-                            <input class="category-name" type="text" placeholder="Enter Category Name" name="category-name"/>
-                            <div class="bttns">
-                                <div class="add-category-bttn" (click)="saveCategory(editCategoryData)">{{ editMode ? 'Save Changes' : 'Add Category' }}</div>
-                                <div class="cancel-bttn" (click)="showAddCategory = false; editMode=false;">Cancel</div>
+                            <input class="category-name" type="text" [(ngModel)]="categoryNameInput" placeholder="Enter Category Name" name="category-name"/>                           <div class="bttns">
+                                <div class="add-category-bttn" *ngIf="editCategoryMode" (click)="updateCategory(editCategoryData)"> Save Changes </div>
+                                <div class="add-category-bttn" *ngIf="!editCategoryMode" (click)="saveCategory(editCategoryData)"> Add Category </div>
+                                <div class="cancel-bttn" (click)="cancelCategoryDelete()">Cancel</div>
                             </div>
                         </div>
                         <input class="search-bar" placeholder="Search Category" name="search-bar" (input)="onSearch($event.target.value)"/>
@@ -67,28 +71,42 @@
                         </div>
 
                         <div *ngIf="selectedCategoryId!=null" class="category-actions">
-                            <div (click)="editCategory()" class="editbttn">Edit</div>
+                            <div (click)="displayEditCategorySection()" class="editbttn">Edit Category</div>
                             <div (click)="confirmDeleteCategory()" class="deletebttn">Delete</div>
                         </div>
                     </div>
                     <div class="delete-popup" *ngIf="showDeletePopup">
                     <div class="popup-content">
-                        <p>Are you sure you want to delete this category : {{selectCategory.name}}?</p>
+                        <p>Are you sure you want to delete this category : {{categoryNameInput}}?</p>
                         <button (click)="deleteCategory()">Yes, Delete</button>
                         <button (click)="cancelDelete()">Cancel</button>
                     </div>
                     </div>
                     <div class="bar-graph-section">
-                        <div class="bar-graph-heading">GRAPH</div>
-                          <div class="bar-graph">
-                            <div class="bar">10%</div>
-                            <div class="bar">24%</div>
-                            <div class="bar">40%</div>
-                            <div class="bar">30%</div>
-                            <div class="bar">18%</div>
+                      <div class="bar-graph-heading">GRAPH</div>
+                        <div class="vertical-graph">
+                          <div *ngFor="let row of getGraphRows()" class="v-bar-item">
+
+                            <!-- Top: value -->
+                            <div class="v-bar-value">
+                              ₹{{ row.value | number:'1.0-0' }}
+                            </div>
+
+                            <!-- Background bar with gradient bar inside -->
+                            <div class="v-bar-bg">
+                              <div class="v-bar" [style.height.%]="getBarWidth(row.value)"></div>
+                            </div>
+
+                            <!-- Bottom: category icon -->
+                            <img class="v-bar-label" [src]="row.name" width="12" height="14"/>
+                          </div>
                         </div>
-                        <div class="grpah-description">This Grpah computes expenses tracked for each category</div>
-                    </div>
+
+                        <div *ngIf="allGraphRowsZero()" class="empty-graph-message">
+                          No transactions found for expense summary.
+                        </div>
+                      </div>
+                    <div class="grpah-description">This Grpah computes expenses tracked for each category</div>
                 </div>
                 <div class = "right-service-service-section">
                     <div class="new-heading-icon" (click)="toggleExpense()">⨉</div>

@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace expenseTrackerPOC.Controllers.Profile
 {
-    [Route("api/[controller]")]
+    [Route("api/profile")]
     [Authorize]
     [ApiController]
     public class ProfileController : ControllerBase
@@ -27,7 +27,7 @@ namespace expenseTrackerPOC.Controllers.Profile
             this.profileService = profileService;
         }
 
-        [HttpPut("edit")]
+        [HttpPut("update")]
         public async Task<ActionResult<EditProfileResponse>> EditProfile([FromBody] EditProfileRequest editProfileRequest)
         {
             //1. Validate Model

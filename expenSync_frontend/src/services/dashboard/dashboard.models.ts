@@ -59,3 +59,31 @@ export interface UpdateCategoryResponse {
   message?: string;
   errors?: string[];
 }
+
+export interface DeleteCategoryResponse
+{
+  success: boolean;
+  message?: string;
+  errors?:string[];
+}
+
+export interface EditProfileResponse
+{
+  success:boolean;
+  message?:string;
+  user:{
+    userId : number;
+    userName : string;
+    email : string;
+    role : string;
+  }
+  errors?:string[];
+}
+
+export interface GraphDataResponse
+{
+  success: boolean;
+  message?:string;
+  errors?:string[];
+  data?:{[category:string]:number};
+}

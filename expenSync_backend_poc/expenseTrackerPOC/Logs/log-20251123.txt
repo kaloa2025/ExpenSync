@@ -1,0 +1,1264 @@
+2025-11-23 19:19:16.402 +05:30 [INF] User profile is available. Using 'C:\Users\AalokShailendraChoud\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-23 19:19:16.779 +05:30 [INF] Now listening on: https://localhost:7253
+2025-11-23 19:19:16.783 +05:30 [INF] Now listening on: http://localhost:5276
+2025-11-23 19:19:16.824 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-23 19:19:16.827 +05:30 [INF] Hosting environment: Development
+2025-11-23 19:19:16.829 +05:30 [INF] Content root path: C:\Users\AalokShailendraChoud\Desktop\ExpenSync\expenSync_backend_poc\expenseTrackerPOC
+2025-11-23 19:20:28.322 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-11-23 19:20:28.387 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:20:28.395 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 80.869ms
+2025-11-23 19:20:28.401 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 56
+2025-11-23 19:20:28.416 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:20:28.499 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-11-23 19:20:28.504 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 19:20:28.543 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-11-23 19:20:30.814 +05:30 [INF] Executed DbCommand (85ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-11-23 19:20:31.217 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-23 19:20:31.269 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-11-23 19:20:31.304 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-11-23 19:20:37.332 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-11-23 19:20:37.349 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 8797.5501ms
+2025-11-23 19:20:37.351 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 19:20:37.355 +05:30 [INF] Response Status : 200
+2025-11-23 19:20:37.368 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 200 null application/json; charset=utf-8 8967.2962ms
+2025-11-23 19:20:39.895 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 19:20:39.895 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 19:20:39.902 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:20:39.908 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:20:39.910 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 15.275ms
+2025-11-23 19:20:39.912 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 19:20:39.912 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 17.6082ms
+2025-11-23 19:20:39.921 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 19:20:39.931 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:20:39.943 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:20:40.012 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 19:20:40.012 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 19:20:40.014 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 19:20:40.015 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 19:20:40.022 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 19:20:40.023 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 19:20:40.066 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 19:20:40.082 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 19:20:40.109 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 82.4506ms
+2025-11-23 19:20:40.112 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 19:20:40.113 +05:30 [INF] Response Status : 200
+2025-11-23 19:20:40.115 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 193.8137ms
+2025-11-23 19:20:40.226 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 19:20:40.245 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 19:20:40.252 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 222.1656ms
+2025-11-23 19:20:40.253 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 19:20:40.255 +05:30 [INF] Response Status : 200
+2025-11-23 19:20:40.257 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 344.6579ms
+2025-11-23 19:21:04.820 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/AddNewCategory - null null
+2025-11-23 19:21:04.835 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:21:04.838 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/AddNewCategory - 204 null null 18.2611ms
+2025-11-23 19:21:04.840 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/category/AddNewCategory - application/json 44
+2025-11-23 19:21:04.854 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:21:04.858 +05:30 [INF] Incoming Request : POST /api/category/AddNewCategory
+2025-11-23 19:21:04.860 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.AddNewCategory (expenseTrackerPOC)'
+2025-11-23 19:21:04.866 +05:30 [INF] Route matched with {action = "AddNewCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.AddNewCategoryResponse]] AddNewCategory(expenseTrackerPOC.Data.RequestModels.AddNewCategoryRequest) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 19:21:04.912 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (Size = 50), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Categories] ([CategoryName], [IconId], [IsDefault], [UserId])
+OUTPUT INSERTED.[CategoryId]
+VALUES (@p0, @p1, @p2, @p3);
+2025-11-23 19:21:04.937 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__category_CategoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__category_CategoryId_0
+2025-11-23 19:21:04.943 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.AddNewCategoryResponse'.
+2025-11-23 19:21:04.948 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.AddNewCategory (expenseTrackerPOC) in 78.7014ms
+2025-11-23 19:21:04.951 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.AddNewCategory (expenseTrackerPOC)'
+2025-11-23 19:21:04.953 +05:30 [INF] Response Status : 200
+2025-11-23 19:21:04.954 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/category/AddNewCategory - 200 null application/json; charset=utf-8 114.7235ms
+2025-11-23 19:21:04.964 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 19:21:04.972 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:21:04.974 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 9.8659ms
+2025-11-23 19:21:04.976 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 19:21:04.984 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:21:04.987 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 19:21:04.989 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 19:21:04.990 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 19:21:05.002 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 19:21:05.007 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 19:21:05.010 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 16.0938ms
+2025-11-23 19:21:05.012 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 19:21:05.014 +05:30 [INF] Response Status : 200
+2025-11-23 19:21:05.015 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 39.8147ms
+2025-11-23 19:21:26.539 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/AddNewCategory - null null
+2025-11-23 19:21:26.544 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:21:26.546 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/AddNewCategory - 204 null null 7.1064ms
+2025-11-23 19:21:26.548 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/category/AddNewCategory - application/json 44
+2025-11-23 19:21:26.566 +05:30 [INF] CORS policy execution successful.
+2025-11-23 19:21:26.569 +05:30 [INF] Incoming Request : POST /api/category/AddNewCategory
+2025-11-23 19:21:26.572 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.AddNewCategory (expenseTrackerPOC)'
+2025-11-23 19:21:26.575 +05:30 [INF] Route matched with {action = "AddNewCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.AddNewCategoryResponse]] AddNewCategory(expenseTrackerPOC.Data.RequestModels.AddNewCategoryRequest) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 19:21:26.603 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (Size = 50), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Categories] ([CategoryName], [IconId], [IsDefault], [UserId])
+OUTPUT INSERTED.[CategoryId]
+VALUES (@p0, @p1, @p2, @p3);
+2025-11-23 19:21:26.663 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'expenseTrackerPOC.Data.ExpenseTrackerDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Categories' with unique index 'IX_Categories_UserId_CategoryName'. The duplicate key value is (4, selectCategory).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:4c103e71-c701-42be-98c5-a37f7e7c6b62
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert duplicate key row in object 'dbo.Categories' with unique index 'IX_Categories_UserId_CategoryName'. The duplicate key value is (4, selectCategory).
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:4c103e71-c701-42be-98c5-a37f7e7c6b62
+Error Number:2601,State:1,Class:14
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-11-23 19:21:34.840 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.AddNewCategory (expenseTrackerPOC) in 8258.9514ms
+2025-11-23 19:21:34.846 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.AddNewCategory (expenseTrackerPOC)'
+2025-11-23 19:21:34.968 +05:30 [ERR] Something went wrong: An error occurred while saving the entity changes. See the inner exception for details.
+2025-11-23 19:21:34.974 +05:30 [INF] Response Status : 500
+2025-11-23 19:21:34.976 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/category/AddNewCategory - 500 null application/json 8428.5831ms
+2025-11-23 20:38:20.916 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-11-23 20:38:20.941 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:20.945 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 29.2255ms
+2025-11-23 20:38:20.948 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 56
+2025-11-23 20:38:20.981 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:20.990 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-11-23 20:38:20.995 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 20:38:21.003 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-11-23 20:38:21.126 +05:30 [INF] Executed DbCommand (65ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-11-23 20:38:21.263 +05:30 [INF] Executed DbCommand (24ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-23 20:38:21.284 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-11-23 20:38:21.308 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-11-23 20:38:25.552 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-11-23 20:38:25.560 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 4542.7451ms
+2025-11-23 20:38:25.567 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 20:38:25.572 +05:30 [INF] Response Status : 200
+2025-11-23 20:38:25.577 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 200 null application/json; charset=utf-8 4628.9044ms
+2025-11-23 20:38:28.144 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 20:38:28.144 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 20:38:28.153 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:28.164 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:28.169 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 25.456ms
+2025-11-23 20:38:28.210 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 66.1177ms
+2025-11-23 20:38:28.209 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 20:38:28.226 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 20:38:28.271 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:28.281 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:28.286 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 20:38:28.290 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 20:38:28.294 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 20:38:28.298 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 20:38:28.304 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 20:38:28.310 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 20:38:28.347 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 20:38:28.355 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 20:38:28.382 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 20:38:28.383 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 66.7998ms
+2025-11-23 20:38:28.399 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 20:38:28.402 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 20:38:28.405 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 86.5188ms
+2025-11-23 20:38:28.409 +05:30 [INF] Response Status : 200
+2025-11-23 20:38:28.413 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 20:38:28.417 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 208.0453ms
+2025-11-23 20:38:28.420 +05:30 [INF] Response Status : 200
+2025-11-23 20:38:28.430 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 204.3367ms
+2025-11-23 20:38:40.992 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 20:38:40.992 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 20:38:40.998 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:41.011 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:41.014 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 21.8544ms
+2025-11-23 20:38:41.023 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 20:38:41.017 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 20:38:41.018 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 25.8034ms
+2025-11-23 20:38:41.063 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:41.070 +05:30 [INF] CORS policy execution successful.
+2025-11-23 20:38:41.087 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 20:38:41.090 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 20:38:41.091 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 20:38:41.092 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 20:38:41.094 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 20:38:41.097 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 20:38:41.108 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 20:38:41.117 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 20:38:41.118 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 20:38:41.123 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 21.9219ms
+2025-11-23 20:38:41.132 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 20:38:41.135 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 20:38:41.140 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 32.3733ms
+2025-11-23 20:38:41.143 +05:30 [INF] Response Status : 200
+2025-11-23 20:38:41.147 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 20:38:41.149 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 126.9736ms
+2025-11-23 20:38:41.152 +05:30 [INF] Response Status : 200
+2025-11-23 20:38:41.163 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 146.0991ms
+2025-11-23 21:42:38.887 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-11-23 21:42:38.899 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:42:38.901 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 13.8495ms
+2025-11-23 21:42:38.904 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 56
+2025-11-23 21:42:38.924 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:42:38.927 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-11-23 21:42:38.929 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 21:42:38.933 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-11-23 21:42:39.017 +05:30 [INF] Executed DbCommand (45ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-11-23 21:42:39.117 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-23 21:42:39.139 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-11-23 21:42:39.168 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-11-23 21:42:52.623 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-11-23 21:42:52.627 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 13686.7625ms
+2025-11-23 21:42:52.632 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 21:42:52.635 +05:30 [INF] Response Status : 200
+2025-11-23 21:42:52.638 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 200 null application/json; charset=utf-8 13734.4336ms
+2025-11-23 21:42:55.220 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:42:55.220 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:42:55.234 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:42:55.248 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:42:55.253 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 32.9522ms
+2025-11-23 21:42:55.256 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 36.2451ms
+2025-11-23 21:42:55.258 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:42:55.271 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:42:55.318 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:42:55.328 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:42:55.330 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:42:55.335 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:42:55.336 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:42:55.341 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:42:55.345 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:42:55.348 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:42:55.391 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:42:55.403 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:42:55.407 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:42:55.414 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:42:55.420 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 67.2816ms
+2025-11-23 21:42:55.425 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 65.0465ms
+2025-11-23 21:42:55.430 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:42:55.435 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:42:55.440 +05:30 [INF] Response Status : 200
+2025-11-23 21:42:55.446 +05:30 [INF] Response Status : 200
+2025-11-23 21:42:55.450 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 192.3083ms
+2025-11-23 21:42:55.454 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 182.5479ms
+2025-11-23 21:43:40.210 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:43:40.276 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:43:40.289 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:40.294 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:40.299 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 88.8075ms
+2025-11-23 21:43:40.301 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 69.4426ms
+2025-11-23 21:43:40.348 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:43:40.315 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:43:40.424 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:40.565 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:40.576 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:43:40.642 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:43:40.629 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:43:40.660 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:43:40.667 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:43:40.680 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:43:40.707 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:43:40.714 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:43:40.716 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:43:40.719 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 43.9542ms
+2025-11-23 21:43:40.727 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:43:40.729 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:43:40.734 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 46.2015ms
+2025-11-23 21:43:40.737 +05:30 [INF] Response Status : 200
+2025-11-23 21:43:40.746 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:43:40.751 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 433.709ms
+2025-11-23 21:43:40.876 +05:30 [INF] Response Status : 200
+2025-11-23 21:43:41.069 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 754.2049ms
+2025-11-23 21:43:48.564 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:43:48.564 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:43:48.570 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:48.575 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:48.577 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 12.6048ms
+2025-11-23 21:43:48.578 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 13.6949ms
+2025-11-23 21:43:48.580 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:43:48.580 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:43:48.605 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:48.612 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:48.615 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:43:48.617 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:43:48.619 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:43:48.620 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:43:48.624 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:43:48.627 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:43:48.638 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:43:48.642 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:43:48.645 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:43:48.650 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:43:48.653 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 20.0754ms
+2025-11-23 21:43:48.655 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 16.8904ms
+2025-11-23 21:43:48.657 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:43:48.661 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:43:48.664 +05:30 [INF] Response Status : 200
+2025-11-23 21:43:48.667 +05:30 [INF] Response Status : 200
+2025-11-23 21:43:48.668 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 88.5938ms
+2025-11-23 21:43:48.673 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 92.418ms
+2025-11-23 21:43:51.577 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:43:51.577 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:43:51.590 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:51.597 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:43:51.601 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:43:51.603 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:43:51.605 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:43:51.607 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:43:51.610 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:43:51.613 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:43:51.625 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:43:51.626 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:43:51.637 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:43:51.640 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:43:51.647 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 28.4788ms
+2025-11-23 21:43:51.650 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 26.8197ms
+2025-11-23 21:43:51.657 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:43:51.664 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:43:51.669 +05:30 [INF] Response Status : 200
+2025-11-23 21:43:51.672 +05:30 [INF] Response Status : 200
+2025-11-23 21:43:51.673 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 96.6619ms
+2025-11-23 21:43:51.676 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 98.808ms
+2025-11-23 21:43:59.992 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:43:59.992 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:44:00.012 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:44:00.032 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:44:00.039 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 47.3605ms
+2025-11-23 21:44:00.042 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 50.3145ms
+2025-11-23 21:44:00.042 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:44:00.044 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:44:00.071 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:44:00.075 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:44:00.079 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:44:00.081 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:44:00.086 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:44:00.083 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:44:00.089 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:44:00.092 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:44:00.104 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:44:00.107 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:44:00.111 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:44:00.116 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:44:00.120 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 22.4576ms
+2025-11-23 21:44:00.124 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 20.4279ms
+2025-11-23 21:44:00.128 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:44:00.132 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:44:00.135 +05:30 [INF] Response Status : 200
+2025-11-23 21:44:00.138 +05:30 [INF] Response Status : 200
+2025-11-23 21:44:00.140 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 95.6915ms
+2025-11-23 21:44:00.145 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 103.16ms
+2025-11-23 21:45:00.606 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:45:00.607 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:45:00.631 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:45:00.640 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:45:00.644 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 37.4867ms
+2025-11-23 21:45:00.662 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 55.3384ms
+2025-11-23 21:45:00.661 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:45:00.678 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:45:00.702 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:45:00.708 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:45:00.712 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:45:00.713 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:45:00.716 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:45:00.719 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:45:00.722 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:45:00.725 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:45:00.748 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:45:00.754 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:45:00.756 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:45:00.763 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:45:00.768 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 32.3729ms
+2025-11-23 21:45:00.772 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 42.8517ms
+2025-11-23 21:45:00.776 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:45:00.779 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:45:00.785 +05:30 [INF] Response Status : 200
+2025-11-23 21:45:00.788 +05:30 [INF] Response Status : 200
+2025-11-23 21:45:00.790 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 112.4524ms
+2025-11-23 21:45:00.792 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 131.6034ms
+2025-11-23 21:46:14.972 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:46:14.977 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:46:14.994 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:15.000 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:15.002 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 34.7416ms
+2025-11-23 21:46:15.012 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 35.0123ms
+2025-11-23 21:46:15.013 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:46:15.031 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:46:15.055 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:15.064 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:15.066 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:46:15.067 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:46:15.070 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:46:15.072 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:46:15.075 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:46:15.079 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:46:15.097 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:46:15.099 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:46:15.103 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:46:15.109 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:46:15.113 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 21.1646ms
+2025-11-23 21:46:15.117 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 31.761ms
+2025-11-23 21:46:15.120 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:46:15.125 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:46:15.129 +05:30 [INF] Response Status : 200
+2025-11-23 21:46:15.133 +05:30 [INF] Response Status : 200
+2025-11-23 21:46:15.135 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 103.9007ms
+2025-11-23 21:46:15.138 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 125.1234ms
+2025-11-23 21:46:23.582 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:46:23.582 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:46:23.590 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:23.597 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:23.600 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 17.4859ms
+2025-11-23 21:46:23.602 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 19.3575ms
+2025-11-23 21:46:23.603 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:46:23.604 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:46:23.628 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:23.634 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:46:23.636 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:46:23.638 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:46:23.640 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:46:23.642 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:46:23.645 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:46:23.648 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:46:23.656 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:46:23.659 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:46:23.663 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:46:23.669 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:46:23.672 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 20.073ms
+2025-11-23 21:46:23.676 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 18.7826ms
+2025-11-23 21:46:23.678 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:46:23.682 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:46:23.684 +05:30 [INF] Response Status : 200
+2025-11-23 21:46:23.687 +05:30 [INF] Response Status : 200
+2025-11-23 21:46:23.690 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 86.8415ms
+2025-11-23 21:46:23.692 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 88.3269ms
+2025-11-23 21:48:11.485 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:48:11.499 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:48:11.505 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:48:11.513 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:48:11.515 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 35.8376ms
+2025-11-23 21:48:11.530 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 31.2867ms
+2025-11-23 21:48:11.529 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 21:48:11.543 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 21:48:11.572 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:48:11.578 +05:30 [INF] CORS policy execution successful.
+2025-11-23 21:48:11.582 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 21:48:11.584 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 21:48:11.587 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:48:11.590 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:48:11.593 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:48:11.597 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 21:48:11.615 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 21:48:11.616 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 21:48:11.622 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 21:48:11.628 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 21:48:11.631 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 19.9925ms
+2025-11-23 21:48:11.634 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 31.8756ms
+2025-11-23 21:48:11.638 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 21:48:11.643 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 21:48:11.645 +05:30 [INF] Response Status : 200
+2025-11-23 21:48:11.647 +05:30 [INF] Response Status : 200
+2025-11-23 21:48:11.649 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 106.4667ms
+2025-11-23 21:48:11.651 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 122.164ms
+2025-11-23 22:40:38.741 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-11-23 22:40:38.760 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:40:38.764 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 23.5801ms
+2025-11-23 22:40:38.767 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 56
+2025-11-23 22:40:38.789 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:40:38.795 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-11-23 22:40:38.799 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 22:40:38.803 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-11-23 22:40:38.897 +05:30 [INF] Executed DbCommand (42ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-11-23 22:40:38.991 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-23 22:40:39.006 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-11-23 22:40:39.036 +05:30 [INF] Executed DbCommand (20ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-11-23 22:40:42.069 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-11-23 22:40:42.075 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 3263.2841ms
+2025-11-23 22:40:42.080 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 22:40:42.085 +05:30 [INF] Response Status : 200
+2025-11-23 22:40:42.088 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 200 null application/json; charset=utf-8 3320.5923ms
+2025-11-23 22:40:44.647 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:40:44.648 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:40:44.659 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:40:44.666 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:40:44.669 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 22.4ms
+2025-11-23 22:40:44.682 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 34.6321ms
+2025-11-23 22:40:44.682 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:40:44.697 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:40:44.740 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:40:44.752 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:40:44.755 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:40:44.759 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:40:44.763 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:40:44.765 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:40:44.769 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:40:44.775 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:40:44.814 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:40:44.814 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:40:44.821 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:40:44.828 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:40:44.830 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 45.0212ms
+2025-11-23 22:40:44.833 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 53.7396ms
+2025-11-23 22:40:44.836 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:40:44.839 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:40:44.841 +05:30 [INF] Response Status : 200
+2025-11-23 22:40:44.844 +05:30 [INF] Response Status : 200
+2025-11-23 22:40:44.846 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 149.5902ms
+2025-11-23 22:40:44.848 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 165.435ms
+2025-11-23 22:46:15.772 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:46:15.782 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:46:15.793 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:15.797 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:15.798 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 26.1573ms
+2025-11-23 22:46:15.807 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 25.1525ms
+2025-11-23 22:46:15.806 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:46:15.816 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:46:15.832 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:15.837 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:15.840 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:46:15.841 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:46:15.844 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:46:15.846 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:46:15.848 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:46:15.849 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:46:15.868 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:46:15.874 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:46:15.878 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 21.0668ms
+2025-11-23 22:46:15.878 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:46:15.882 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:46:15.886 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:46:15.888 +05:30 [INF] Response Status : 200
+2025-11-23 22:46:15.893 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 40.209ms
+2025-11-23 22:46:15.895 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 79.1815ms
+2025-11-23 22:46:15.898 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:46:15.909 +05:30 [INF] Response Status : 200
+2025-11-23 22:46:15.911 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 104.9333ms
+2025-11-23 22:46:18.991 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:46:18.992 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:46:18.997 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:19.002 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:19.005 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:46:19.007 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:46:19.009 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:46:19.012 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:46:19.015 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:46:19.017 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:46:19.034 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:46:19.040 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:46:19.044 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 12.3759ms
+2025-11-23 22:46:19.047 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:46:19.050 +05:30 [INF] Response Status : 200
+2025-11-23 22:46:19.052 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 60.6466ms
+2025-11-23 22:46:19.052 +05:30 [INF] Executed DbCommand (25ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:46:19.065 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:46:19.070 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 47.4653ms
+2025-11-23 22:46:19.075 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:46:19.077 +05:30 [INF] Response Status : 200
+2025-11-23 22:46:19.079 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 88.5039ms
+2025-11-23 22:46:22.379 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:46:22.401 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:22.405 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - 204 null null 25.7843ms
+2025-11-23 22:46:22.407 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:46:22.431 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:46:22.435 +05:30 [INF] Incoming Request : GET /api/category/getCategory/4
+2025-11-23 22:46:22.439 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:46:22.463 +05:30 [INF] Route matched with {action = "GetCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse]] GetCategory(Int32) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:46:22.504 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__categoryId_0 AND ([c].[UserId] = @__userId_1 OR [c].[IsDefault] = 1)
+2025-11-23 22:46:22.517 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse'.
+2025-11-23 22:46:22.524 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC) in 55.6088ms
+2025-11-23 22:46:22.532 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:46:22.539 +05:30 [INF] Response Status : 200
+2025-11-23 22:46:22.544 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - 200 null application/json; charset=utf-8 136.9566ms
+2025-11-23 22:48:19.513 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:48:19.514 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:48:19.530 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:19.537 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:19.539 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 26.0337ms
+2025-11-23 22:48:19.541 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 26.1627ms
+2025-11-23 22:48:19.550 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:48:19.552 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:48:19.587 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:19.595 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:19.598 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:48:19.601 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:48:19.603 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:48:19.605 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:48:19.609 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:48:19.612 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:48:19.622 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:48:19.628 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:48:19.631 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 13.9621ms
+2025-11-23 22:48:19.635 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:48:19.638 +05:30 [INF] Response Status : 200
+2025-11-23 22:48:19.640 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 90.1156ms
+2025-11-23 22:48:19.640 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:48:19.655 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:48:19.659 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 35.6945ms
+2025-11-23 22:48:19.663 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:48:19.666 +05:30 [INF] Response Status : 200
+2025-11-23 22:48:19.670 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 117.9354ms
+2025-11-23 22:48:32.222 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:48:32.241 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:32.245 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - 204 null null 23.4302ms
+2025-11-23 22:48:32.248 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:48:32.275 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:32.280 +05:30 [INF] Incoming Request : GET /api/category/getCategory/4
+2025-11-23 22:48:32.285 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:48:32.288 +05:30 [INF] Route matched with {action = "GetCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse]] GetCategory(Int32) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:48:32.309 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__categoryId_0 AND ([c].[UserId] = @__userId_1 OR [c].[IsDefault] = 1)
+2025-11-23 22:48:32.320 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse'.
+2025-11-23 22:48:32.327 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC) in 32.8703ms
+2025-11-23 22:48:32.333 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:48:32.338 +05:30 [INF] Response Status : 200
+2025-11-23 22:48:32.342 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - 200 null application/json; charset=utf-8 93.7833ms
+2025-11-23 22:48:52.638 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:48:52.639 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:48:52.649 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:52.656 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:52.659 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 21.3204ms
+2025-11-23 22:48:52.673 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 34.5637ms
+2025-11-23 22:48:52.672 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:48:52.687 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:48:52.711 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:52.720 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:48:52.721 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:48:52.726 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:48:52.727 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:48:52.729 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:48:52.734 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:48:52.736 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:48:52.750 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:48:52.758 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:48:52.762 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:48:52.764 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 18.8692ms
+2025-11-23 22:48:52.774 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:48:52.771 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:48:52.777 +05:30 [INF] Response Status : 200
+2025-11-23 22:48:52.780 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 26.3055ms
+2025-11-23 22:48:52.782 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 110.448ms
+2025-11-23 22:48:52.786 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:48:52.794 +05:30 [INF] Response Status : 200
+2025-11-23 22:48:52.797 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 109.6905ms
+2025-11-23 22:49:00.810 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/1 - null null
+2025-11-23 22:49:00.826 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:49:00.830 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/1 - 204 null null 19.3017ms
+2025-11-23 22:49:00.832 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getCategory/1 - null null
+2025-11-23 22:49:00.852 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:49:00.861 +05:30 [INF] Incoming Request : GET /api/category/getCategory/1
+2025-11-23 22:49:00.863 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:49:00.865 +05:30 [INF] Route matched with {action = "GetCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse]] GetCategory(Int32) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:49:00.891 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__categoryId_0 AND ([c].[UserId] = @__userId_1 OR [c].[IsDefault] = 1)
+2025-11-23 22:49:00.900 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse'.
+2025-11-23 22:49:00.908 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC) in 35.4549ms
+2025-11-23 22:49:00.916 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:49:00.920 +05:30 [INF] Response Status : 200
+2025-11-23 22:49:00.925 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getCategory/1 - 200 null application/json; charset=utf-8 92.9794ms
+2025-11-23 22:50:39.653 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-11-23 22:50:39.682 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:39.684 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 31.4783ms
+2025-11-23 22:50:39.700 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 56
+2025-11-23 22:50:39.721 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:39.726 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-11-23 22:50:39.729 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 22:50:39.735 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-11-23 22:50:39.762 +05:30 [INF] Executed DbCommand (19ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-11-23 22:50:39.852 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-23 22:50:39.867 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-11-23 22:50:39.895 +05:30 [INF] Executed DbCommand (20ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-11-23 22:50:42.050 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-11-23 22:50:42.059 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 2318.6893ms
+2025-11-23 22:50:42.064 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-23 22:50:42.069 +05:30 [INF] Response Status : 200
+2025-11-23 22:50:42.074 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 200 null application/json; charset=utf-8 2374.1998ms
+2025-11-23 22:50:44.622 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:50:44.635 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:50:44.639 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:44.644 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:44.646 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 23.2448ms
+2025-11-23 22:50:44.663 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 28.272ms
+2025-11-23 22:50:44.661 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:50:44.680 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:50:44.727 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:44.738 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:44.742 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:50:44.746 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:50:44.752 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:50:44.750 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:50:44.754 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:50:44.757 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:50:44.769 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:50:44.776 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:50:44.777 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:50:44.786 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:50:44.794 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 29.286ms
+2025-11-23 22:50:44.798 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 28.1939ms
+2025-11-23 22:50:44.803 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:50:44.811 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:50:44.817 +05:30 [INF] Response Status : 200
+2025-11-23 22:50:44.821 +05:30 [INF] Response Status : 200
+2025-11-23 22:50:44.825 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 144.7816ms
+2025-11-23 22:50:44.829 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 167.4515ms
+2025-11-23 22:50:53.391 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:50:53.402 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:53.408 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - 204 null null 16.5042ms
+2025-11-23 22:50:53.410 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:50:53.423 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:53.428 +05:30 [INF] Incoming Request : GET /api/category/getCategory/4
+2025-11-23 22:50:53.430 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:50:53.433 +05:30 [INF] Route matched with {action = "GetCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse]] GetCategory(Int32) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:50:53.455 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__categoryId_0 AND ([c].[UserId] = @__userId_1 OR [c].[IsDefault] = 1)
+2025-11-23 22:50:53.466 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse'.
+2025-11-23 22:50:53.473 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC) in 34.706ms
+2025-11-23 22:50:53.479 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:50:53.482 +05:30 [INF] Response Status : 200
+2025-11-23 22:50:53.490 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - 200 null application/json; charset=utf-8 80.0477ms
+2025-11-23 22:50:56.462 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:50:56.475 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:56.480 +05:30 [INF] Incoming Request : GET /api/category/getCategory/4
+2025-11-23 22:50:56.485 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:50:56.499 +05:30 [INF] Route matched with {action = "GetCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse]] GetCategory(Int32) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:50:56.508 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__categoryId_0 AND ([c].[UserId] = @__userId_1 OR [c].[IsDefault] = 1)
+2025-11-23 22:50:56.516 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse'.
+2025-11-23 22:50:56.520 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC) in 15.8727ms
+2025-11-23 22:50:56.525 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:50:56.528 +05:30 [INF] Response Status : 200
+2025-11-23 22:50:56.531 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - 200 null application/json; charset=utf-8 68.4808ms
+2025-11-23 22:50:57.072 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/1 - null null
+2025-11-23 22:50:57.080 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:57.081 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/1 - 204 null null 8.7066ms
+2025-11-23 22:50:57.084 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getCategory/1 - null null
+2025-11-23 22:50:57.098 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:50:57.104 +05:30 [INF] Incoming Request : GET /api/category/getCategory/1
+2025-11-23 22:50:57.107 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:50:57.109 +05:30 [INF] Route matched with {action = "GetCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse]] GetCategory(Int32) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:50:57.118 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__categoryId_0 AND ([c].[UserId] = @__userId_1 OR [c].[IsDefault] = 1)
+2025-11-23 22:50:57.124 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse'.
+2025-11-23 22:50:57.127 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC) in 12.98ms
+2025-11-23 22:50:57.155 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:50:57.158 +05:30 [INF] Response Status : 200
+2025-11-23 22:50:57.161 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getCategory/1 - 200 null application/json; charset=utf-8 76.6486ms
+2025-11-23 22:51:05.696 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:51:05.707 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:51:05.710 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getCategory/4 - 204 null null 13.8741ms
+2025-11-23 22:51:05.713 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - null null
+2025-11-23 22:51:05.734 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:51:05.738 +05:30 [INF] Incoming Request : GET /api/category/getCategory/4
+2025-11-23 22:51:05.740 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:51:05.743 +05:30 [INF] Route matched with {action = "GetCategory", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse]] GetCategory(Int32) on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:51:05.764 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__userId_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[CategoryId] = @__categoryId_0 AND ([c].[UserId] = @__userId_1 OR [c].[IsDefault] = 1)
+2025-11-23 22:51:05.773 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoryResponse'.
+2025-11-23 22:51:05.779 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC) in 28.8983ms
+2025-11-23 22:51:05.785 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetCategory (expenseTrackerPOC)'
+2025-11-23 22:51:05.790 +05:30 [INF] Response Status : 200
+2025-11-23 22:51:05.793 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getCategory/4 - 200 null application/json; charset=utf-8 79.5929ms
+2025-11-23 22:52:48.457 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:52:48.466 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:52:48.484 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:52:48.491 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:52:48.493 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 36.5669ms
+2025-11-23 22:52:48.508 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 41.6141ms
+2025-11-23 22:52:48.508 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:52:48.521 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:52:48.555 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:52:48.563 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:52:48.567 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:52:48.569 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:52:48.574 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:52:48.571 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:52:48.577 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:52:48.581 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:52:48.595 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:52:48.601 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:52:48.603 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:52:48.613 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:52:48.617 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 29.0403ms
+2025-11-23 22:52:48.620 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 23.5045ms
+2025-11-23 22:52:48.623 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:52:48.627 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:52:48.631 +05:30 [INF] Response Status : 200
+2025-11-23 22:52:48.633 +05:30 [INF] Response Status : 200
+2025-11-23 22:52:48.635 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 113.5962ms
+2025-11-23 22:52:48.636 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 128.3256ms
+2025-11-23 22:52:51.065 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:52:51.067 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:52:51.073 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:52:51.080 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:52:51.082 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:52:51.085 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:52:51.086 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:52:51.087 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:52:51.090 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:52:51.092 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:52:51.100 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:52:51.105 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:52:51.105 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:52:51.113 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:52:51.116 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 19.5111ms
+2025-11-23 22:52:51.119 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 18.1244ms
+2025-11-23 22:52:51.121 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:52:51.124 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:52:51.127 +05:30 [INF] Response Status : 200
+2025-11-23 22:52:51.130 +05:30 [INF] Response Status : 200
+2025-11-23 22:52:51.132 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 66.7299ms
+2025-11-23 22:52:51.134 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 67.2141ms
+2025-11-23 22:53:12.814 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:12.815 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:12.830 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:12.823 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:12.832 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 17.1271ms
+2025-11-23 22:53:12.846 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 32.2539ms
+2025-11-23 22:53:12.846 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:12.858 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:12.895 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:12.900 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:12.903 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:53:12.905 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:53:12.906 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:12.908 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:12.911 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:12.914 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:12.927 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:53:12.931 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:53:12.936 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:53:12.944 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:53:12.947 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 27.5975ms
+2025-11-23 22:53:12.952 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 25.5925ms
+2025-11-23 22:53:12.955 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:12.962 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:12.958 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:12.967 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 121.2585ms
+2025-11-23 22:53:12.969 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:12.980 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 122.3137ms
+2025-11-23 22:53:18.701 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:18.702 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:18.707 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:18.712 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:18.716 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 14.6311ms
+2025-11-23 22:53:18.720 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:18.720 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 18.1127ms
+2025-11-23 22:53:18.722 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:18.734 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:18.751 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:18.755 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:53:18.758 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:53:18.760 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:18.763 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:18.766 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:18.769 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:18.777 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:53:18.782 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:53:18.785 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:53:18.789 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:53:18.793 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 19.3091ms
+2025-11-23 22:53:18.795 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 17.787ms
+2025-11-23 22:53:18.798 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:18.801 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:18.804 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:18.807 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:18.809 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 88.7333ms
+2025-11-23 22:53:18.810 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 87.9211ms
+2025-11-23 22:53:29.919 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:29.920 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:29.926 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:29.930 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:29.932 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 12.4926ms
+2025-11-23 22:53:29.935 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:29.933 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 13.1421ms
+2025-11-23 22:53:29.936 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:29.947 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:29.963 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:29.966 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:53:29.966 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:53:29.968 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:29.970 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:29.972 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:29.975 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:29.984 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:53:29.988 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:53:29.990 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:53:29.995 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:53:29.998 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 16.7886ms
+2025-11-23 22:53:30.000 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 14.6382ms
+2025-11-23 22:53:30.002 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:30.006 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:30.008 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:30.010 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:30.012 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 76.7854ms
+2025-11-23 22:53:30.014 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 77.8211ms
+2025-11-23 22:53:32.130 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:32.130 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:32.141 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:32.148 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:32.153 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:53:32.155 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:53:32.157 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:32.159 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:32.162 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:32.165 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:32.176 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:53:32.184 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:53:32.189 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:53:32.202 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:53:32.206 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 32.7073ms
+2025-11-23 22:53:32.210 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 30.1031ms
+2025-11-23 22:53:32.215 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:32.219 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:32.225 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:32.230 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:32.232 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 102.1653ms
+2025-11-23 22:53:32.235 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 105.0615ms
+2025-11-23 22:53:53.359 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:53.360 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:53.383 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:53.388 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:53.390 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 30.419ms
+2025-11-23 22:53:53.404 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 44.1194ms
+2025-11-23 22:53:53.409 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-23 22:53:53.426 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-23 22:53:53.457 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:53.464 +05:30 [INF] CORS policy execution successful.
+2025-11-23 22:53:53.467 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-23 22:53:53.471 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-23 22:53:53.478 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:53.474 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:53.481 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:53.485 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-23 22:53:53.496 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-23 22:53:53.500 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-23 22:53:53.506 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-23 22:53:53.509 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-23 22:53:53.515 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 18.6268ms
+2025-11-23 22:53:53.512 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 21.9505ms
+2025-11-23 22:53:53.519 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-23 22:53:53.522 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-23 22:53:53.524 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:53.527 +05:30 [INF] Response Status : 200
+2025-11-23 22:53:53.528 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 119.1006ms
+2025-11-23 22:53:53.531 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 104.3022ms

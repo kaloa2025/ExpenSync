@@ -159,6 +159,15 @@ namespace expenseTrackerPOC.Services.Core
                 };
             }
 
+            if (category.IsDefault == 1)
+            {
+                return new UpdateCategoryResponse
+                {
+                    Success = false,
+                    Message = "This is a default Category, You don't have access to update this category!",
+                };
+            }
+
             category.CategoryName = updateCategoryRequest.CategoryName;
             category.IconId = updateCategoryRequest.IconId;
 
@@ -180,6 +189,44 @@ namespace expenseTrackerPOC.Services.Core
                 Success = true,
                 Message = "Category updated successfully",
                 Category = dto
+            };
+        }
+
+        public async Task<DeleteCategoryResponse> DeleteCategory(int categoryId, int userId)
+        {
+            //1. Find if Category exists and user have access to delete it or not.
+            var category = await dbContext.Categories
+                .FirstOrDefaultAsync(c =>
+                    c.CategoryId == categoryId &&
+                    (c.UserId == userId || c.IsDefault == 1)
+                );
+
+            var categoryName = category.CategoryName;
+
+            if (category == null)
+            {
+                return new DeleteCategoryResponse
+                {
+                    Success = false,
+                    Message = "No such Category found."
+                };
+            }
+            if(category.IsDefault == 1)
+            {
+                return new DeleteCategoryResponse
+                {
+                    Success = false,
+                    Message = "This is a default Category, You don't have access to update this category!",
+                };
+            }
+            //2. Delete Category
+            dbContext.Categories.Remove(category);
+            await dbContext.SaveChangesAsync();
+
+            return new DeleteCategoryResponse
+            {
+                Success = true,
+                Message = $"Category : {categoryName} deleted successfully!",
             };
         }
     }
