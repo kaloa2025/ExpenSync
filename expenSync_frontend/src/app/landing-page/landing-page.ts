@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgIf } from "@angular/common";
+
 import { SignIn } from "./sign-in/sign-in";
 import { SignUp } from './sign-up/sign-up';
 import { Router, ActivatedRoute, RouterModule, NavigationEnd } from '@angular/router';
@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-landing-page',
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })

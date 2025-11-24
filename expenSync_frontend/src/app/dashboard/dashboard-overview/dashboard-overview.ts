@@ -1,4 +1,4 @@
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, input, OnDestroy, OnInit } from '@angular/core';
 import { flush } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { DashboardGraphService } from '../../../services/dashboard/dashboard.gra
 
 @Component({
   selector: 'app-dashboard-overview',
-  imports: [CommonModule, NgIf, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './dashboard-overview.html',
   styleUrl: './dashboard-overview.css',
 })

@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgIf } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { OtpVerificationResponse, ResetPasswordResponse, VerifyEmailRequest, VerifyEmailResponse } from '../../../services/forgot-password/forgot-password.modals';
 import { ForgotPasswordService } from '../../../services/forgot-password/forgot-password.service';
 import { ForgotPasswordToastService } from '../../../services/forgot-password/forgot-password.toast.service';
 @Component({
   selector: 'app-enter-email',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './enter-email.html',
   styleUrl: './enter-email.css',
 })

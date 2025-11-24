@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Subscription, timeout } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   templateUrl: './sign-in.html',
   styleUrl: './sign-in.css',
 })

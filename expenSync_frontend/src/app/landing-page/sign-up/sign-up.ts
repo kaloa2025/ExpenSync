@@ -1,4 +1,4 @@
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+
 import { Component, OnDestroy } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -8,7 +8,7 @@ import { Subscription, timeout } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [FormsModule, NgIf, CommonModule],
+  imports: [FormsModule],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
 })

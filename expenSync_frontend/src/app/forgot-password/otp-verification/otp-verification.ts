@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule, NgIf } from '@angular/common';
+
 import { ForgotPasswordService } from '../../../services/forgot-password/forgot-password.service';
 import { ForgotPasswordToastService } from '../../../services/forgot-password/forgot-password.toast.service';
 import { OtpVerificationRequest, VerifyEmailRequest } from '../../../services/forgot-password/forgot-password.modals';
 
 @Component({
   selector: 'app-otp-verification',
-  imports: [ReactiveFormsModule, CommonModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './otp-verification.html',
   styleUrl: './otp-verification.css',
 })

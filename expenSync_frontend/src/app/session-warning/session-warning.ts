@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-session-warning',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './session-warning.html',
   styleUrl: './session-warning.css',
 })

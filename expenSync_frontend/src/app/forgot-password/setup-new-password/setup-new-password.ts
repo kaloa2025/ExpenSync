@@ -1,11 +1,11 @@
-import { CommonModule, NgIf } from '@angular/common';
+
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-setup-new-password',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, NgIf],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './setup-new-password.html',
   styleUrl: './setup-new-password.css',
 })
