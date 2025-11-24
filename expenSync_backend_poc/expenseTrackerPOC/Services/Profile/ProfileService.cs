@@ -28,7 +28,7 @@ namespace expenseTrackerPOC.Services.Profile
 
             if (user == null)
             {
-                return (false, "An User with email doesn't exists.");
+                return (false, $"An User with email : {email} doesn't exists.");
             }
 
             return (true, "User with email exists.");
@@ -49,7 +49,7 @@ namespace expenseTrackerPOC.Services.Profile
 
             if (user == null)
             {
-                return (false, "An User with email doesn't exists.");
+                return (false, $"An User with email : {email} doesn't exists.");
             }
 
             return (true, "User with email exists.");
@@ -63,7 +63,7 @@ namespace expenseTrackerPOC.Services.Profile
                 return (false, null, null, $"No user for {email} found");
             }
             int otp = RandomNumberGenerator.GetInt32(1000, 10000);
-            var expirySec = 180;
+            var expirySec = 120;
 
             user.PasswordResetExpiry = DateTime.UtcNow.AddSeconds(expirySec);
             user.PasswordResetOtp = otp;

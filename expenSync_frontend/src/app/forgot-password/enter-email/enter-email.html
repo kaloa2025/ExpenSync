@@ -6,17 +6,17 @@
       <div class="description">Please enter your registered email to generate OTP.</div>
     </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-      <input 
-        formControlName="email" 
+      <input
+        formControlName="email"
         type="email"
         placeholder="Enter your email here"
         [class.error]="form.get('email')?.invalid && form.get('email')?.touched"
       >
-      
+
       <div class="requirement" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
         Please enter your correct registered email!
       </div>
-      
+
       <button type="submit" [disabled]="form.invalid">
         Get 4 digit OTP
       </button>

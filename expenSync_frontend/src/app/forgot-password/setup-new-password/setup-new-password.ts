@@ -1,5 +1,5 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterModule } from '@angular/router';
 
@@ -43,7 +43,7 @@ export class SetupNewPassword {
 
   onSubmit() {
     this.submitted = true;
-    
+
     if (
       this.allPasswordValidationsMet() &&
       this.passwordsMatch

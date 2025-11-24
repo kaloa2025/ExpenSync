@@ -1,7 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
+import { ForgotPasswordService } from '../../../services/forgot-password/forgot-password.service';
+import { ForgotPasswordToastService } from '../../../services/forgot-password/forgot-password.toast.service';
+import { OtpVerificationRequest, VerifyEmailRequest } from '../../../services/forgot-password/forgot-password.modals';
 
 @Component({
   selector: 'app-otp-verification',
@@ -10,15 +13,19 @@ import { CommonModule, NgIf } from '@angular/common';
   styleUrl: './otp-verification.css',
 })
 export class OtpVerification implements OnInit, OnDestroy {
+
   form!: FormGroup;
-  email: string = 'user@example.com';
-  timer: number = 30;
+  email: string | null = localStorage.getItem('email');
+  expiryValue = localStorage.getItem('otpExpSec');
+  timer: number = this.expiryValue?Number(this.expiryValue): 30;
   canResend: boolean = false;
   private timerInterval: any;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private forgotPasswordService : ForgotPasswordService,
+    private toastService : ForgotPasswordToastService
   ) {
     this.form = this.fb.group({
       digit1: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
@@ -26,6 +33,17 @@ export class OtpVerification implements OnInit, OnDestroy {
       digit3: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
       digit4: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
     });
+
+    this.checkDetails();
+  }
+
+  checkDetails()
+  {
+    if(localStorage.getItem('email')==null || localStorage.getItem('otpExpSec')==null)
+    {
+      this.router.navigate(['/']);
+      return;
+    }
   }
 
   ngOnInit() {
@@ -40,8 +58,6 @@ export class OtpVerification implements OnInit, OnDestroy {
 
   private startTimer() {
     this.canResend = false;
-    this.timer = 30;
-    
     this.timerInterval = setInterval(() => {
       this.timer--;
       if (this.timer <= 0) {
@@ -80,18 +96,53 @@ export class OtpVerification implements OnInit, OnDestroy {
 
   resend() {
     if (this.canResend) {
-      alert("OTP resent successfully!");
+      const req : VerifyEmailRequest = {
+        email : this.email,
+      }
+      this.forgotPasswordService.resendOTP(req).subscribe({
+        next:(res=>{
+          if(!res || res.success == false)
+          {
+            this.toastService.show("Unable to resend OTP "+res.message);
+          }
+          this.toastService.show("OTP sent successfully on "+res.email);
+          localStorage.setItem('otpExpSec', String(res.otpExpirySec));
+        })
+      })
       this.startTimer();
       this.form.reset();
     }
   }
 
   onSubmit() {
-    if (this.isFormValid()) {
-      const otpValue = this.getOtpValue();
-      alert("OTP verified successfully!");
-      this.router.navigate(['/forgot-password/setup-new-password']);
-    } else {
+    if (this.isFormValid())
+    {
+      if(this.email!=null)
+      {
+        const req : OtpVerificationRequest={
+          otpValue : this.getOtpValue(),
+          email : this.email?this.email:"",
+        }
+        this.forgotPasswordService.verifyOtp(req).subscribe({
+          next:(res=>{
+            if(!res.success||!res)
+            {
+              this.toastService.show("Invalid OTP!");
+            }
+            else
+            {
+              this.toastService.show("OTP Verified");
+              this.router.navigate(['/forgot-password/setup-new-password']);
+            }
+          })
+        })
+      }
+      else
+      {
+        this.toastService.show("Invalid Email attempt!");
+      }
+    }
+    else {
       alert("Please enter a valid 4-digit OTP");
     }
   }

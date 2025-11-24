@@ -21,7 +21,7 @@ namespace expenseTrackerPOC.Controllers.Profile
             this.profileService = profileService;
         }
 
-        [HttpGet("verify-email")]
+        [HttpPost("verify-email")]
         public async Task<ActionResult<ForgotPasswordResponse>> RequestForgotPasswordReset([FromBody] ForgotPasswordRequest forgotPasswordRequest )
         {
             //1.valid email
@@ -78,7 +78,7 @@ namespace expenseTrackerPOC.Controllers.Profile
             });
         }
 
-        [HttpGet("verify-otp")]
+        [HttpPost("verify-otp")]
         public async Task<ActionResult<VerifyOtpResponse>> VerifyOtp([FromBody] VerifyOtpRequest verifyOtpRequest)
         {
             if (!ModelState.IsValid)
@@ -108,6 +108,12 @@ namespace expenseTrackerPOC.Controllers.Profile
                 Errors = new List<string>(),
                 Email = verifyOtpRequest.Email
             });
+        } 
+
+        [HttpPost("resend-otp")]
+        public async Task<ActionResult<ForgotPasswordResponse>> ResendOtp([FromBody] ForgotPasswordRequest resendOtpRequest)
+        {
+            return await RequestForgotPasswordReset(resendOtpRequest);
         }
 
         [HttpPut("reset-new-password")]
