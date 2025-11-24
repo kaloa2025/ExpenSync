@@ -91,9 +91,10 @@ export class DashboardOverview implements OnInit, OnDestroy{
     return this.getGraphRows().every(r => r.value === 0);
   }
 
-  getGraphRows(): { name?: string|null, value: number }[] {
+  getGraphRows(): { name?: string|null, id:number, value: number }[] {
     return this.categories.map(cat => ({
       name: cat.iconUrl,
+      id : cat.categoryId,
       value: this.graphData[cat.categoryName] ?? 0
     }));
   }

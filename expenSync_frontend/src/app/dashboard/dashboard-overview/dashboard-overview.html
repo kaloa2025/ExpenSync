@@ -103,7 +103,7 @@
         <div class="bar-graph-section">
           <div class="bar-graph-heading">GRAPH</div>
           <div class="vertical-graph">
-            @for (row of getGraphRows(); track row) {
+            @for (row of getGraphRows(); track row.id) {
               <div class="v-bar-item">
                 <!-- Top: value -->
                 <div class="v-bar-value">

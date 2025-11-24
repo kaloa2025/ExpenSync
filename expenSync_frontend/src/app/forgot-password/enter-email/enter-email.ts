@@ -6,13 +6,16 @@ import { Router } from '@angular/router';
 import { OtpVerificationResponse, ResetPasswordResponse, VerifyEmailRequest, VerifyEmailResponse } from '../../../services/forgot-password/forgot-password.modals';
 import { ForgotPasswordService } from '../../../services/forgot-password/forgot-password.service';
 import { ForgotPasswordToastService } from '../../../services/forgot-password/forgot-password.toast.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-enter-email',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './enter-email.html',
   styleUrl: './enter-email.css',
 })
 export class EnterEmail {
+
+  isLoading :boolean = false;
 
   form = new FormGroup({
     email : new FormControl('', [Validators.required, Validators.email])
@@ -22,6 +25,7 @@ export class EnterEmail {
 
   onSubmit()
   {
+    this.isLoading = true;
     if(this.form.valid)
     {
       const req : VerifyEmailRequest = {
@@ -33,10 +37,12 @@ export class EnterEmail {
           if(!res || res.success == false)
           {
             this.toastService.show(res.message||"Can't generate Otp now.");
+            this.isLoading = false;
           }
           else
           {
             this.toastService.show("OTP sent on email if valid.");
+            this.isLoading = false;
             localStorage.setItem('otpExpSec', String(res.otpExpirySec));
             localStorage.setItem('email', res.email);
             localStorage.setItem('emailVerified', 'true');
@@ -47,12 +53,14 @@ export class EnterEmail {
         },
         error:(err)=>{
           this.toastService.show("Error submitting email: "+err?.error?.message);
+          this.isLoading = false;
         }
       })
     }
     else
     {
       this.toastService.show("Please enter email.");
+      this.isLoading = false;
       return;
     }
   }

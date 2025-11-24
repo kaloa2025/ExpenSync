@@ -63,7 +63,7 @@ namespace expenseTrackerPOC.Services.Profile
                 return (false, null, null, $"No user for {email} found");
             }
             int otp = RandomNumberGenerator.GetInt32(1000, 10000);
-            var expirySec = 120;
+            var expirySec = 60;
 
             user.PasswordResetExpiry = DateTime.UtcNow.AddSeconds(expirySec);
             user.PasswordResetOtp = otp;

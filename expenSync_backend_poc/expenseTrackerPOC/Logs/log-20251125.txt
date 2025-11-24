@@ -1,0 +1,1360 @@
+2025-11-25 00:17:17.602 +05:30 [INF] User profile is available. Using 'C:\Users\AalokShailendraChoud\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-25 00:17:22.635 +05:30 [INF] Now listening on: https://localhost:7253
+2025-11-25 00:17:23.321 +05:30 [INF] Now listening on: http://localhost:5276
+2025-11-25 00:17:23.492 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-25 00:17:23.633 +05:30 [INF] Hosting environment: Development
+2025-11-25 00:17:23.781 +05:30 [INF] Content root path: C:\Users\AalokShailendraChoud\Desktop\ExpenSync\expenSync_backend_poc\expenseTrackerPOC
+2025-11-25 00:19:02.470 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 00:19:02.616 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:19:02.631 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 173.0477ms
+2025-11-25 00:19:02.637 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 00:19:02.672 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:19:02.826 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 00:19:02.835 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 00:19:02.885 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 00:19:06.538 +05:30 [INF] Executed DbCommand (147ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:19:06.768 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:19:06.992 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 00:50:43.403 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 1900488.4827ms
+2025-11-25 00:50:43.421 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 00:50:43.605 +05:30 [ERR] Something went wrong: Retry failed after 4 tries. Retry settings can be adjusted in ClientOptions.Retry or by configuring a custom retry policy in ClientOptions.RetryPolicy. (No such host is known. (expensetrackeremailservice.unitedstates.communication.azure.com:443)) (No such host is known. (expensetrackeremailservice.unitedstates.communication.azure.com:443)) (No such host is known. (expensetrackeremailservice.unitedstates.communication.azure.com:443)) (No such host is known. (expensetrackeremailservice.unitedstates.communication.azure.com:443))
+2025-11-25 00:50:43.626 +05:30 [INF] Response Status : 500
+2025-11-25 00:50:43.733 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 500 null application/json 1901095.6663ms
+2025-11-25 00:50:49.457 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 00:50:49.471 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:50:49.475 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 17.4423ms
+2025-11-25 00:50:49.477 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 00:50:49.496 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:50:49.503 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 00:50:49.509 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 00:50:49.512 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 00:50:49.594 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:50:49.606 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:50:49.624 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 00:50:55.867 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 00:50:55.894 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 6378.7348ms
+2025-11-25 00:50:55.901 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 00:50:55.904 +05:30 [INF] Response Status : 200
+2025-11-25 00:50:55.908 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 6430.5676ms
+2025-11-25 00:55:48.559 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - null null
+2025-11-25 00:55:48.626 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:55:48.641 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - 204 null null 82.4555ms
+2025-11-25 00:55:48.705 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - application/json 25
+2025-11-25 00:55:48.726 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:55:48.733 +05:30 [INF] Incoming Request : POST /api/forgotPassword/resend-otp
+2025-11-25 00:55:48.737 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 00:55:48.750 +05:30 [INF] Route matched with {action = "ResendOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] ResendOtp(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 00:55:48.964 +05:30 [INF] Executed DbCommand (67ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:55:48.989 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:55:49.060 +05:30 [INF] Executed DbCommand (60ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 00:55:53.696 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - null null
+2025-11-25 00:55:53.713 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:55:53.716 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - 204 null null 19.6855ms
+2025-11-25 00:55:53.726 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - application/json 25
+2025-11-25 00:55:53.741 +05:30 [INF] CORS policy execution successful.
+2025-11-25 00:55:53.744 +05:30 [INF] Incoming Request : POST /api/forgotPassword/resend-otp
+2025-11-25 00:55:53.746 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 00:55:53.748 +05:30 [INF] Route matched with {action = "ResendOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] ResendOtp(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 00:55:53.763 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:55:53.798 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 00:55:53.815 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 00:55:57.438 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 00:55:57.517 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC) in 3758.8916ms
+2025-11-25 00:55:57.525 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 00:55:57.528 +05:30 [INF] Response Status : 200
+2025-11-25 00:55:57.533 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - 200 null application/json; charset=utf-8 3806.6656ms
+2025-11-25 00:56:04.715 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 00:56:04.736 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC) in 15979.4186ms
+2025-11-25 00:56:04.742 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 00:56:04.744 +05:30 [INF] Response Status : 200
+2025-11-25 00:56:04.749 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - 200 null application/json; charset=utf-8 16044.3872ms
+2025-11-25 01:01:08.991 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:01:09.012 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:01:09.024 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 32.4394ms
+2025-11-25 01:01:09.136 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:01:09.172 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:01:09.177 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:01:09.183 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:01:09.190 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:01:09.463 +05:30 [INF] Executed DbCommand (249ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:01:09.515 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:01:10.003 +05:30 [INF] Executed DbCommand (475ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:01:14.883 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:01:14.911 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 5712.2748ms
+2025-11-25 01:01:14.914 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:01:14.916 +05:30 [INF] Response Status : 200
+2025-11-25 01:01:14.918 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 5781.9848ms
+2025-11-25 01:03:35.461 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - null null
+2025-11-25 01:03:35.528 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:03:35.543 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - application/json 25
+2025-11-25 01:03:35.529 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - 204 null null 68.6324ms
+2025-11-25 01:03:35.596 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:03:35.599 +05:30 [INF] Incoming Request : POST /api/forgotPassword/resend-otp
+2025-11-25 01:03:35.599 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:03:35.600 +05:30 [INF] Route matched with {action = "ResendOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] ResendOtp(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:03:35.650 +05:30 [INF] Executed DbCommand (44ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:03:35.656 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:03:35.695 +05:30 [INF] Executed DbCommand (31ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:03:43.461 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:03:43.477 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC) in 7873.9999ms
+2025-11-25 01:03:43.567 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:03:43.570 +05:30 [INF] Response Status : 200
+2025-11-25 01:03:43.572 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - 200 null application/json; charset=utf-8 8029.7747ms
+2025-11-25 01:05:35.252 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:05:35.255 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:05:35.346 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 94.4112ms
+2025-11-25 01:05:35.518 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:05:35.535 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:05:35.536 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:05:35.537 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:05:35.538 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:05:35.582 +05:30 [INF] Executed DbCommand (38ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:05:35.714 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:05:35.790 +05:30 [INF] Executed DbCommand (59ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:05:43.576 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:05:43.651 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 8110.6581ms
+2025-11-25 01:05:43.754 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:05:43.781 +05:30 [INF] Response Status : 200
+2025-11-25 01:05:43.842 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 8324.6563ms
+2025-11-25 01:07:49.642 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - null null
+2025-11-25 01:07:49.716 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:07:49.722 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - 204 null null 79.7045ms
+2025-11-25 01:07:49.743 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - application/json 25
+2025-11-25 01:07:49.764 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:07:49.766 +05:30 [INF] Incoming Request : POST /api/forgotPassword/resend-otp
+2025-11-25 01:07:49.768 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:07:49.772 +05:30 [INF] Route matched with {action = "ResendOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] ResendOtp(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:07:49.808 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:07:49.816 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:07:49.842 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:07:57.692 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:07:57.713 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC) in 7938.4002ms
+2025-11-25 01:07:57.817 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:07:57.822 +05:30 [INF] Response Status : 200
+2025-11-25 01:07:57.823 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - 200 null application/json; charset=utf-8 8080.3994ms
+2025-11-25 01:14:08.297 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:14:08.371 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:14:08.415 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 117.7433ms
+2025-11-25 01:14:08.417 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:14:08.460 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:14:08.465 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:14:08.471 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:14:08.479 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:14:08.545 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:14:08.555 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:14:08.563 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 80.8868ms
+2025-11-25 01:14:08.567 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:14:08.572 +05:30 [INF] Response Status : 200
+2025-11-25 01:14:08.575 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 157.3962ms
+2025-11-25 01:14:15.710 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:14:15.724 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:14:15.726 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 15.6176ms
+2025-11-25 01:14:15.728 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 24
+2025-11-25 01:14:15.747 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:14:15.748 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:14:15.762 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:14:15.763 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:14:15.774 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:14:15.799 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:14:15.823 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 57.7453ms
+2025-11-25 01:14:15.826 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:14:15.826 +05:30 [INF] Response Status : 200
+2025-11-25 01:14:15.829 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 101.1308ms
+2025-11-25 01:14:22.941 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:14:23.015 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:14:23.024 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 83.0585ms
+2025-11-25 01:14:23.027 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:14:23.078 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:14:23.080 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:14:23.082 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:14:23.085 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:14:23.096 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:14:23.112 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:14:23.166 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:14:28.001 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:14:28.015 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 4922.804ms
+2025-11-25 01:14:28.084 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:14:28.085 +05:30 [INF] Response Status : 200
+2025-11-25 01:14:28.087 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 5060.0269ms
+2025-11-25 01:15:51.316 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:15:51.730 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:15:51.867 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 550.6916ms
+2025-11-25 01:15:52.092 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:15:52.151 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:15:52.160 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:15:52.171 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:15:52.174 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:15:52.225 +05:30 [INF] Executed DbCommand (37ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:15:52.236 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:15:52.267 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:15:57.649 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:15:57.651 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 5466.4338ms
+2025-11-25 01:15:57.693 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:15:57.697 +05:30 [INF] Response Status : 200
+2025-11-25 01:15:57.711 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 5634.8887ms
+2025-11-25 01:22:01.093 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:22:01.122 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:01.135 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 42.2754ms
+2025-11-25 01:22:01.207 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:01.232 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:01.234 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:01.236 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:01.264 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:01.339 +05:30 [INF] Executed DbCommand (25ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:01.355 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:01.371 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 104.3697ms
+2025-11-25 01:22:01.376 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:01.377 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:01.378 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 170.7078ms
+2025-11-25 01:22:03.228 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:03.236 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:03.238 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:03.241 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:03.242 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:03.382 +05:30 [INF] Executed DbCommand (63ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:03.387 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:03.389 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 136.9647ms
+2025-11-25 01:22:03.399 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:03.401 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:03.402 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 173.9576ms
+2025-11-25 01:22:04.704 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:04.777 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:04.787 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:04.789 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:04.799 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:04.832 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:04.856 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:04.868 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 47.7925ms
+2025-11-25 01:22:04.872 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:04.874 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:04.875 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 170.8844ms
+2025-11-25 01:22:07.571 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:22:07.576 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:07.579 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 8.804ms
+2025-11-25 01:22:07.589 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:07.593 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:07.602 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:07.676 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:07.678 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:07.696 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:07.787 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:07.806 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 118.3122ms
+2025-11-25 01:22:07.813 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:07.814 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:07.819 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 230.0568ms
+2025-11-25 01:22:09.058 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:09.110 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:09.138 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:09.139 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:09.141 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:09.167 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:09.199 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:09.214 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 70.1673ms
+2025-11-25 01:22:09.218 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:09.220 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:09.223 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 164.7114ms
+2025-11-25 01:22:17.594 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:22:17.597 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:17.597 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 3.1161ms
+2025-11-25 01:22:17.607 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:17.610 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:17.611 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:17.612 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:17.613 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:17.699 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:17.748 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:17.768 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 153.3903ms
+2025-11-25 01:22:17.771 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:17.779 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:17.780 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 172.5198ms
+2025-11-25 01:22:18.984 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:18.994 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:18.995 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:18.996 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:19.130 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:19.142 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:19.192 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:19.200 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 67.4602ms
+2025-11-25 01:22:19.202 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:19.203 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:19.204 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 316.1466ms
+2025-11-25 01:22:20.556 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:22:20.623 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:20.624 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:22:20.625 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:20.626 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:20.636 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:22:20.642 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:22:20.646 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 18.6328ms
+2025-11-25 01:22:20.779 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:22:20.780 +05:30 [INF] Response Status : 200
+2025-11-25 01:22:20.784 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 227.9312ms
+2025-11-25 01:22:53.685 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - null null
+2025-11-25 01:22:53.728 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:53.731 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - 204 null null 46.084ms
+2025-11-25 01:22:53.819 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - application/json 25
+2025-11-25 01:22:54.132 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:22:54.133 +05:30 [INF] Incoming Request : POST /api/forgotPassword/resend-otp
+2025-11-25 01:22:54.140 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:22:54.187 +05:30 [INF] Route matched with {action = "ResendOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] ResendOtp(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:22:54.205 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:22:54.274 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:22:54.322 +05:30 [INF] Executed DbCommand (43ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:23:19.438 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:23:19.455 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC) in 25260.8652ms
+2025-11-25 01:23:19.460 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:23:19.467 +05:30 [INF] Response Status : 200
+2025-11-25 01:23:19.469 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - 200 null application/json; charset=utf-8 25649.89ms
+2025-11-25 01:23:30.075 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:23:30.086 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:23:30.088 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 12.742ms
+2025-11-25 01:23:30.102 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:23:30.151 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:23:30.153 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:23:30.277 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:23:30.369 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:23:30.387 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:23:30.407 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:23:30.435 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 62.537ms
+2025-11-25 01:23:30.439 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:23:30.459 +05:30 [INF] Response Status : 200
+2025-11-25 01:23:30.535 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 433.7178ms
+2025-11-25 01:23:32.683 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:23:32.773 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:23:32.799 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:23:32.801 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:23:32.803 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:23:32.814 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:23:32.820 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:23:32.831 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 24.4885ms
+2025-11-25 01:23:32.834 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:23:32.836 +05:30 [INF] Response Status : 200
+2025-11-25 01:23:32.838 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 154.9569ms
+2025-11-25 01:25:09.969 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:25:10.000 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:25:10.004 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 34.466ms
+2025-11-25 01:25:10.014 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:25:10.044 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:25:10.046 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:25:10.058 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:25:10.064 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:25:10.076 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:25:10.089 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:25:10.131 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:25:23.466 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:25:23.474 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 13407.6325ms
+2025-11-25 01:25:23.479 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:25:23.481 +05:30 [INF] Response Status : 200
+2025-11-25 01:25:23.482 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 13468.1669ms
+2025-11-25 01:25:31.620 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:25:31.633 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:25:31.634 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 13.4215ms
+2025-11-25 01:25:31.635 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:25:31.653 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:25:31.666 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:25:31.670 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:25:31.673 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:25:31.684 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:25:31.695 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:25:31.698 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 18.6435ms
+2025-11-25 01:25:31.701 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:25:31.712 +05:30 [INF] Response Status : 200
+2025-11-25 01:25:31.714 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 78.7078ms
+2025-11-25 01:25:36.848 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:25:36.883 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:25:36.884 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 35.6707ms
+2025-11-25 01:25:36.886 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:25:36.898 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:25:36.903 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:25:36.904 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:25:36.909 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:25:36.917 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:25:36.945 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:25:36.947 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 36.0912ms
+2025-11-25 01:25:36.950 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:25:36.951 +05:30 [INF] Response Status : 200
+2025-11-25 01:25:36.952 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 66.5335ms
+2025-11-25 01:26:32.601 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - null null
+2025-11-25 01:26:32.678 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:26:32.680 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/resend-otp - 204 null null 78.5577ms
+2025-11-25 01:26:32.708 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - application/json 25
+2025-11-25 01:26:32.728 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:26:32.729 +05:30 [INF] Incoming Request : POST /api/forgotPassword/resend-otp
+2025-11-25 01:26:32.734 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:26:32.740 +05:30 [INF] Route matched with {action = "ResendOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] ResendOtp(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:26:32.751 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:26:32.765 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:26:32.792 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:26:46.478 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:26:46.491 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC) in 13746.5973ms
+2025-11-25 01:26:46.496 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResendOtp (expenseTrackerPOC)'
+2025-11-25 01:26:46.500 +05:30 [INF] Response Status : 200
+2025-11-25 01:26:46.501 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/resend-otp - 200 null application/json; charset=utf-8 13793.5797ms
+2025-11-25 01:26:58.144 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:26:58.162 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:26:58.168 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 29.9734ms
+2025-11-25 01:26:58.174 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 43
+2025-11-25 01:26:58.182 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:26:58.183 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:26:58.186 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:26:58.189 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:26:58.199 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:27:53.973 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:27:54.010 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 55817.8686ms
+2025-11-25 01:27:54.014 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:27:54.017 +05:30 [INF] Response Status : 200
+2025-11-25 01:27:54.019 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 55844.3107ms
+2025-11-25 01:29:53.546 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:29:53.567 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:29:53.569 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 23.3149ms
+2025-11-25 01:29:53.605 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:29:53.616 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:29:53.618 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:29:53.623 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:29:53.625 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:29:53.639 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:29:53.657 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:29:53.723 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:30:02.700 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:30:02.708 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 9078.1333ms
+2025-11-25 01:30:02.716 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:30:02.721 +05:30 [INF] Response Status : 200
+2025-11-25 01:30:02.725 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 9120.3903ms
+2025-11-25 01:30:11.707 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:30:11.809 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:30:11.816 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 109.043ms
+2025-11-25 01:30:11.819 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 36
+2025-11-25 01:30:11.885 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:30:11.917 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:30:11.921 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:30:11.924 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:30:11.965 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:30:11.988 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [IsOtpVerified] = @p0, [PasswordResetExpiry] = @p1, [PasswordResetOtp] = @p2
+OUTPUT 1
+WHERE [UserId] = @p3;
+2025-11-25 01:30:14.690 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:30:14.732 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 2800.2825ms
+2025-11-25 01:30:14.800 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:30:14.802 +05:30 [INF] Response Status : 200
+2025-11-25 01:30:14.803 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 2984.2715ms
+2025-11-25 01:42:12.602 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:42:12.609 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:42:12.617 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 14.9786ms
+2025-11-25 01:42:12.682 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:42:12.763 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:42:12.774 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:42:12.798 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:42:12.826 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:42:12.941 +05:30 [INF] Executed DbCommand (42ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:42:12.950 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:42:12.969 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [IsOtpVerified] = @p0, [PasswordResetExpiry] = @p1, [PasswordResetOtp] = @p2
+OUTPUT 1
+WHERE [UserId] = @p3;
+2025-11-25 01:42:18.388 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:42:18.407 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 5557.7203ms
+2025-11-25 01:42:18.415 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:42:18.417 +05:30 [INF] Response Status : 200
+2025-11-25 01:42:18.418 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 5736.0822ms
+2025-11-25 01:43:43.238 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 01:43:43.308 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:43:43.344 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 106.0997ms
+2025-11-25 01:43:43.347 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 01:43:43.365 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:43:43.368 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 01:43:43.369 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:43:43.383 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:43:43.432 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:43:43.444 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 01:43:43.516 +05:30 [INF] Executed DbCommand (66ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:43:50.653 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 01:43:50.700 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 7312.6461ms
+2025-11-25 01:43:50.916 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 01:43:50.919 +05:30 [INF] Response Status : 200
+2025-11-25 01:43:50.926 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 7579.6012ms
+2025-11-25 01:44:13.432 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 01:44:13.565 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:44:13.566 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 133.7156ms
+2025-11-25 01:44:13.572 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 36
+2025-11-25 01:44:13.575 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:44:13.576 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 01:44:13.576 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:44:13.582 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:44:13.598 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 01:44:13.610 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [IsOtpVerified] = @p0, [PasswordResetExpiry] = @p1, [PasswordResetOtp] = @p2
+OUTPUT 1
+WHERE [UserId] = @p3;
+2025-11-25 01:44:13.613 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 01:44:13.617 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 30.9733ms
+2025-11-25 01:44:13.631 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 01:44:13.632 +05:30 [INF] Response Status : 200
+2025-11-25 01:44:13.633 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 60.9797ms
+2025-11-25 01:44:34.749 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/reset-new-password - null null
+2025-11-25 01:44:34.779 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:44:34.781 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/reset-new-password - 204 null null 31.5959ms
+2025-11-25 01:44:34.914 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7253/api/forgotPassword/reset-new-password - application/json 76
+2025-11-25 01:44:34.945 +05:30 [INF] CORS policy execution successful.
+2025-11-25 01:44:34.949 +05:30 [INF] Incoming Request : PUT /api/forgotPassword/reset-new-password
+2025-11-25 01:44:34.950 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResetNewPassword (expenseTrackerPOC)'
+2025-11-25 01:44:35.042 +05:30 [INF] Route matched with {action = "ResetNewPassword", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ResetNewPasswordResponse]] ResetNewPassword(expenseTrackerPOC.Data.RequestModels.ResetNewPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 01:44:35.093 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__resetPasswordRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__resetPasswordRequest_Email_0
+2025-11-25 01:44:35.212 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [HashPassword] = @p0, [IsOtpVerified] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 01:44:37.503 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ResetNewPasswordResponse'.
+2025-11-25 01:44:37.510 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResetNewPassword (expenseTrackerPOC) in 2463.5901ms
+2025-11-25 01:44:37.514 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResetNewPassword (expenseTrackerPOC)'
+2025-11-25 01:44:37.516 +05:30 [INF] Response Status : 200
+2025-11-25 01:44:37.516 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7253/api/forgotPassword/reset-new-password - 200 null application/json; charset=utf-8 2602.6278ms
+2025-11-25 02:09:08.535 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - null null
+2025-11-25 02:09:08.557 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:09:08.558 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-email - 204 null null 23.447ms
+2025-11-25 02:09:08.560 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - application/json 25
+2025-11-25 02:09:08.565 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:09:08.565 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-email
+2025-11-25 02:09:08.566 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 02:09:08.570 +05:30 [INF] Route matched with {action = "RequestForgotPasswordReset", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse]] RequestForgotPasswordReset(expenseTrackerPOC.Data.RequestModels.ForgotPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 02:09:08.709 +05:30 [INF] Executed DbCommand (82ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 02:09:08.717 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 02:09:08.760 +05:30 [INF] Executed DbCommand (32ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (DbType = DateTime2), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [PasswordResetExpiry] = @p0, [PasswordResetOtp] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 02:09:16.361 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ForgotPasswordResponse'.
+2025-11-25 02:09:16.443 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC) in 7870.5238ms
+2025-11-25 02:09:16.445 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.RequestForgotPasswordReset (expenseTrackerPOC)'
+2025-11-25 02:09:16.448 +05:30 [INF] Response Status : 200
+2025-11-25 02:09:16.450 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-email - 200 null application/json; charset=utf-8 7890.3026ms
+2025-11-25 02:09:38.079 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - null null
+2025-11-25 02:09:38.093 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:09:38.094 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/verify-otp - 204 null null 15.6507ms
+2025-11-25 02:09:38.144 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - application/json 36
+2025-11-25 02:09:38.149 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:09:38.149 +05:30 [INF] Incoming Request : POST /api/forgotPassword/verify-otp
+2025-11-25 02:09:38.150 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 02:09:38.152 +05:30 [INF] Route matched with {action = "VerifyOtp", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse]] VerifyOtp(expenseTrackerPOC.Data.RequestModels.VerifyOtpRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 02:09:38.176 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__verifyOtpRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__verifyOtpRequest_Email_0
+2025-11-25 02:09:38.202 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@p3='?' (DbType = Int32), @p0='?' (DbType = Boolean), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [IsOtpVerified] = @p0, [PasswordResetExpiry] = @p1, [PasswordResetOtp] = @p2
+OUTPUT 1
+WHERE [UserId] = @p3;
+2025-11-25 02:09:38.206 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.VerifyOtpResponse'.
+2025-11-25 02:09:38.207 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC) in 50.4437ms
+2025-11-25 02:09:38.213 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.VerifyOtp (expenseTrackerPOC)'
+2025-11-25 02:09:38.214 +05:30 [INF] Response Status : 200
+2025-11-25 02:09:38.215 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/forgotPassword/verify-otp - 200 null application/json; charset=utf-8 70.9137ms
+2025-11-25 02:10:25.064 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/reset-new-password - null null
+2025-11-25 02:10:25.074 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:10:25.172 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/forgotPassword/reset-new-password - 204 null null 108.5752ms
+2025-11-25 02:10:25.384 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7253/api/forgotPassword/reset-new-password - application/json 76
+2025-11-25 02:10:25.427 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:10:25.430 +05:30 [INF] Incoming Request : PUT /api/forgotPassword/reset-new-password
+2025-11-25 02:10:25.431 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResetNewPassword (expenseTrackerPOC)'
+2025-11-25 02:10:25.441 +05:30 [INF] Route matched with {action = "ResetNewPassword", controller = "ForgotPassword"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.ResetNewPasswordResponse]] ResetNewPassword(expenseTrackerPOC.Data.RequestModels.ResetNewPasswordRequest) on controller expenseTrackerPOC.Controllers.Profile.ForgotPasswordController (expenseTrackerPOC).
+2025-11-25 02:10:25.481 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__resetPasswordRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__resetPasswordRequest_Email_0
+2025-11-25 02:10:25.618 +05:30 [INF] Executed DbCommand (50ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 4000), @p1='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Users] SET [HashPassword] = @p0, [IsOtpVerified] = @p1
+OUTPUT 1
+WHERE [UserId] = @p2;
+2025-11-25 02:10:31.313 +05:30 [INF] Executing ObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ResetNewPasswordResponse'.
+2025-11-25 02:10:31.317 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResetNewPassword (expenseTrackerPOC) in 5843.8385ms
+2025-11-25 02:10:31.326 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Profile.ForgotPasswordController.ResetNewPassword (expenseTrackerPOC)'
+2025-11-25 02:10:31.330 +05:30 [INF] Response Status : 200
+2025-11-25 02:10:31.332 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7253/api/forgotPassword/reset-new-password - 200 null application/json; charset=utf-8 5948.1439ms
+2025-11-25 02:12:47.849 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-11-25 02:12:47.885 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:12:47.892 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 80.0692ms
+2025-11-25 02:12:47.905 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 47
+2025-11-25 02:12:47.955 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:12:47.957 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-11-25 02:12:47.972 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-25 02:12:48.005 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-11-25 02:12:48.048 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-11-25 02:12:48.332 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-25 02:12:48.386 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-11-25 02:12:48.425 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-11-25 02:13:03.172 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-11-25 02:13:03.189 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 15178.5178ms
+2025-11-25 02:13:03.193 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-11-25 02:13:03.196 +05:30 [INF] Response Status : 200
+2025-11-25 02:13:03.198 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 499 null application/json; charset=utf-8 15292.7505ms
+2025-11-25 02:27:41.445 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/signup - null null
+2025-11-25 02:27:41.474 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:41.482 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/signup - 204 null null 37.1893ms
+2025-11-25 02:27:41.485 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/signup - application/json 100
+2025-11-25 02:27:41.546 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:41.551 +05:30 [INF] Incoming Request : POST /api/auth/signup
+2025-11-25 02:27:41.553 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Register (expenseTrackerPOC)'
+2025-11-25 02:27:41.566 +05:30 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.SignUpResponse]] Register(expenseTrackerPOC.Data.RequestModels.SignUpRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-11-25 02:27:41.778 +05:30 [INF] Executed DbCommand (64ms) [Parameters=[@__email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__email_0
+2025-11-25 02:27:41.870 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 100), @p1='?' (Size = 4000), @p2='?' (DbType = Boolean), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (Size = 4000), @p6='?' (Size = 50)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Email], [HashPassword], [IsOtpVerified], [PasswordResetExpiry], [PasswordResetOtp], [Role], [Username])
+OUTPUT INSERTED.[UserId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+2025-11-25 02:27:41.891 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-25 02:27:41.902 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-11-25 02:27:45.765 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.SignUpResponse'.
+2025-11-25 02:27:45.771 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Register (expenseTrackerPOC) in 4192.2872ms
+2025-11-25 02:27:45.776 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Register (expenseTrackerPOC)'
+2025-11-25 02:27:45.777 +05:30 [INF] Response Status : 200
+2025-11-25 02:27:45.779 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/signup - 200 null application/json; charset=utf-8 4294.511ms
+2025-11-25 02:27:47.077 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:27:47.083 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:27:47.093 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:27:47.101 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:47.131 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 54.4174ms
+2025-11-25 02:27:47.130 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:47.129 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:47.193 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:27:47.216 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 122.9856ms
+2025-11-25 02:27:47.218 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 134.9323ms
+2025-11-25 02:27:47.218 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:27:47.219 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:27:47.224 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:47.248 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:47.253 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:27:47.436 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:27:47.442 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:27:47.436 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:27:47.436 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:27:47.451 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:27:47.451 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:27:47.452 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:27:47.461 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:27:47.466 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:27:47.523 +05:30 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:27:47.543 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:27:47.597 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 126.6198ms
+2025-11-25 02:27:47.600 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:27:47.601 +05:30 [INF] Response Status : 200
+2025-11-25 02:27:47.603 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 383.2557ms
+2025-11-25 02:27:47.615 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:27:47.629 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:27:47.643 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 184.9436ms
+2025-11-25 02:27:47.645 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:27:47.649 +05:30 [INF] Response Status : 400
+2025-11-25 02:27:47.650 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:27:47.651 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 433.0483ms
+2025-11-25 02:27:47.678 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:27:47.684 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 217.8287ms
+2025-11-25 02:27:47.686 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:27:47.688 +05:30 [INF] Response Status : 200
+2025-11-25 02:27:47.690 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 496.4146ms
+2025-11-25 02:31:32.306 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:31:32.454 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:31:32.487 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:31:32.974 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:31:32.975 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:31:32.977 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 522.5221ms
+2025-11-25 02:31:32.977 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 670.2735ms
+2025-11-25 02:31:32.976 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:31:32.984 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:31:32.985 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:31:32.984 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 497.3295ms
+2025-11-25 02:31:32.989 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:31:32.989 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:31:33.030 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:31:33.036 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:31:33.033 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:31:33.031 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:31:33.036 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:31:33.040 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:31:33.041 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:31:33.042 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:31:33.075 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:31:33.061 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:31:33.080 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:31:33.110 +05:30 [INF] Executed DbCommand (37ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:31:33.117 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:31:33.167 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:31:33.366 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:31:33.382 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 300.2178ms
+2025-11-25 02:31:33.354 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:31:33.360 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:31:33.395 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:31:33.402 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 332.0587ms
+2025-11-25 02:31:33.438 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 360.3957ms
+2025-11-25 02:31:33.456 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:31:33.455 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:31:33.453 +05:30 [INF] Response Status : 200
+2025-11-25 02:31:33.458 +05:30 [INF] Response Status : 400
+2025-11-25 02:31:33.458 +05:30 [INF] Response Status : 200
+2025-11-25 02:31:33.468 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 484.6714ms
+2025-11-25 02:31:33.461 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 431.0369ms
+2025-11-25 02:31:33.459 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 470.2701ms
+2025-11-25 02:32:30.555 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:32:30.558 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:32:30.558 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 3.4554ms
+2025-11-25 02:32:30.608 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:32:30.703 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:32:30.775 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:32:30.873 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:32:30.881 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:32:30.887 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:32:30.891 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 282.8693ms
+2025-11-25 02:32:30.953 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:32:30.899 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 195.979ms
+2025-11-25 02:32:30.930 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:32:31.065 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:32:31.066 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:32:30.895 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:32:31.077 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:32:31.103 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:32:31.024 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:32:31.107 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:32:31.118 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:32:31.113 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:32:31.132 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:32:31.139 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:32:31.174 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:32:31.177 +05:30 [INF] Executed DbCommand (102ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:32:31.182 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:32:31.224 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:32:31.343 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 219.8034ms
+2025-11-25 02:32:31.338 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:32:31.323 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:32:31.347 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:32:31.355 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 203.8309ms
+2025-11-25 02:32:31.370 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 300.0622ms
+2025-11-25 02:32:31.373 +05:30 [INF] Response Status : 400
+2025-11-25 02:32:31.384 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:32:31.403 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:32:31.404 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 508.9972ms
+2025-11-25 02:32:31.408 +05:30 [INF] Response Status : 200
+2025-11-25 02:32:31.416 +05:30 [INF] Response Status : 200
+2025-11-25 02:32:31.421 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 470.2156ms
+2025-11-25 02:32:31.424 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 648.4247ms
+2025-11-25 02:33:01.234 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:33:01.344 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:33:01.369 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:33:01.370 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:33:01.418 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:33:01.427 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 192.8854ms
+2025-11-25 02:33:01.445 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 101.1203ms
+2025-11-25 02:33:01.429 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:33:01.436 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:33:01.478 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:33:01.491 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 120.8559ms
+2025-11-25 02:33:01.493 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:33:01.493 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:33:01.495 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:33:01.506 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:33:01.507 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:33:01.508 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:33:01.514 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:33:01.515 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:33:01.515 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:33:01.520 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:33:01.522 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:33:01.524 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:33:01.530 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:33:01.542 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:33:01.546 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:33:01.550 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 24.6938ms
+2025-11-25 02:33:01.553 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:33:01.554 +05:30 [INF] Response Status : 200
+2025-11-25 02:33:01.555 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 118.658ms
+2025-11-25 02:33:01.566 +05:30 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:33:01.575 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:33:01.579 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 42.0676ms
+2025-11-25 02:33:01.581 +05:30 [INF] Executed DbCommand (48ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:33:01.603 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:33:01.604 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:33:01.606 +05:30 [INF] Response Status : 200
+2025-11-25 02:33:01.607 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 75.4386ms
+2025-11-25 02:33:01.613 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:33:01.612 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 118.9817ms
+2025-11-25 02:33:01.624 +05:30 [INF] Response Status : 400
+2025-11-25 02:33:01.630 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 152.777ms
+2025-11-25 02:35:34.827 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:35:34.833 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:35:34.843 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:35:34.849 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:34.856 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:34.865 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 43.1891ms
+2025-11-25 02:35:34.877 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 44.3253ms
+2025-11-25 02:35:34.862 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:34.891 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:35:34.891 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:35:34.916 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 72.764ms
+2025-11-25 02:35:34.920 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:35:34.923 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:34.929 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:34.943 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:34.946 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:35:34.947 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:35:34.949 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:35:34.952 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:35:34.954 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:35:34.956 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:35:34.959 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:35:34.962 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:35:34.966 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:35:35.004 +05:30 [INF] Executed DbCommand (26ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:35:35.010 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:35:35.016 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 39.7172ms
+2025-11-25 02:35:35.020 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:35:35.023 +05:30 [INF] Response Status : 200
+2025-11-25 02:35:35.025 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 134.966ms
+2025-11-25 02:35:35.043 +05:30 [INF] Executed DbCommand (70ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:35:35.048 +05:30 [INF] Executed DbCommand (66ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:35:35.052 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:35:35.057 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:35:35.060 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 89.6308ms
+2025-11-25 02:35:35.063 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 82.9336ms
+2025-11-25 02:35:35.067 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:35:35.070 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:35:35.073 +05:30 [INF] Response Status : 200
+2025-11-25 02:35:35.076 +05:30 [INF] Response Status : 400
+2025-11-25 02:35:35.078 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 186.3312ms
+2025-11-25 02:35:35.080 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 160.6263ms
+2025-11-25 02:35:49.129 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:35:49.131 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:35:49.131 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:35:49.144 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:49.151 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:49.158 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:49.160 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 30.7904ms
+2025-11-25 02:35:49.165 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:35:49.165 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 33.8779ms
+2025-11-25 02:35:49.188 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:35:49.169 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 37.8069ms
+2025-11-25 02:35:49.168 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:35:49.201 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:49.214 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:49.230 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:35:49.233 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:35:49.236 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:35:49.238 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:35:49.240 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:35:49.242 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:35:49.244 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:35:49.247 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:35:49.250 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:35:49.253 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:35:49.263 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:35:49.268 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:35:49.273 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:35:49.277 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:35:49.281 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:35:49.287 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:35:49.291 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 30.3276ms
+2025-11-25 02:35:49.294 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 28.7457ms
+2025-11-25 02:35:49.298 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 27.3117ms
+2025-11-25 02:35:49.301 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:35:49.305 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:35:49.308 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:35:49.311 +05:30 [INF] Response Status : 200
+2025-11-25 02:35:49.314 +05:30 [INF] Response Status : 400
+2025-11-25 02:35:49.317 +05:30 [INF] Response Status : 200
+2025-11-25 02:35:49.319 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 154.5531ms
+2025-11-25 02:35:49.322 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 134.3768ms
+2025-11-25 02:35:49.325 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 157.1223ms
+2025-11-25 02:36:03.295 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:36:03.296 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:36:03.297 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:36:03.307 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:03.313 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:03.320 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:03.322 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 26.9937ms
+2025-11-25 02:36:03.324 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 27.9572ms
+2025-11-25 02:36:03.326 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 29.0007ms
+2025-11-25 02:36:03.327 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:36:03.329 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:36:03.330 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:36:03.361 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:03.368 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:03.375 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:03.378 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:36:03.380 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:36:03.381 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:36:03.383 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:36:03.385 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:36:03.387 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:36:03.391 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:36:03.394 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:36:03.397 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:36:03.407 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:36:03.426 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:36:03.433 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 31.1478ms
+2025-11-25 02:36:03.438 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:36:03.441 +05:30 [INF] Response Status : 200
+2025-11-25 02:36:03.444 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 116.9316ms
+2025-11-25 02:36:03.474 +05:30 [INF] Executed DbCommand (66ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:36:03.479 +05:30 [INF] Executed DbCommand (64ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:36:03.481 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:36:03.487 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:36:03.490 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 83.7547ms
+2025-11-25 02:36:03.494 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 80.3339ms
+2025-11-25 02:36:03.497 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:36:03.501 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:36:03.504 +05:30 [INF] Response Status : 200
+2025-11-25 02:36:03.507 +05:30 [INF] Response Status : 400
+2025-11-25 02:36:03.509 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 179.9532ms
+2025-11-25 02:36:03.511 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 181.6812ms
+2025-11-25 02:36:13.495 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:36:13.496 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:36:13.496 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:36:13.503 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:13.515 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:13.524 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:13.525 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 30.1565ms
+2025-11-25 02:36:13.531 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:36:13.528 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:36:13.529 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 33.4926ms
+2025-11-25 02:36:13.532 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 35.879ms
+2025-11-25 02:36:13.536 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:36:13.549 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:13.557 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:13.577 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:13.579 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:36:13.581 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:36:13.582 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:36:13.584 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:36:13.587 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:36:13.589 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:36:13.593 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:36:13.594 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:36:13.596 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:36:13.607 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:36:13.611 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:36:13.616 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:36:13.618 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:36:13.626 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:36:13.633 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:36:13.640 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 36.3471ms
+2025-11-25 02:36:13.644 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 35.9262ms
+2025-11-25 02:36:13.646 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 33.8688ms
+2025-11-25 02:36:13.653 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:36:13.656 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:36:13.659 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:36:13.661 +05:30 [INF] Response Status : 200
+2025-11-25 02:36:13.662 +05:30 [INF] Response Status : 200
+2025-11-25 02:36:13.664 +05:30 [INF] Response Status : 400
+2025-11-25 02:36:13.667 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 136.0127ms
+2025-11-25 02:36:13.670 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 141.8894ms
+2025-11-25 02:36:13.672 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 136.0287ms
+2025-11-25 02:36:25.742 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:36:25.743 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:36:25.744 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:36:25.755 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:25.762 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:25.774 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:25.776 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 35.4104ms
+2025-11-25 02:36:25.779 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-11-25 02:36:25.780 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 36.8033ms
+2025-11-25 02:36:25.782 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-11-25 02:36:25.814 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:25.787 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-11-25 02:36:25.803 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:25.785 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 41.7948ms
+2025-11-25 02:36:25.818 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-11-25 02:36:25.826 +05:30 [INF] CORS policy execution successful.
+2025-11-25 02:36:25.829 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-11-25 02:36:25.847 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:36:25.846 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-11-25 02:36:25.842 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:36:25.852 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:36:25.855 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:36:25.858 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-11-25 02:36:25.868 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-11-25 02:36:25.872 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-11-25 02:36:25.873 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-11-25 02:36:25.880 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-11-25 02:36:25.884 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-11-25 02:36:25.889 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-11-25 02:36:25.896 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-11-25 02:36:25.902 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 37.2639ms
+2025-11-25 02:36:25.908 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 37.1948ms
+2025-11-25 02:36:25.911 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 33.7869ms
+2025-11-25 02:36:25.914 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-11-25 02:36:25.919 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-11-25 02:36:25.923 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-11-25 02:36:25.925 +05:30 [INF] Response Status : 200
+2025-11-25 02:36:25.926 +05:30 [INF] Response Status : 400
+2025-11-25 02:36:25.928 +05:30 [INF] Response Status : 200
+2025-11-25 02:36:25.930 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 151.5088ms
+2025-11-25 02:36:25.935 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 400 null application/json; charset=utf-8 152.7132ms
+2025-11-25 02:36:25.936 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 149.2576ms

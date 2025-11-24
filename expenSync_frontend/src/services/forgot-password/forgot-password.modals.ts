@@ -23,7 +23,7 @@ export interface ResetPasswordRequest
 {
   email : any;
   password : string;
-  repassword : string;
+  confirmPassword : string;
 }
 
 export interface OtpVerificationResponse
@@ -37,5 +37,5 @@ export interface OtpVerificationResponse
 export interface OtpVerificationRequest
 {
   email : string;
-  otpValue : string;
+  otp : number;
 }

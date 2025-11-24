@@ -1,16 +1,24 @@
 
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterModule } from '@angular/router';
+import { ForgotPasswordService } from '../../../services/forgot-password/forgot-password.service';
+import { ResetPasswordRequest } from '../../../services/forgot-password/forgot-password.modals';
+import { ForgotPasswordToastService } from '../../../services/forgot-password/forgot-password.toast.service';
 
 @Component({
   selector: 'app-setup-new-password',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './setup-new-password.html',
   styleUrl: './setup-new-password.css',
 })
 export class SetupNewPassword {
-  constructor(private router : Router){}
+
+  isLoading : boolean = false;
+  loadingMessage : string = '';
+
+  constructor(private router : Router, private forgotPasswordService : ForgotPasswordService, private toastService : ForgotPasswordToastService){}
   password = '';
   confirmPassword = '';
 
@@ -43,20 +51,37 @@ export class SetupNewPassword {
 
   onSubmit() {
     this.submitted = true;
+    this.isLoading = true;
+    this.loadingMessage = "Setting up your new Password";
 
     if (
       this.allPasswordValidationsMet() &&
       this.passwordsMatch
     ) {
-      alert('New password added successfuly!');
-      this.resetForm();
-      this.router.navigate(['/dashboard/dashboard-overview']);
+      const req : ResetPasswordRequest = {
+        email : localStorage.getItem('email'),
+        password : this.password,
+        confirmPassword : this.confirmPassword
+      }
+      this.forgotPasswordService.resetPassword(req).subscribe({
+        next:(res=>{
+          if(!res || !res.success)
+          {
+            this.isLoading = false;
+            this.toastService.show("Couldn't reset password" + res.message);
+          }
+          else
+          {
+            this.resetForm();
+            this.isLoading = false;
+            this.toastService.show("Password updated successfully!");
+            setTimeout(()=>{
+              this.router.navigate(['/landingpage/signin']);
+            },3000);
+          }
+        })
+      })
     }
-  }
-
-  private isValidEmail(email: string): boolean {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
   }
 
   private resetForm() {

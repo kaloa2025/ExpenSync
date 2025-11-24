@@ -27,7 +27,7 @@ namespace expenseTrackerPOC.Services.Core
                 $"<p> The OTP in only valid for next {expirySec} secs.</p>" +
                 "</body></html>";
             var sender = "DoNotReply@b6363c99-dbf3-4c3d-932f-2b4ef52ffd86.azurecomm.net";
-            var recipient = email;
+            var recipient = "aalokchoudhari2021@gmail.com";
 
             EmailSendOperation emailSendOperation = await emailClient.SendAsync(Azure.WaitUntil.Started, sender, recipient, subject, htmlContent);
 
@@ -108,7 +108,7 @@ namespace expenseTrackerPOC.Services.Core
                 "<p> If this was you, no further action is required. </p>" +
                 "</body></html>";
             var sender = "DoNotReply@b6363c99-dbf3-4c3d-932f-2b4ef52ffd86.azurecomm.net";
-            var recipient = $"{email}";
+            var recipient = $"aalokchoudhari2021@gmail.com";
 
             EmailSendOperation emailSendOperation = await emailClient.SendAsync(Azure.WaitUntil.Started, sender, recipient, subject, htmlContent);
 
@@ -150,7 +150,7 @@ namespace expenseTrackerPOC.Services.Core
                 "<p> Team @expenseTracker</p>" +
                 "</body></html>";
             var sender = "DoNotReply@b6363c99-dbf3-4c3d-932f-2b4ef52ffd86.azurecomm.net";
-            var recipient = $"{user.Email}";
+            var recipient = $"aalokchoudhari2021@gmail.com";
 
             EmailSendOperation emailSendOperation = await emailClient.SendAsync(Azure.WaitUntil.Started, sender, recipient, subject, htmlContent);
 

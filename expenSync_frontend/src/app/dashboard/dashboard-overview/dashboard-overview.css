@@ -1055,6 +1055,7 @@ input[disabled] {
 {
     padding: 2%;
     border-radius: 10px;
+    margin-bottom: 10%;
 }
 
 /* bar-graph */

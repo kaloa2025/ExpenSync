@@ -5,14 +5,19 @@ import { Router } from '@angular/router';
 import { ForgotPasswordService } from '../../../services/forgot-password/forgot-password.service';
 import { ForgotPasswordToastService } from '../../../services/forgot-password/forgot-password.toast.service';
 import { OtpVerificationRequest, VerifyEmailRequest } from '../../../services/forgot-password/forgot-password.modals';
+import { timeInterval } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-otp-verification',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './otp-verification.html',
   styleUrl: './otp-verification.css',
 })
 export class OtpVerification implements OnInit, OnDestroy {
+
+  isLoading : boolean = false;
+  loading_message : string ="";
 
   form!: FormGroup;
   email: string | null = localStorage.getItem('email');
@@ -58,6 +63,7 @@ export class OtpVerification implements OnInit, OnDestroy {
 
   private startTimer() {
     this.canResend = false;
+    var temptimer = this.timer;
     this.timerInterval = setInterval(() => {
       this.timer--;
       if (this.timer <= 0) {
@@ -65,6 +71,7 @@ export class OtpVerification implements OnInit, OnDestroy {
         clearInterval(this.timerInterval);
       }
     }, 1000);
+    this.timer = temptimer;
   }
 
   onInput(event: any, nextInputId?: string) {
@@ -95,42 +102,55 @@ export class OtpVerification implements OnInit, OnDestroy {
   }
 
   resend() {
-    if (this.canResend) {
-      const req : VerifyEmailRequest = {
+    this.isLoading = true;
+    this.loading_message = "Resending OTP ...";
+    if (this.canResend)
+    {
+      const req : VerifyEmailRequest =
+      {
         email : this.email,
       }
-      this.forgotPasswordService.resendOTP(req).subscribe({
+      this.forgotPasswordService.resendOTP(req).subscribe(
+      {
         next:(res=>{
           if(!res || res.success == false)
           {
+            this.isLoading = false;
             this.toastService.show("Unable to resend OTP "+res.message);
           }
           this.toastService.show("OTP sent successfully on "+res.email);
           localStorage.setItem('otpExpSec', String(res.otpExpirySec));
+          setTimeout(()=>{
+            this.isLoading = false;
+            this.startTimer();
+            this.form.reset();
+          }, 3000);
         })
       })
-      this.startTimer();
-      this.form.reset();
     }
   }
 
   onSubmit() {
+    this.isLoading = true;
+    this.loading_message = "Verifying OTP";
     if (this.isFormValid())
     {
       if(this.email!=null)
       {
         const req : OtpVerificationRequest={
-          otpValue : this.getOtpValue(),
+          otp : Number(this.getOtpValue()),
           email : this.email?this.email:"",
         }
         this.forgotPasswordService.verifyOtp(req).subscribe({
           next:(res=>{
             if(!res.success||!res)
             {
+              this.isLoading = false;
               this.toastService.show("Invalid OTP!");
             }
             else
             {
+              this.isLoading = false;
               this.toastService.show("OTP Verified");
               this.router.navigate(['/forgot-password/setup-new-password']);
             }
@@ -139,11 +159,13 @@ export class OtpVerification implements OnInit, OnDestroy {
       }
       else
       {
+        this.isLoading = false;
         this.toastService.show("Invalid Email attempt!");
       }
     }
     else {
-      alert("Please enter a valid 4-digit OTP");
+      this.isLoading = false;
+      this.toastService.show("Please enter a valid 4-digit OTP");
     }
   }
 
