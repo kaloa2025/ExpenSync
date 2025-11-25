@@ -1,5 +1,6 @@
 ﻿using expenseTrackerPOC.Data.RequestModels;
 using expenseTrackerPOC.Data.ResponseModels;
+using expenseTrackerPOC.Models;
 using expenseTrackerPOC.Services.Auth.Interfaces;
 using expenseTrackerPOC.Services.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -28,6 +29,41 @@ namespace expenseTrackerPOC.Controllers.Core
             this.categoryService = categoryService;
         }
 
+        [AllowAnonymous]
+        [HttpGet("GetAllExpenseTypes")]
+        public async Task<ActionResult<List<ExpenseType>>> FetchAllExpenseTypes()
+        {
+            var expenseTypeList = await transactionService.GetAllExpenseTypes();
+            if (expenseTypeList.Count == 0 || expenseTypeList==null)
+            {
+                return NotFound("No ExpenseTypes defined.");
+            }
+            return Ok(expenseTypeList);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("GetAllCategories")]
+        public async Task<ActionResult<List<Category>>> FetchAllCategories()
+        {
+            var categoryList = await transactionService.GetAllCategories();
+            if (categoryList.Count == 0 || categoryList == null)
+            {
+                return NotFound("No Categories defined.");
+            }
+            return Ok(categoryList);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("GetAllModeOfPayments")]
+        public async Task<ActionResult<List<ModeOfPayment>>> FetchAllModeOfPayment()
+        {
+            var modeOfPaymentsList = await transactionService.GetAllModeOfPayments();
+            if (modeOfPaymentsList.Count == 0 || modeOfPaymentsList == null)
+            {
+                return NotFound("No Mode Of Payments defined.");
+            }
+            return Ok(modeOfPaymentsList);
+        }
 
         [HttpPost("AddNewExpense")]
         public async Task<ActionResult<AddNewExpenseResponse>> AddNewExpense([FromBody] AddNewExpenseRequest addNewExpenseRequest)

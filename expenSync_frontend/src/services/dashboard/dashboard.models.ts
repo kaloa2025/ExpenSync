@@ -87,3 +87,52 @@ export interface GraphDataResponse
   errors?:string[];
   data?:{[category:string]:number};
 }
+
+export interface CategoryList
+{
+  categoryList : Category[];
+}
+
+export interface ExpenseType
+{
+  expenseTypeId : number,
+  expenseTypeName : string
+}
+export type ExpenseTypeList = ExpenseType[];
+
+export interface ModeOfPayment
+{
+  modeOfPaymentId : number,
+  modeOfPaymentName : string
+}
+
+export type ModeOfPaymentList = ModeOfPayment[];
+
+export interface CreateTransactionRequest {
+  transactionAmount: number;
+  transactionDescription: string | null;
+  reciverSenderName: string;
+  categoryId: number;
+  expenseTypeId: number;
+  modeOfPaymentId: number;
+  transactionDate: string;
+}
+
+export interface TransactionResponse {
+  success:boolean;
+  errors?:string[];
+  message:string;
+  transaction : Transaction;
+}
+
+export interface Transaction
+{
+  transactionId : number;
+  transactionAmount: number;
+  transactionDescription: string | null;
+  reciverSenderName: string;
+  categoryId: number;
+  expenseTypeId: number;
+  modeOfPaymentId: number;
+  transactionDate: string;
+}

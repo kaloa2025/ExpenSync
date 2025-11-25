@@ -105,15 +105,12 @@
           <div class="vertical-graph">
             @for (row of getGraphRows(); track row.id) {
               <div class="v-bar-item">
-                <!-- Top: value -->
                 <div class="v-bar-value">
                   ₹{{ row.value | number:'1.0-0' }}
                 </div>
-                <!-- Background bar with gradient bar inside -->
                 <div class="v-bar-bg">
                   <div class="v-bar" [style.height.%]="getBarWidth(row.value)"></div>
                 </div>
-                <!-- Bottom: category icon -->
                 <img class="v-bar-label" [src]="row.name" width="12" height="14"/>
               </div>
             }
@@ -132,72 +129,137 @@
         @if (isExpenseOpen) {
           <div class="new-expense">
             <div class="new-expense-form">
+
               <div class="header">
                 <div class="heading">NEW TRANSACTION</div>
               </div>
-              <div class="amount-section">
-                <input placeholder="0.0" class="amount">
-                <div class="amount-symbol">RS</div>
-              </div>
-              <div class="form">
-                <input class="description" placeholder="Description (Optional)">
-                <input class="revicer-name" placeholder="Enter Receiver's / Sender's Name">
+
+              <div class="form" [formGroup]="transactionForm">
+                <!-- AMOUNT -->
+                <div class="amount-section">
+                  <input placeholder="0.0"
+                        class="amount"
+                        formControlName="transactionAmount"
+                        type="number">
+                  <div class="amount-symbol">RS</div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <input class="description"
+                      placeholder="Description (Optional)"
+                      formControlName="transactionDescription">
+
+                <!-- RECEIVER -->
+                <input class="revicer-name"
+                      placeholder="Enter Receiver's / Sender's Name"
+                      formControlName="reciverSenderName">
+
+                <!-- DATE INPUTS -->
                 <div class="expense-date">
-                  <input type="number" placeholder="dd" class="date" maxlength="2">
-                  <input type="number" placeholder="mm" class="month" maxlength="2">
-                  <input type="number" placeholder="yyyy" class="year" maxlength="4">
+                  <input type="number"
+                        placeholder="dd"
+                        class="date"
+                        maxlength="2"
+                        formControlName="day"
+                        (input)="onManualDateChange()">
+
+                  <input type="number"
+                        placeholder="mm"
+                        class="month"
+                        maxlength="2"
+                        formControlName="month"
+                        (input)="onManualDateChange()">
+
+                  <input type="number"
+                        placeholder="yyyy"
+                        class="year"
+                        maxlength="4"
+                        formControlName="year"
+                        (input)="onManualDateChange()">
                 </div>
+
+                <!-- EXPENSE TYPE -->
                 <div class="expense-type">
-                  <div class="type-option">⇱ Expense</div>
-                  <div class="type-option">⇲ Income</div>
-                  <div class="type-option">⇵ Investment</div>
-                  <div class="type-option">± Other</div>
+                  <div class="type-option"
+                      *ngFor="let type of expenseTypes"
+                      (click)="selectExpenseType(type)"
+                      [class.active]="transactionForm.value.expenseTypeId === type.expenseTypeId">
+                    {{ type.expenseTypeName }}
+                  </div>
                 </div>
-                <select class="category-select" id="category-dropdown" name="categoryOption">
-                  <option value="option1">category1</option>
-                  <option value="option1">category2</option>
+
+                <!-- CATEGORY -->
+                <select class="category-select" formControlName="categoryId">
+                  <option [ngValue]="null" disabled>Select Category</option>
+                  <option *ngFor="let c of categories" [value]="c.categoryId">
+                    {{ c.categoryName }}
+                  </option>
                 </select>
-                <select class="mode-of-payment-select" id="mode-of-payment-dropdown" name="modeOfPaymentOption">
-                  <option value="option1">UPI</option>
-                  <option value="option1">CASH</option>
+
+                <!-- PAYMENT MODE -->
+                <select class="mode-of-payment-select" formControlName="modeOfPaymentId">
+                  <option [ngValue]="null" disabled>Select a Mode of Payment</option>
+                  <option *ngFor="let mode of modesOfPayment" [value]="mode.modeOfPaymentId">
+                    {{ mode.modeOfPaymentName }}
+                  </option>
                 </select>
-                <div class="add-bttn">
+
+                <!-- SUBMIT BUTTON -->
+                <div class="add-bttn" (click)="submitTransaction()">
                   Add Expense
                 </div>
               </div>
-            </div>
-            <div class="calender">
-              <div class="header">
-                <select class="month">
-                  <option value="1">Jan</option>
-                </select>
-                <select class="year">
-                  <option value="1">2025</option>
-                </select>
-              </div>
-              <div class="weekdays">
-                <div class="week-days">
-                  <div class="icon">M</div>
-                  <div class="icon">T</div>
-                  <div class="icon">W</div>
-                  <div class="icon">T</div>
-                  <div class="icon">F</div>
-                  <div class="icon">S</div>
-                  <div class="icon">S</div>
-                </div>
-                <div class="dates">
-                  <div class="icon">1</div>
-                  <div class="icon">2</div>
-                  <div class="icon">3</div>
-                  <div class="icon">4</div>
-                  <div class="icon">5</div>
-                  <div class="icon">6</div>
-                  <div class="icon">7</div>
-                </div>
-              </div>
-              <div class="today-bttn">Select Today</div>
-            </div>
           </div>
+
+              <!-- CALENDAR SECTION -->
+              <div class="calender">
+                <div class="header">
+                  <select class="month"
+                          [(ngModel)]="month"
+                          (change)="updateCalendar()">
+                    <option *ngFor="let m of monthNames; index as i" [value]="i+1">
+                      {{ m }}
+                    </option>
+                  </select>
+
+                  <select class="year"
+                          [(ngModel)]="year"
+                          (change)="updateCalendar()">
+                    <option *ngFor="let y of years"
+                            [value]="y">
+                      {{ y }}
+                    </option>
+                  </select>
+                </div>
+
+                <div class="weekdays">
+                  <div class="week-days">
+                    <div class="icon">M</div>
+                    <div class="icon">T</div>
+                    <div class="icon">W</div>
+                    <div class="icon">T</div>
+                    <div class="icon">F</div>
+                    <div class="icon">S</div>
+                    <div class="icon">S</div>
+                  </div>
+
+                  <div class="dates">
+                    <div class="icon"
+                        *ngFor="let d of calendarDays"
+                        [class.empty]="d === null"
+                        [class.selected]="selectedDay === d"
+                        (click)="d ? selectDate(d) : null">
+                      {{ d || '' }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="today-bttn"
+                    (click)="selectToday()">
+                  Select Today
+                </div>
+              </div>
+            </div>
         }
         <div class="history-section">
           <div class="heading">PREVIOUS TRANSACTIONS</div>

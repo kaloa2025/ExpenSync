@@ -256,5 +256,35 @@ namespace expenseTrackerPOC.Services.Core
                 Message = "Transaction updated Successfully!"
             };
         }
+
+        public async Task<List<ExpenseType>> GetAllExpenseTypes()
+        {
+            var expenseList = await dbContext.ExpenseTypes.ToListAsync();
+            if(expenseList == null)
+            {
+                return new List<ExpenseType>();
+            }
+            return expenseList;
+        }
+
+        public async Task<List<Category>> GetAllCategories()
+        {
+            var categoryList = await dbContext.Categories.ToListAsync();
+            if (categoryList == null)
+            {
+                return new List<Category>();
+            }
+            return categoryList;
+        }
+
+        public async Task<List<ModeOfPayment>> GetAllModeOfPayments()
+        {
+            var modeOfPaymentList = await dbContext.ModeOfPayments.ToListAsync();
+            if (modeOfPaymentList == null)
+            {
+                return new List<ModeOfPayment>();
+            }
+            return modeOfPaymentList;
+        }
     }
 }

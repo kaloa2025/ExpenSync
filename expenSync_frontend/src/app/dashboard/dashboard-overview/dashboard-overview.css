@@ -266,7 +266,7 @@
 .category-header .icon
 {
     float: left;
-    padding: 3% 2%;
+    padding: 3% 3%;
     text-align: center;
     cursor: pointer;
 }
@@ -465,9 +465,8 @@
 }
 
 .new-expense-form .header .heading {
-    font-size: 25px;
-    font-weight: 900;
-    float: right;
+    font-size: 30px;
+    font-weight: 1000;
 }
 
 
@@ -568,7 +567,7 @@ input:focus {
     flex-flow: row;
     justify-content: center;
     align-items: center;
-    gap: 2%;
+    gap: 1%;
     margin-bottom: 3% ;
 }
 .indivisual-traction-section-upper-section .expense-type {}
@@ -580,6 +579,7 @@ input:focus {
     text-align: center;
     border: 1px solid #b8b8b8;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
 }
 
 .type-option:hover
@@ -587,6 +587,15 @@ input:focus {
     color: #fcfcfc;
     background-color: #373737;
 }
+
+.type-option.active
+{
+  background-color: #373737;
+  color :#fff;
+  border-color: #373737;
+  transform: scale(0.97);
+}
+
 /* category-select */
 .category-select {
     padding: 2.5%;
@@ -690,6 +699,15 @@ input:focus {
     width: 25%;
 }
 
+.icon.empty {
+  pointer-events: none;
+  visibility: hidden;
+}
+.icon.selected {
+  background-color: #373737;
+  color: white;
+  border-radius: 5px;
+}
 
 .calender .header {
     color: #373737;
@@ -733,12 +751,12 @@ input:focus {
     margin-bottom: 3%;
 }
 .dates .icon {
-        padding: 3%;
+    padding: 15%;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
     margin-bottom: 3%;
     cursor: pointer;
-}
-.dates .icon:hover{
-     border: 1px solid #b8b8b8;
 }
 
 .today-bttn
@@ -756,11 +774,13 @@ input:focus {
 }
 /* dates */
 .dates {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
     width: 100%;
     gap: 5%;
+    text-align: center;
     justify-content: center;
+    margin-bottom: 20%;
 }
 
 /* history-section */
@@ -1088,7 +1108,7 @@ input[disabled] {
 
 /* Background full-height bar */
 .v-bar-bg {
-  width: 100%;
+  width: 50%;
   height: 100px;
   background: #e9e9e9;
   border-radius: 3px;
@@ -1103,7 +1123,7 @@ input[disabled] {
   border-radius: 3px;
   height: 0%;
   transition: height 0.4s ease-out;
-  background: linear-gradient(180deg, #19afff, #6d5dfc, #ff6ec4);
+  background: linear-gradient(180deg, #000000, #969696);
 }
 
 /* Value label */

@@ -1,5 +1,6 @@
 ﻿using expenseTrackerPOC.Data.RequestModels;
 using expenseTrackerPOC.Data.ResponseModels;
+using expenseTrackerPOC.Models;
 
 namespace expenseTrackerPOC.Services.Core.Interfaces
 {
@@ -11,6 +12,10 @@ namespace expenseTrackerPOC.Services.Core.Interfaces
         public Task<GetGraphDataResponse> GetGraphData(int userId);
         public Task<GetRecentTransactionsResponse> GetRecentTransactions(int userId);
         public Task<GetReportResponse> GetReport(int userId);
+
+        public Task<List<ExpenseType>> GetAllExpenseTypes();
+        public Task<List<Category>> GetAllCategories();
+        public Task<List<ModeOfPayment>> GetAllModeOfPayments();
     }
 }
 

@@ -4,11 +4,12 @@ import { flush } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { AddNewCategoryRequest, Category, Icon, UpdateCategoryRequest } from '../../../services/dashboard/dashboard.models';
+import { AddNewCategoryRequest, Category, ExpenseType, Icon, ModeOfPayment, UpdateCategoryRequest } from '../../../services/dashboard/dashboard.models';
 import { DashboardCategory } from '../../../services/dashboard/dashboard.category.service';
 import { DashboardProfileService } from '../../../services/dashboard/dashboard.profile.service';
 import { EditProfileRequest } from '../../../services/auth/auth.models';
 import { DashboardGraphService } from '../../../services/dashboard/dashboard.graph.service';
+import { DashboardTransactionService } from '../../../services/dashboard/dashboard.transaction.service';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -19,10 +20,14 @@ import { DashboardGraphService } from '../../../services/dashboard/dashboard.gra
 export class DashboardOverview implements OnInit, OnDestroy{
 
   profileForm : FormGroup;
+  transactionForm : FormGroup;
   toastMessage: string = '';
   graphData:{[category:string]:number} = {};
 
   categories : Category[] = [];
+  modesOfPayment : ModeOfPayment[] = [];
+  expenseTypes : ExpenseType[] = [];
+  selectedExpenseType : ExpenseType|null = null;
   filteredCategories : Category[] = [];
 
   selectedCategoryId : number | null = null;
@@ -42,14 +47,156 @@ export class DashboardOverview implements OnInit, OnDestroy{
   username : string|null = '';
   email : string|null = '';
 
+  monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  years: number[] = [];
+  month = new Date().getMonth() + 1;
+  year = new Date().getFullYear();
+  calendarDays: (number | null)[] = [];
+  selectedDay : number|null = null;
+  selectedFullDate: { day: number, month: number, year: number } | null = null;
+
   private authSub?: Subscription;
 
-  constructor(private fb:FormBuilder, private authService:AuthService, private categoryService : DashboardCategory, private dashboardProfileService : DashboardProfileService, private graphService : DashboardGraphService )
+  constructor(private fb:FormBuilder,
+    private authService:AuthService,
+    private categoryService : DashboardCategory,
+    private dashboardProfileService : DashboardProfileService,
+    private graphService : DashboardGraphService,
+    private transactionService : DashboardTransactionService )
   {
     this.profileForm=this.fb.group({
       username:[{value:this.username, disabled : true}],
     });
+    this.years = this.generateYears();
+    this.updateCalendar();
+    this.transactionForm = this.fb.group({
+      transactionAmount: [null],
+      transactionDescription: [''],
+      reciverSenderName: [''],
+      day: [''],
+      month: [''],
+      year: [''],
+      categoryId: [null],
+      expenseTypeId: [null],
+      modeOfPaymentId: [null],
+    });
   }
+
+  generateYears(): number[] {
+    const current = new Date().getFullYear();
+    const range = [];
+    for (let y = current - 10; y <= current + 10; y++) {
+      range.push(y);
+    }
+    return range;
+  }
+
+  updateCalendar() {
+    this.calendarDays = this.generateCalendar(this.year, this.month);
+    this.selectedDay = null;
+  }
+
+  generateCalendar(year: number, month: number): (number | null)[] {
+    const days: (number | null)[] = [];
+    const totalDays = new Date(year, month, 0).getDate();
+    const firstDay = new Date(year, month - 1, 1).getDay();
+
+    const offset = firstDay === 0 ? 6 : firstDay - 1;
+    for (let i = 0; i < offset; i++) days.push(null);
+    for (let d = 1; d <= totalDays; d++) days.push(d);
+    return days;
+  }
+
+  selectDate(day: number) {
+    this.selectedDay = day;
+    this.selectedFullDate={ day, month: this.month, year: this.year };
+    this.transactionForm.patchValue({
+      day,
+      month: this.month,
+      year: this.year
+    });
+  }
+
+  selectToday() {
+    const now = new Date();
+
+    this.year = now.getFullYear();
+    this.month = now.getMonth() + 1;
+    this.updateCalendar();
+
+    this.selectedDay = now.getDate();
+    this.selectedFullDate = {
+      day: now.getDate(),
+      month: this.month,
+      year: this.year
+    };
+    this.transactionForm.patchValue({
+      day: this.selectedDay,
+      month: this.month,
+      year: this.year
+    });
+  }
+
+  selectExpenseType(type: ExpenseType) {
+    this.selectedExpenseType = type;
+    this.transactionForm.patchValue({
+      expenseTypeId: type.expenseTypeId
+    });
+  }
+
+  onManualDateChange() {
+    const day = Number(this.transactionForm.get('day')?.value);
+    const month = Number(this.transactionForm.get('month')?.value);
+    const year = Number(this.transactionForm.get('year')?.value);
+
+    if (year >= 1900 && year <= 2100 && month >= 1 && month <= 12) {
+      this.year = year;
+      this.month = month;
+      this.updateCalendar();
+    }
+
+    if (day >= 1 && day <= 31) {
+      this.selectedDay = day;
+      this.selectedFullDate = { day, month: this.month, year: this.year };
+    }
+  }
+
+  prepareTransactionRequest() {
+    const v = this.transactionForm.value;
+
+    if (!v.day || !v.month || !v.year) {
+      this.showToast("Invalid date");
+      return null;
+    }
+
+    const isoDate = new Date(v.year, v.month - 1, v.day).toISOString();
+
+    return {
+      transactionAmount: Number(v.transactionAmount),
+      transactionDescription: v.transactionDescription || null,
+      reciverSenderName: v.reciverSenderName ?? "",
+      categoryId: Number(v.categoryId),
+      expenseTypeId: Number(v.expenseTypeId),
+      modeOfPaymentId: Number(v.modeOfPaymentId),
+      transactionDate: isoDate
+    };
+  }
+
+  submitTransaction() {
+    const request = this.prepareTransactionRequest();
+    if (!request) return;
+
+    this.transactionService.createTransaction(request).subscribe({
+      next: res => {
+        this.showToast("Transaction added successfully!");
+        this.transactionForm.reset();
+      },
+      error: err => {
+        this.showToast("Error adding transaction");
+      }
+    });
+  }
+
 
   ngOnInit(): void {
     this.authSub = this.authService.authState$.subscribe(
@@ -61,6 +208,8 @@ export class DashboardOverview implements OnInit, OnDestroy{
         this.profileForm.patchValue({username : this.username});
       }
     )
+    this.loadExpenseTypes();
+    this.loadModesOfPayment();
     this.loadCategories();
     this.loadIcons();
     this.loadGraphData();
@@ -134,6 +283,42 @@ export class DashboardOverview implements OnInit, OnDestroy{
       },
       error:()=> this.showToast('Failed to load categories'),
     });
+  }
+
+  loadModesOfPayment()
+  {
+    this.transactionService.getAllModeOfPayment().subscribe({
+      next:(res)=>{
+        if(!res || res == null)
+        {
+          this.showToast('Failed to load Payment modes');
+        }
+        else
+        {
+          this.modesOfPayment = res;
+        }
+      }
+    })
+  }
+
+    loadExpenseTypes()
+  {
+    this.transactionService.getAllExpenseType().subscribe({
+      next:(res)=>{
+        console.log(res);
+        if(res == null || !res)
+        {
+          this.showToast('Failed to load different Expense types');
+          console.log('Failed to load different Expense types');
+        }
+        else
+        {
+          console.log('Loading different Expense types');
+          this.expenseTypes = res;
+          console.log(this.expenseTypes);
+        }
+      }
+    })
   }
 
   onSearch(query : string)
