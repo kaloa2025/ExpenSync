@@ -136,3 +136,27 @@ export interface Transaction
   modeOfPaymentId: number;
   transactionDate: string;
 }
+export interface GetTransactionsByDateResponse {
+  success: boolean;
+  message?: string;
+  errors?: string[];
+  transactionsByDate: {
+    [date: string]: FullTransaction[];
+  };
+}
+export interface FullTransaction {
+  transactionId: number;
+  transactionDescription: string | null;
+  reciverSenderName: string;
+  transactionAmount: number;
+  userId: number;
+  categoryId: number;
+  expenseTypeId: number;
+  modeOfPaymentId: number;
+  transactionDate: string;
+  createdOn: string;
+  updatedOn: string;
+  category: Category;
+  expenseType: ExpenseType;
+  modeOfPayment: ModeOfPayment;
+}

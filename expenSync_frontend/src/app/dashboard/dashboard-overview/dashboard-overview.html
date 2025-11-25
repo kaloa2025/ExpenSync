@@ -24,7 +24,7 @@
       <hr>
         <div class="quick-links">
           <div (click)="toggleExpense()"[ngClass]="{'open':isExpenseOpen}">± New Expense</div>
-          <div>◙ Get Report</div>
+          <div (click)="getReport()">◙ Get Report</div>
         </div>
       </div>
       <div class = "right-service-section">
@@ -140,7 +140,7 @@
                   <input placeholder="0.0"
                         class="amount"
                         formControlName="transactionAmount"
-                        type="number">
+                        type="number" min=0 >
                   <div class="amount-symbol">RS</div>
                 </div>
 
@@ -152,7 +152,7 @@
                 <!-- RECEIVER -->
                 <input class="revicer-name"
                       placeholder="Enter Receiver's / Sender's Name"
-                      formControlName="reciverSenderName">
+                      formControlName="reciverSenderName" required="This field can't be empty">
 
                 <!-- DATE INPUTS -->
                 <div class="expense-date">
@@ -160,6 +160,8 @@
                         placeholder="dd"
                         class="date"
                         maxlength="2"
+                        max="31"
+                        min="1"
                         formControlName="day"
                         (input)="onManualDateChange()">
 
@@ -167,13 +169,17 @@
                         placeholder="mm"
                         class="month"
                         maxlength="2"
+                        max="12"
+                        min="1"
                         formControlName="month"
                         (input)="onManualDateChange()">
 
                   <input type="number"
                         placeholder="yyyy"
                         class="year"
+                        minlength="4"
                         maxlength="4"
+                        min="2000"
                         formControlName="year"
                         (input)="onManualDateChange()">
                 </div>
@@ -263,46 +269,71 @@
         }
         <div class="history-section">
           <div class="heading">PREVIOUS TRANSACTIONS</div>
-          <div class="transaction-history-container">
-            <!-- Oct 14th -->
-            <div class="th-date-group">
-              <div class="th-date-header">
-                <div class="th-date-dot"></div>
-                <div class="th-date-label">Oct 14th</div>
-              </div>
-              <div class="th-transactions">
-                <div class="th-transaction-card">
-                  <div class="th-transaction-header">
-                    <div class="th-transaction-left">
-                      <div>
+          <div class="transaction-history-wrapper" (scroll)="onScroll($event)">
+            <div class="transaction-history-container">
+              <div *ngFor="let date of recentTransactionsByDate | keyvalue" class="th-date-group">
+                <div class="th-date-header">
+                  <div class="th-date-dot"></div>
+                  <div class="th-date-label">{{ date.key | date:'MMM d' }}</div>
+                </div>
+                <div class="th-transactions">
+                  <div *ngFor="let t of date.value" class="th-transaction-card">
+                    <div class="th-transaction-header">
+                      <div class="th-transaction-left">
                         <div>
-                          <div class="th-recipient">from Sarah</div>
-                          <div class="th-transaction-time">Dec 10</div>
+                          <div>
+                            <div class="th-recipient">from {{ t.reciverSenderName }}</div>
+                            <div class="th-transaction-time">
+                              {{ t.createdOn| date:'shortTime' }}
+                            </div>
+                          </div>
+
+                          <!-- Amount Badge -->
+                          <div
+                            class="th-amount-badge"
+                            [ngClass]="{
+                              'th-income': t.expenseTypeId === 1,
+                              'th-expense': t.expenseTypeId === 2
+                            }"
+                          >
+                            <span class="th-amount-symbol">
+                              {{ t.expenseTypeId === 1 ? '⇲' : '⇱' }}
+                            </span>
+                            <span class="th-amount">₹{{ t.transactionAmount }}</span>
+                          </div>
                         </div>
-                        <div class="th-amount-badge th-income">
-                          <span class="th-amount-symbol">⇲ </span>
-                          <span class="th-amount">₹5,500</span>
+                        <div
+                          class="th-type-badge"
+                          [ngClass]="{
+                            'th-income': t.expenseTypeId === 1,
+                            'th-expense': t.expenseTypeId === 2
+                          }"
+                        >
+                          {{ t.expenseTypeId === 1 ? 'Income' : 'Expense' }}
+                        </div>
+                        <div class="th-transaction-footer">
+                          <div class="th-categories">
+                            <div class="th-category-tag">
+                              <img class="th-category-icon" src={{findCategoryIcon(t.categoryId)}}/>
+                              <span>
+                                {{ findCategoryName(t.categoryId) }}
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      <div class="th-type-badge th-income">Income</div>
                     </div>
-                  </div>
-                  <div class="th-transaction-footer">
-                    <div class="th-categories">
-                      <div class="th-category-tag">
-                        <img class="th-category-icon" src="/assets/microsoft-logo.png"/>
-                        <span>Freelance</span>
-                      </div>
-                      <div class="th-actions">
-                        <button class="th-action-btn th-edit">Edit</button>
-                        <button class="th-action-btn th-delete">Delete</button>
-                      </div>
+                    <div class="th-actions">
+                          <button class="th-action-btn th-edit">Edit</button>
+                          <button class="th-action-btn th-delete">Delete</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="fade-out-overlay" [class.hidden]="!isAtBottom"></div>
+          <div class="floating-report-btn" [class.show]="isAtBottom" (click)="getReport()">GET COMPLETE STATEMENT</div>
         </div>
       </div>
     </div>

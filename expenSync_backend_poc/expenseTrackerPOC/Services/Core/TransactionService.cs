@@ -162,7 +162,7 @@ namespace expenseTrackerPOC.Services.Core
                     };
                 }
 
-                var summary = transactions.GroupBy(t => t.Category.CategoryName).ToDictionary(g => g.Key, g => g.Sum(t => t.TransactionAmount));
+                var summary = transactions.GroupBy(t => t.Category.CategoryName).ToDictionary(g => g.Key,g => g.Sum(t =>(t.ExpenseTypeId == 1 ? -1 : 1) * t.TransactionAmount));
 
                 return new GetGraphDataResponse
                 {

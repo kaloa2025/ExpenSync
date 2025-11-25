@@ -4,12 +4,13 @@ import { flush } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { AddNewCategoryRequest, Category, ExpenseType, Icon, ModeOfPayment, UpdateCategoryRequest } from '../../../services/dashboard/dashboard.models';
+import { AddNewCategoryRequest, Category, ExpenseType, FullTransaction, Icon, ModeOfPayment, Transaction, UpdateCategoryRequest } from '../../../services/dashboard/dashboard.models';
 import { DashboardCategory } from '../../../services/dashboard/dashboard.category.service';
 import { DashboardProfileService } from '../../../services/dashboard/dashboard.profile.service';
 import { EditProfileRequest } from '../../../services/auth/auth.models';
 import { DashboardGraphService } from '../../../services/dashboard/dashboard.graph.service';
 import { DashboardTransactionService } from '../../../services/dashboard/dashboard.transaction.service';
+import { DashboardRecentTransactionsService } from '../../../services/dashboard/dashboard.recent-transactions.service';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -23,6 +24,8 @@ export class DashboardOverview implements OnInit, OnDestroy{
   transactionForm : FormGroup;
   toastMessage: string = '';
   graphData:{[category:string]:number} = {};
+
+  recentTransactionsByDate: { [date: string]: FullTransaction[] } = {};
 
   categories : Category[] = [];
   modesOfPayment : ModeOfPayment[] = [];
@@ -62,7 +65,9 @@ export class DashboardOverview implements OnInit, OnDestroy{
     private categoryService : DashboardCategory,
     private dashboardProfileService : DashboardProfileService,
     private graphService : DashboardGraphService,
-    private transactionService : DashboardTransactionService )
+    private transactionService : DashboardTransactionService,
+    private recentTransactionService : DashboardRecentTransactionsService,
+   )
   {
     this.profileForm=this.fb.group({
       username:[{value:this.username, disabled : true}],
@@ -80,6 +85,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
       expenseTypeId: [null],
       modeOfPaymentId: [null],
     });
+    this.getRecentTransactions();
   }
 
   generateYears(): number[] {
@@ -164,9 +170,32 @@ export class DashboardOverview implements OnInit, OnDestroy{
   prepareTransactionRequest() {
     const v = this.transactionForm.value;
 
+    if(v.transactionAmount<=0)
+    {
+      this.showToast("Please enter an valid Transaction Amount which is greater than 0");
+      return;
+    }
+
+    if(v.reciverSenderName==null||v.reciverSenderName=="")
+    {
+      this.showToast("Please select an valid Reviver or Sender");
+      return;
+    }
+
     if (!v.day || !v.month || !v.year) {
-      this.showToast("Invalid date");
+      this.showToast("Please add a valid date");
       return null;
+    }
+
+    if(v.categoryId==null||v.categoryId==0)
+    {
+      this.showToast("Please select an valid Category");
+      return;
+    }
+    if(v.modeOfPaymentId==null||v.modeOfPaymentId==0)
+    {
+      this.showToast("Please select an valid Mode of Payment");
+      return;
     }
 
     const isoDate = new Date(v.year, v.month - 1, v.day).toISOString();
@@ -190,6 +219,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
       next: res => {
         this.showToast("Transaction added successfully!");
         this.transactionForm.reset();
+        this.loadGraphData();
       },
       error: err => {
         this.showToast("Error adding transaction");
@@ -560,6 +590,50 @@ export class DashboardOverview implements OnInit, OnDestroy{
       },
       error : ()=> this.showToast("Error Adding Category")
     });
+  }
+
+  getRecentTransactions()
+  {
+    this.recentTransactionService.getRecentTransactions().subscribe({
+      next:(res)=>
+      {
+        if(res.success && res.transactionsByDate)
+        {
+          this.recentTransactionsByDate = res.transactionsByDate;
+        }
+        else {
+        this.showToast(res.message ?? "Failed to load recent transactions");
+        }
+      },
+      error: err => {
+        this.showToast(err?.error?.message ?? "Error loading recent transactions");
+      }
+    });
+  }
+
+  findCategoryName(categoryId : number)
+  {
+    return this.categories.find(c=>c.categoryId=categoryId)?.categoryName;
+  }
+
+  findCategoryIcon(categoryId : number)
+  {
+    return this.categories.find(c=>c.categoryId=categoryId)?.iconUrl;
+  }
+
+  isAtBottom = false;
+
+  onScroll(event: any) {
+    const div = event.target;
+
+    const atBottom = div.scrollTop + div.clientHeight >= div.scrollHeight - 1;
+
+    this.isAtBottom = atBottom;
+  }
+
+  getReport()
+  {
+
   }
 
   logout()
