@@ -5,6 +5,7 @@ using expenseTrackerPOC.Data.RequestModels;
 using expenseTrackerPOC.Data.ResponseModels;
 using expenseTrackerPOC.Models;
 using expenseTrackerPOC.Services.Core.Interfaces;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
@@ -45,6 +46,17 @@ namespace expenseTrackerPOC.Services.Core
                 CategoryName = addNewCategoryRequest.CategoryName,
                 IconId = addNewCategoryRequest.IconId
             };
+
+            var cat = await dbContext.Categories.FirstOrDefaultAsync(c => c == category || (c.CategoryName == addNewCategoryRequest.CategoryName && c.IconId == addNewCategoryRequest.IconId));
+            if(cat!=null)
+            {
+                return new AddNewCategoryResponse
+                {
+                    Success = false,
+                    Message = "An Category with same details already exists",
+                    Category = null
+                };
+            }
 
             await dbContext.Categories.AddAsync(category);
             await dbContext.SaveChangesAsync();
@@ -217,6 +229,15 @@ namespace expenseTrackerPOC.Services.Core
                 {
                     Success = false,
                     Message = "This is a default Category, You don't have access to update this category!",
+                };
+            }
+            var transactions = await dbContext.Transactions.FirstOrDefaultAsync(t => t.CategoryId == categoryId && t.UserId == userId);
+            if(transactions==null)
+            {
+                return new DeleteCategoryResponse
+                {
+                    Success = false,
+                    Message = "Can't delete Category as few transactions are linked to it."
                 };
             }
             //2. Delete Category

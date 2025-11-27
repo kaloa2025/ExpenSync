@@ -42,10 +42,14 @@ export class DashboardOverview implements OnInit, OnDestroy{
   editProfileMode = false;
 
   categoryNameInput : string = '';
-  showDeletePopup = false;
+  showCategoryDeletePopup = false;
+  showTransactionDeletePopup = false;
+  selectedTransactionId : number | null = null;
+  selectedTransaction : Transaction | null = null;
 
   editCategoryData : any = null;
   isExpenseOpen = false;
+  transactionEditMode = false;
 
   username : string|null = '';
   email : string|null = '';
@@ -211,18 +215,55 @@ export class DashboardOverview implements OnInit, OnDestroy{
     };
   }
 
+  updateTransaction()
+  {
+    const request = this.prepareTransactionRequest();
+    if (!request) return;
+
+    this.transactionService.editTransaction(request, this.selectedTransaction?.transactionId).subscribe({
+      next: res => {
+        if(!res || res.success==false)
+        {
+          this.showToast(res.message);
+          return;
+        }
+        this.showToast("Transaction details updated successfully!");
+        this.transactionForm.reset();
+        setTimeout(()=>{
+          this.loadGraphData();
+          this.toggleExpense();
+          this.getRecentTransactions();
+        },1000);
+      },
+      error: err => {
+        this.showToast("Error adding transaction "+ err?.error?.message);
+      }
+    });
+
+  }
+
   submitTransaction() {
     const request = this.prepareTransactionRequest();
     if (!request) return;
 
     this.transactionService.createTransaction(request).subscribe({
       next: res => {
+        if(!res || res.success==false)
+        {
+          this.showToast(res.message);
+          return;
+        }
         this.showToast("Transaction added successfully!");
         this.transactionForm.reset();
-        this.loadGraphData();
+        setTimeout(()=>{
+          this.loadCategories();
+          this.loadGraphData();
+          this.toggleExpense();
+          this.getRecentTransactions();
+        },1000);
       },
       error: err => {
-        this.showToast("Error adding transaction");
+        this.showToast("Error adding transaction "+ err?.error?.message);
       }
     });
   }
@@ -426,9 +467,51 @@ export class DashboardOverview implements OnInit, OnDestroy{
     document.body.removeChild(fileInput);
   }
 
-  toggleExpense()
+  toggleExpense(edit?:boolean)
   {
-    this.isExpenseOpen=!this.isExpenseOpen;
+    if((this.transactionForm.get('transactionAmount')?.value)>0 && edit==null)
+    {
+      this.transactionEditMode = false;
+      this.transactionForm = this.fb.group({
+        transactionAmount: [null],
+        transactionDescription: [''],
+        reciverSenderName: [''],
+        day: [''],
+        month: [''],
+        year: [''],
+        categoryId: [null],
+        expenseTypeId: [null],
+        modeOfPaymentId: [null],
+      });
+      this.selectedTransaction = null;
+    }
+    else if(edit)
+    {
+      if(this.isExpenseOpen == false)
+      {
+        this.isExpenseOpen=!this.isExpenseOpen;
+      }
+      this.transactionEditMode = true;
+      //2025-11-04T18:30:00
+      var year = this.selectedTransaction?.transactionDate.substring(0,4);
+      var month = this.selectedTransaction?.transactionDate.substring(5,7);
+      var day = this.selectedTransaction?.transactionDate.substring(8,10);
+      this.transactionForm = this.fb.group({
+        transactionAmount: [this.selectedTransaction?.transactionAmount],
+        transactionDescription: [this.selectedTransaction?.transactionDescription],
+        reciverSenderName: [this.selectedTransaction?.reciverSenderName],
+        day: [day],
+        month: [month],
+        year: [year],
+        categoryId: [this.selectedTransaction?.categoryId],
+        expenseTypeId: [this.selectedTransaction?.expenseTypeId],
+        modeOfPaymentId: [this.selectedTransaction?.modeOfPaymentId],
+      });
+    }
+    else
+    {
+      this.isExpenseOpen=!this.isExpenseOpen;
+    }
   }
 
   selectCategory(categoryId:number)
@@ -445,6 +528,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
         if (!response || !response.category) return;
         this.categoryNameInput = response.category.categoryName;
         this.selectedIconId = response.category.iconId;
+        this.editCategoryMode = true;
       },
       error: (err) => {
         this.showToast("Error fetching category:'"+ err);
@@ -454,12 +538,44 @@ export class DashboardOverview implements OnInit, OnDestroy{
 
   confirmDeleteCategory()
   {
-    this.showDeletePopup=true;
+    this.showCategoryDeletePopup=true;
+  }
+  confirmDeleteTransaction(t : Transaction)
+  {
+    this.showTransactionDeletePopup = true;
+    this.selectedTransaction = t;
+  }
+
+  deleteTransaction()
+  {
+    if(this.selectedTransaction!==null)
+    {
+      this.transactionService.deleteTransaction(this.selectedTransaction.transactionId).subscribe({
+        next: (response) => {
+          if (!response || !response.success==false)
+          {
+            this.showToast(response.message || "Couldn't delete specific transaction.");
+            return;
+          }
+        },
+        error: (err) => {
+          this.showToast("Error deleting transaction: "+err?.error?.message);
+          return;
+        }
+      });
+      this.showToast("Transaction Deleted Successfully!");
+      this.selectedTransactionId=null;
+      this.showTransactionDeletePopup=false;
+      setTimeout(()=>{
+        this.getRecentTransactions();
+      },1000);
+    }
   }
 
   cancelDelete()
   {
-    this.showDeletePopup=false;
+    this.showCategoryDeletePopup=false;
+    this.showTransactionDeletePopup=false;
   }
 
   cancelCategoryDelete()
@@ -480,17 +596,22 @@ export class DashboardOverview implements OnInit, OnDestroy{
           if (!response || !response.success==false)
           {
             this.showToast(response.message || "Couldn't find any such Category.");
+            this.cancelCategoryDelete();
             return;
           }
         },
         error: (err) => {
+          this.cancelCategoryDelete();
           this.showToast("Error deleting category: "+err?.error?.message);
         }
       });
-      this.loadCategories();
+
       this.showToast("Category Deleted Successfully!");
       this.selectedCategoryId=null;
-      this.showDeletePopup=false;
+      this.showCategoryDeletePopup=false;
+      setTimeout(()=>{
+        this.loadCategories();
+      },1000);
     }
   }
 
@@ -533,7 +654,9 @@ export class DashboardOverview implements OnInit, OnDestroy{
         next:(res)=>{
           if(res.success){
             this.showToast("Category updated Scuccessfully");
-            this.loadCategories();
+            setTimeout(()=>{
+              this.loadCategories();
+            },1000);
           }
           else
           {
@@ -575,7 +698,9 @@ export class DashboardOverview implements OnInit, OnDestroy{
         if(res.success)
         {
           this.showToast("Category added Successfully");
-          this.loadCategories();
+          setTimeout(()=>{
+            this.loadCategories();
+          },1000);
         }
         else
         {
@@ -588,7 +713,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
         this.selectedCategoryId = null;
         this.selectedIconId = null;
       },
-      error : ()=> this.showToast("Error Adding Category")
+      error : (err)=> this.showToast("Error Adding Category "+ err?.error?.message)
     });
   }
 
@@ -613,12 +738,12 @@ export class DashboardOverview implements OnInit, OnDestroy{
 
   findCategoryName(categoryId : number)
   {
-    return this.categories.find(c=>c.categoryId=categoryId)?.categoryName;
+    return this.categories.find(c=>c.categoryId===categoryId)?.categoryName;
   }
 
   findCategoryIcon(categoryId : number)
   {
-    return this.categories.find(c=>c.categoryId=categoryId)?.iconUrl;
+    return this.categories.find(c=>c.categoryId===categoryId)?.iconUrl;
   }
 
   isAtBottom = false;
@@ -633,7 +758,25 @@ export class DashboardOverview implements OnInit, OnDestroy{
 
   getReport()
   {
+    this.transactionService.getReport().subscribe({
+      next:(res)=>{
+        if(res.success==true)
+        {
+          this.showToast("Report generated and sent on your email");
+        }
+        else
+        {
+          this.showToast("Error generating report. Try again later.");
+        }
+      },
+      error:err=>{this.showToast(err?.error.message)}
+    })
+  }
 
+  editTransaction(t:Transaction)
+  {
+    this.selectedTransaction = t;
+    this.toggleExpense(true);
   }
 
   logout()

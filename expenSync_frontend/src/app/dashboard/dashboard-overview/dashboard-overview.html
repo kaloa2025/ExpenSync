@@ -91,7 +91,7 @@
             </div>
           }
         </div>
-        @if (showDeletePopup) {
+        @if (showCategoryDeletePopup) {
           <div class="delete-popup">
             <div class="popup-content">
               <p>Are you sure you want to delete this category : {{categoryNameInput}}?</p>
@@ -101,7 +101,7 @@
           </div>
         }
         <div class="bar-graph-section">
-          <div class="bar-graph-heading">GRAPH</div>
+          <div class="bar-graph-heading">EXPENSES VISUALIZED</div>
           <div class="vertical-graph">
             @for (row of getGraphRows(); track row.id) {
               <div class="v-bar-item">
@@ -211,9 +211,18 @@
                 </select>
 
                 <!-- SUBMIT BUTTON -->
-                <div class="add-bttn" (click)="submitTransaction()">
-                  Add Expense
-                </div>
+                @if(!transactionEditMode)
+                {
+                  <div class="add-bttn" (click)="submitTransaction()">
+                    Add Expense
+                  </div>
+                }
+                @if(transactionEditMode)
+                {
+                  <div class="add-bttn" (click)="updateTransaction()">
+                    Edit Expense
+                  </div>
+                }
               </div>
           </div>
 
@@ -267,6 +276,7 @@
               </div>
             </div>
         }
+
         <div class="history-section">
           <div class="heading">PREVIOUS TRANSACTIONS</div>
           <div class="transaction-history-wrapper" (scroll)="onScroll($event)">
@@ -324,8 +334,8 @@
                       </div>
                     </div>
                     <div class="th-actions">
-                          <button class="th-action-btn th-edit">Edit</button>
-                          <button class="th-action-btn th-delete">Delete</button>
+                          <button class="th-action-btn th-edit" (click)="editTransaction(t)">Edit</button>
+                          <button class="th-action-btn th-delete" (click)="confirmDeleteTransaction(t)">Delete</button>
                     </div>
                   </div>
                 </div>
@@ -335,6 +345,15 @@
           <div class="fade-out-overlay" [class.hidden]="!isAtBottom"></div>
           <div class="floating-report-btn" [class.show]="isAtBottom" (click)="getReport()">GET COMPLETE STATEMENT</div>
         </div>
+        @if (showTransactionDeletePopup) {
+          <div class="delete-popup">
+            <div class="popup-content">
+              <p>Are you sure you want to delete this Transaction {{selectedTransaction?.reciverSenderName==''?"":("From "+selectedTransaction?.reciverSenderName)}} done on {{selectedTransaction?.transactionDate}}.</p>
+              <button (click)="deleteTransaction()">Yes, Delete</button>
+              <button (click)="cancelDelete()">Cancel</button>
+            </div>
+          </div>
+        }
       </div>
     </div>
   </div>

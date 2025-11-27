@@ -122,7 +122,7 @@ export interface TransactionResponse {
   success:boolean;
   errors?:string[];
   message:string;
-  transaction : Transaction;
+  transaction? : Transaction;
 }
 
 export interface Transaction

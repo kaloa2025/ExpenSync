@@ -837,7 +837,6 @@ input:focus {
     padding: 20px;
     margin-bottom: 16px;
     transition: all 0.2s;
-    cursor: pointer;
 }
 
 .th-transaction-card:hover {
@@ -1070,14 +1069,15 @@ input[disabled] {
 /* bar-graph-section */
 .bar-graph-section
 {
-    padding: 2%;
-    border-radius: 10px;
-    margin-bottom: 5%;
-    margin-top: 5%;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 /* bar-graph */
 .bar-graph-heading {
+
     font-size: 25px;
     font-weight: 900;
     margin-bottom: 5%;
@@ -1094,8 +1094,11 @@ input[disabled] {
 /* Main graph wrapper */
 .vertical-graph {
   display: flex;
-  height: 70%;
-  gap: 2%;
+  width: 100%;
+  background-color: #33333305;
+  height: 80%;
+  gap: 3%;
+  text-align: center;
 }
 
 /* One bar + label block */
@@ -1107,7 +1110,7 @@ input[disabled] {
 
 /* Background full-height bar */
 .v-bar-bg {
-  width: 50%;
+  width: 100%;
   height: 100px;
   background: #e9e9e9;
   border-radius: 3px;
@@ -1134,8 +1137,7 @@ input[disabled] {
 
 /* Icon/Category label */
 .v-bar-label {
-  margin-top: 8px;
-  font-size: 0.7rem;
+  margin-top: 5px;
   color: #777;
 }
 
@@ -1159,7 +1161,7 @@ input[disabled] {
 /* SCROLL WRAPPER */
 .transaction-history-wrapper {
   position: relative;
-  max-height: 400px;
+  max-height: 550px;
   overflow-y: auto;
   scrollbar-width: none;
 }

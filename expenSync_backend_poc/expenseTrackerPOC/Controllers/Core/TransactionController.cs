@@ -87,6 +87,15 @@ namespace expenseTrackerPOC.Controllers.Core
                 });
             }
 
+            if(addNewExpenseRequest.TransactionDate>DateTime.UtcNow.Date && addNewExpenseRequest.ExpenseTypeId != 3 )
+            {
+                return NotFound(new AddNewExpenseResponse
+                {
+                    Success = false,
+                    Message = "Expenses dated for future can only be of ExpenseType Other."
+                });
+            }
+
             int userId = Convert.ToInt32(Id);
 
             var added_newExpense = await transactionService.AddNewExepense(userId, addNewExpenseRequest);
