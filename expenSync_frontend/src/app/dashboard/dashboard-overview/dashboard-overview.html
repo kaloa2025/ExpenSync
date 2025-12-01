@@ -29,9 +29,14 @@
       </div>
       <div class = "right-service-section">
         <div class = "left-service-section">
-          <div class="scan-expense-section">
-            <div class="scan-bttn" (click)="scanUploadImage()">SCAN/UPLOAD</div>
-            <div class="description">Scan your Receipt, Add Transaction Now!</div>
+          <div class="scan-container">
+            <div class="scan-bttn">{{ isScanning ? "Extracting.." : "SCAN / UPLOAD" }}</div>
+
+            <div class="split-buttons">
+              <div class="scanBttn" (click)="scanUploadImage()">Scan</div>
+              <div class="uploadBttn" (click)="uploadScanImage()">Upload</div>
+            </div>
+            <div class="scan-description">Scan your Receipt, Or Upload It! Get ur receipts added to summary!</div>
           </div>
           <div class="category-section">
             <div class="category-header">

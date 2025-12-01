@@ -160,3 +160,29 @@ export interface FullTransaction {
   expenseType: ExpenseType;
   modeOfPayment: ModeOfPayment;
 }
+
+export interface uploadReceiptResponse
+{
+  success : boolean;
+  message : string;
+  errors : string[];
+  transactionAmount : number;
+  transactionDescription : string;
+  reciverSenderName : string;
+  transactionDate : string;
+}
+
+
+export interface scanReceiptResponse
+{
+  success : boolean;
+  message : string;
+  errors : string[];
+  transactionDescription: string | null;
+  reciverSenderName: string;
+  transactionAmount: number;
+  categoryId: number;
+  expenseTypeId: number;
+  modeOfPaymentId: number;
+  transactionDate: string;
+}

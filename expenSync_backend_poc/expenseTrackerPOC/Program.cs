@@ -18,6 +18,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using Serilog;
+using expenseTrackerPOC.Services.Receipt.Interfaces;
+using expenseTrackerPOC.Services.Receipt;
+using Azure.Storage.Blobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +35,7 @@ Log.Information("Starting ExpenseTrackerPOC in {Environment}", builder.Environme
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSettings.SectionName));
 builder.Services.AddDbContext<ExpenseTrackerDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddSingleton(x => new BlobServiceClient(builder.Configuration["AzureBlobStorage:ConnectionString"]));
 var emailConnectionString = builder.Configuration["EmailSettings:ConnectionString"];
 builder.Services.AddSingleton(emailConnectionString);
 
@@ -64,6 +67,8 @@ builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<IReceiptService, ReceiptService>();
+builder.Services.AddScoped<IBlobService, BlobService>();
 
 builder.Services.AddCors(options =>
 {

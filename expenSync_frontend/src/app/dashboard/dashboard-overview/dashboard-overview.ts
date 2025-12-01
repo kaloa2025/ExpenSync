@@ -4,13 +4,14 @@ import { flush } from '@angular/core/testing';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { AddNewCategoryRequest, Category, ExpenseType, FullTransaction, Icon, ModeOfPayment, Transaction, UpdateCategoryRequest } from '../../../services/dashboard/dashboard.models';
+import { AddNewCategoryRequest, Category, ExpenseType, FullTransaction, Icon, ModeOfPayment, Transaction, UpdateCategoryRequest, uploadReceiptResponse } from '../../../services/dashboard/dashboard.models';
 import { DashboardCategory } from '../../../services/dashboard/dashboard.category.service';
 import { DashboardProfileService } from '../../../services/dashboard/dashboard.profile.service';
 import { EditProfileRequest } from '../../../services/auth/auth.models';
 import { DashboardGraphService } from '../../../services/dashboard/dashboard.graph.service';
 import { DashboardTransactionService } from '../../../services/dashboard/dashboard.transaction.service';
 import { DashboardRecentTransactionsService } from '../../../services/dashboard/dashboard.recent-transactions.service';
+import { DashboardReceiptService } from '../../../services/dashboard/dashboard.receipt.service';
 
 @Component({
   selector: 'app-dashboard-overview',
@@ -24,6 +25,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
   transactionForm : FormGroup;
   toastMessage: string = '';
   graphData:{[category:string]:number} = {};
+  isScanning = false;
 
   recentTransactionsByDate: { [date: string]: FullTransaction[] } = {};
 
@@ -71,6 +73,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
     private graphService : DashboardGraphService,
     private transactionService : DashboardTransactionService,
     private recentTransactionService : DashboardRecentTransactionsService,
+    private dashboardReceiptService : DashboardReceiptService
    )
   {
     this.profileForm=this.fb.group({
@@ -445,8 +448,9 @@ export class DashboardOverview implements OnInit, OnDestroy{
    }
   }
 
-  scanUploadImage()
+  uploadScanImage()
   {
+    this.isScanning = true;
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = 'image/*';
@@ -454,17 +458,106 @@ export class DashboardOverview implements OnInit, OnDestroy{
 
     fileInput.onchange=(event:any)=>
     {
-      const file = event.target.files[0];
-      if(file)
-      {
-        console.log('selected file : ', file);
-        this.showToast("Image Added Successfully!");
+      const file:File = event.target.files[0];
+
+      if (!file) {
+        this.showToast("No file detected.");
+        this.isScanning = false;
+        return;
       }
+
+      console.log("for file "+file.name+" calling api");
+
+      this.dashboardReceiptService.uploadReceipt(file).subscribe({
+        next:(res)=>{
+          if(res.success == false)
+          {
+            this.showToast("Failed : "+res.message);
+          this.isScanning = false;
+            return;
+          }
+          this.displayExtractedDataOnForm(res);
+          this.showToast("Receipt Added Successfully!");
+          this.isScanning = false;
+          return;
+        },
+        error:(err)=>{
+          this.showToast("Error extracting transaction: "+err?.error?.message);
+          this.isScanning = false;
+          return;
+        }
+      })
     };
 
     document.body.appendChild(fileInput);
     fileInput.click();
     document.body.removeChild(fileInput);
+  }
+
+  scanUploadImage()
+  {
+    this.isScanning = true;
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = 'image/*';
+    fileInput.style.display = 'none';
+
+    fileInput.onchange=(event:any)=>
+    {
+      const file:File = event.target.files[0];
+
+      if (!file) {
+        this.showToast("No file detected.");
+        this.isScanning = false;
+        return;
+      }
+
+      console.log("for file "+file.name+" calling api");
+
+      this.dashboardReceiptService.scanReceipt(file).subscribe({
+        next:(res)=>{
+          if(res.success == false)
+          {
+            this.showToast("Failed : "+res.message);
+          this.isScanning = false;
+            return;
+          }
+          this.displayExtractedDataOnForm(res);
+          this.showToast("Receipt Added Successfully!");
+          this.isScanning = false;
+          return;
+        },
+        error:(err)=>{
+          this.showToast("Error extracting transaction: "+err?.error?.message);
+          this.isScanning = false;
+          return;
+        }
+      })
+    };
+
+    document.body.appendChild(fileInput);
+    fileInput.click();
+    document.body.removeChild(fileInput);
+  }
+
+  displayExtractedDataOnForm(res:any)
+  {
+    if(res)
+    {
+      this.transactionEditMode = true;
+      this.toggleExpense(true);
+      this.transactionForm = this.fb.group({
+        transactionAmount: res.transactionAmount??0,
+        transactionDescription: res.transactionDescription??"",
+        reciverSenderName: res.reciverSenderName??"",
+        year: res.transactionDate.substring(0,4)??0,
+        month: res.transactionDate.substring(5,7)??0,
+        day: res.transactionDate.substring(8,10)??0,
+        categoryId: res.categoryId??[null],
+        expenseTypeId: res.expenseTypeId??[null],
+        modeOfPaymentId: res.modeOfPaymentId??[null],
+      });
+    }
   }
 
   toggleExpense(edit?:boolean)

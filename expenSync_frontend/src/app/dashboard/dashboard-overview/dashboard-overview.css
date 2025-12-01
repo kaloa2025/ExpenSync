@@ -199,46 +199,65 @@
     display: flex;
     flex-direction: column;
 }
-
-/* scan-expense-section */
-.scan-expense-section
-{
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-.scan-bttn
-{
-    margin-top: 5%;
-    background-color: #373737;
-    color: #ffffff;
-    letter-spacing: 1px;
-    padding: 15% 0%;
-    width: 100%;
-    cursor: pointer;
-    margin-bottom: 3%;
-    text-align: center;
-    border: none;
+.scan-container {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin-bottom: 3%;
 }
 
-.scan-expense-section .description
-{
-    font-size: x-small;
-    display: none;
+/* MAIN BIG BUTTON */
+.scan-bttn {
+  width: 100%;
+  padding: 14% 0px;
+  background: #373737;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: opacity .25s ease, transform .25s ease;
 }
 
-.scan-bttn:hover
-{
-    color: #373737;
-    background-color: transparent;
-    border:1px solid #b8b8b8;
+/* HIDDEN BUTTONS CONTAINER */
+.split-buttons {
+  display: flex;
+  width: 100%;
+  gap: 1%;
+
+  opacity: 0;
+  pointer-events: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: opacity .25s ease;
 }
-.scan-bttn:hover + .description
+
+/* THE TWO 50% BUTTONS */
+.split-buttons div {
+  flex: 1;
+  padding: 14% 0;
+  background: #373737;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+/* HOVER EFFECT: SPLIT OPEN */
+.scan-container:hover .scan-bttn {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.scan-container:hover .split-buttons {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scan-description
 {
-    display: block;
-    margin-bottom: 5%;
+  margin-top: 3%;
 }
 
 /* category-section */
