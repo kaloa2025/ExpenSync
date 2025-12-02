@@ -477,7 +477,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
             return;
           }
           this.displayExtractedDataOnForm(res);
-          this.showToast("Receipt Added Successfully!");
+          this.showToast("Receipt Uploaded Successfully!");
           this.isScanning = false;
           return;
         },
@@ -523,7 +523,7 @@ export class DashboardOverview implements OnInit, OnDestroy{
             return;
           }
           this.displayExtractedDataOnForm(res);
-          this.showToast("Receipt Added Successfully!");
+          this.showToast("Receipt Extracted Successfully!");
           this.isScanning = false;
           return;
         },
@@ -544,8 +544,8 @@ export class DashboardOverview implements OnInit, OnDestroy{
   {
     if(res)
     {
-      this.transactionEditMode = true;
       this.toggleExpense(true);
+      this.transactionEditMode = false;
       this.transactionForm = this.fb.group({
         transactionAmount: res.transactionAmount??0,
         transactionDescription: res.transactionDescription??"",

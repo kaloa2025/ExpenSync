@@ -11,6 +11,6 @@
         public decimal TransactionAmount { get; set; }
         public int CategoryId { get; set; }
         public int ModeOfPaymentId { get; set; }
-        public int EexpenseTypeId { get; set; }
+        public int ExpenseTypeId { get; set; }
     }
 }

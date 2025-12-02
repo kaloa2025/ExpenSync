@@ -82,7 +82,7 @@ namespace expenseTrackerPOC.Controllers.Receipt
                 });
             }
 
-            return Ok(uploadResult.uploadFileResponse);
+            return Ok(uploadResult.scanReceiptResponse);
         }
 
     }

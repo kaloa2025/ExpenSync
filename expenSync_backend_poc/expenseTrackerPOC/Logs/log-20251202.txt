@@ -1,0 +1,1355 @@
+2025-12-02 17:21:21.364 +05:30 [INF] User profile is available. Using 'C:\Users\AalokShailendraChoud\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-02 17:21:21.830 +05:30 [INF] Now listening on: https://localhost:7253
+2025-12-02 17:21:21.833 +05:30 [INF] Now listening on: http://localhost:5276
+2025-12-02 17:21:21.897 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-02 17:21:21.898 +05:30 [INF] Hosting environment: Development
+2025-12-02 17:21:21.900 +05:30 [INF] Content root path: C:\Users\AalokShailendraChoud\Desktop\ExpenSync\expenSync_backend_poc\expenseTrackerPOC
+2025-12-02 17:21:51.691 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-12-02 17:21:51.766 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:21:51.788 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 104.6763ms
+2025-12-02 17:21:51.794 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 51
+2025-12-02 17:21:51.808 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:21:51.927 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-12-02 17:21:51.932 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-12-02 17:21:51.964 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-12-02 17:21:54.534 +05:30 [INF] Executed DbCommand (116ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-12-02 17:21:55.061 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-12-02 17:21:55.140 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-12-02 17:21:55.170 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-12-02 17:21:58.860 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-12-02 17:21:58.879 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 6904.4412ms
+2025-12-02 17:21:58.883 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-12-02 17:21:58.884 +05:30 [INF] Response Status : 200
+2025-12-02 17:21:58.894 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 200 null application/json; charset=utf-8 7100.0619ms
+2025-12-02 17:22:01.450 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:22:01.451 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:22:01.450 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:22:01.451 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:22:01.450 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:22:01.466 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:22:01.483 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.489 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.494 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.506 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 54.2064ms
+2025-12-02 17:22:01.519 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 68.393ms
+2025-12-02 17:22:01.497 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.499 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.505 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 54.2749ms
+2025-12-02 17:22:01.503 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.532 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:22:01.519 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:22:01.567 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.553 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 102.0941ms
+2025-12-02 17:22:01.563 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:22:01.555 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:22:01.554 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 103.3648ms
+2025-12-02 17:22:01.560 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 94.9781ms
+2025-12-02 17:22:01.565 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.543 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:22:01.556 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:22:01.587 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.594 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.606 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.612 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:01.650 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:22:01.650 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:22:01.652 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:22:01.653 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:22:01.654 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:22:01.654 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:22:01.655 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:22:01.655 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:22:01.660 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:01.660 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:22:01.660 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:01.662 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:22:01.663 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:22:01.665 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:22:01.673 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:22:01.675 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:01.678 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:22:01.681 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:01.694 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:22:01.706 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:22:01.737 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 69.4994ms
+2025-12-02 17:22:01.740 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:22:01.742 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:01.744 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 188.0146ms
+2025-12-02 17:22:01.768 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:22:01.817 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:22:01.820 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:22:01.860 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 181.7968ms
+2025-12-02 17:22:01.862 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:22:01.863 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:01.864 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:22:01.864 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:22:01.865 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 309.2062ms
+2025-12-02 17:22:01.869 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 198.2207ms
+2025-12-02 17:22:01.873 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:22:01.876 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:01.877 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 350.0225ms
+2025-12-02 17:22:01.895 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:22:01.913 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 232.2746ms
+2025-12-02 17:22:01.915 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:22:01.918 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:22:01.918 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:01.924 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 388.8117ms
+2025-12-02 17:22:01.925 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:22:01.942 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:22:01.946 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:22:01.950 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 266.7959ms
+2025-12-02 17:22:01.952 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 265.9439ms
+2025-12-02 17:22:01.953 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:22:01.956 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:22:01.958 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:01.959 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:01.961 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 441.8844ms
+2025-12-02 17:22:01.962 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 398.8111ms
+2025-12-02 17:22:05.913 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/upload - null null
+2025-12-02 17:22:05.918 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:05.920 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/upload - 204 null null 6.7571ms
+2025-12-02 17:22:05.921 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/upload - multipart/form-data; boundary=----WebKitFormBoundarymeJoK7EJ9I5PKq6O 49866
+2025-12-02 17:22:05.931 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:05.935 +05:30 [INF] Incoming Request : POST /api/Receipt/upload
+2025-12-02 17:22:05.937 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC)'
+2025-12-02 17:22:05.944 +05:30 [INF] Route matched with {action = "ProcessReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:22:15.084 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:22:15.088 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC) in 9141.766ms
+2025-12-02 17:22:15.091 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC)'
+2025-12-02 17:22:15.093 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:15.096 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/upload - 200 null application/json; charset=utf-8 9174.4116ms
+2025-12-02 17:22:21.044 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:22:21.044 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:22:21.045 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:22:21.045 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:22:21.045 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:22:21.045 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:22:21.050 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.055 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.059 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.063 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.066 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.069 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.078 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 32.9387ms
+2025-12-02 17:22:21.089 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 44.0572ms
+2025-12-02 17:22:21.077 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:22:21.073 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:22:21.074 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:22:21.074 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 29.2267ms
+2025-12-02 17:22:21.071 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 27.0848ms
+2025-12-02 17:22:21.075 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:22:21.076 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 30.8976ms
+2025-12-02 17:22:21.072 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 28.472ms
+2025-12-02 17:22:21.089 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:22:21.100 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:22:21.114 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.119 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.123 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.138 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.153 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.157 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:21.160 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:22:21.160 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:22:21.161 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:22:21.162 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:22:21.163 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:22:21.165 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:22:21.166 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:22:21.167 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:22:21.168 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:22:21.169 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:22:21.171 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:22:21.172 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:22:21.174 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:22:21.175 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:21.177 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:21.179 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:21.181 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:22:21.195 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:22:21.195 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:22:21.195 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:22:21.206 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:22:21.183 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:22:21.216 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:22:21.216 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:22:21.216 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:22:21.217 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:22:21.219 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 28.2121ms
+2025-12-02 17:22:21.227 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:22:21.227 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:22:21.229 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 43.451ms
+2025-12-02 17:22:21.234 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:22:21.235 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 46.4432ms
+2025-12-02 17:22:21.237 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:22:21.242 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:22:21.243 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 48.3608ms
+2025-12-02 17:22:21.245 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:22:21.247 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 49.2443ms
+2025-12-02 17:22:21.249 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:22:21.251 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:21.253 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 30.0552ms
+2025-12-02 17:22:21.255 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:22:21.257 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:21.259 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:22:21.261 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:21.263 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 188.6504ms
+2025-12-02 17:22:21.264 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:22:21.266 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:21.268 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 191.2391ms
+2025-12-02 17:22:21.270 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:21.271 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 198.8397ms
+2025-12-02 17:22:21.279 +05:30 [INF] Response Status : 200
+2025-12-02 17:22:21.281 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 205.741ms
+2025-12-02 17:22:21.287 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 197.3175ms
+2025-12-02 17:22:21.295 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 195.028ms
+2025-12-02 17:22:24.085 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:22:24.089 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:24.091 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 5.8196ms
+2025-12-02 17:22:24.096 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryvHksrGDkSOM0dYBt 49866
+2025-12-02 17:22:24.102 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:22:24.104 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:22:24.106 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:22:24.113 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:22:30.857 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:22:30.865 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:22:30.868 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:22:32.176 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:22:32.177 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 8060.5209ms
+2025-12-02 17:22:32.179 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:22:32.181 +05:30 [INF] Response Status : 400
+2025-12-02 17:22:32.182 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 400 null application/json; charset=utf-8 8086.1608ms
+2025-12-02 17:23:01.445 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:23:01.536 +05:30 [INF] Incoming Request : GET /api/Receipt/scan
+2025-12-02 17:23:01.538 +05:30 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2025-12-02 17:23:01.541 +05:30 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2025-12-02 17:23:01.543 +05:30 [INF] Response Status : 405
+2025-12-02 17:23:01.545 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/Receipt/scan - 405 0 null 100.461ms
+2025-12-02 17:23:13.313 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:23:13.317 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:23:13.319 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 6.3827ms
+2025-12-02 17:23:13.321 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryNHmkhxhT5BfBWDnP 49866
+2025-12-02 17:23:13.327 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:23:13.328 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:23:13.329 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:23:13.331 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:23:22.661 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:23:22.670 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:23:22.677 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:23:22.979 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:23:22.990 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 9656.8483ms
+2025-12-02 17:23:22.995 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:23:23.000 +05:30 [INF] Response Status : 400
+2025-12-02 17:23:23.002 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 400 null application/json; charset=utf-8 9680.49ms
+2025-12-02 17:39:27.400 +05:30 [INF] User profile is available. Using 'C:\Users\AalokShailendraChoud\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-02 17:39:28.395 +05:30 [INF] Now listening on: https://localhost:7253
+2025-12-02 17:39:28.402 +05:30 [INF] Now listening on: http://localhost:5276
+2025-12-02 17:39:28.528 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-02 17:39:28.532 +05:30 [INF] Hosting environment: Development
+2025-12-02 17:39:28.536 +05:30 [INF] Content root path: C:\Users\AalokShailendraChoud\Desktop\ExpenSync\expenSync_backend_poc\expenseTrackerPOC
+2025-12-02 17:39:36.268 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:39:36.313 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:39:36.341 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 80.0646ms
+2025-12-02 17:39:36.345 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryfESgGSo5aJYDSIM8 70532
+2025-12-02 17:39:36.355 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:39:36.493 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:39:36.498 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:39:36.525 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:39:40.246 +05:30 [INF] Executed DbCommand (72ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:39:40.370 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:39:40.404 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:39:41.579 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:39:41.602 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 5069.6653ms
+2025-12-02 17:39:41.606 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:39:41.608 +05:30 [INF] Response Status : 400
+2025-12-02 17:39:41.622 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 400 null application/json; charset=utf-8 5277.5463ms
+2025-12-02 17:41:21.146 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:41:21.165 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:41:21.167 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 21.0389ms
+2025-12-02 17:41:21.170 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryAQ05UWAyv2mKA0wP 70532
+2025-12-02 17:41:21.187 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:41:21.190 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:41:21.192 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:41:21.194 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:41:27.544 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:41:27.551 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:41:27.556 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:41:56.010 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:41:56.017 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 34819.7866ms
+2025-12-02 17:41:56.020 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:41:56.021 +05:30 [INF] Response Status : 400
+2025-12-02 17:41:56.024 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 400 null application/json; charset=utf-8 34854.002ms
+2025-12-02 17:43:45.380 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:43:45.385 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:43:45.394 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 14.0954ms
+2025-12-02 17:43:45.398 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryaZWLG1oJLLA52OR9 70532
+2025-12-02 17:43:45.408 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:43:45.416 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:43:45.417 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:43:45.426 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:43:49.565 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:43:49.573 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:43:49.582 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:44:04.516 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:44:04.521 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 19090.4764ms
+2025-12-02 17:44:04.523 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:44:04.525 +05:30 [INF] Response Status : 400
+2025-12-02 17:44:04.526 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 400 null application/json; charset=utf-8 19128.6498ms
+2025-12-02 17:48:30.710 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:48:30.725 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:48:30.727 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 16.34ms
+2025-12-02 17:48:30.729 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryw5IJtKWdBpT43B98 70532
+2025-12-02 17:48:30.741 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:48:30.743 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:48:30.745 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:48:30.747 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:48:35.018 +05:30 [INF] Executed DbCommand (17ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:48:35.025 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:48:35.032 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:48:45.280 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ScanReceiptResponse'.
+2025-12-02 17:48:45.286 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 14536.4267ms
+2025-12-02 17:48:45.291 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:48:45.293 +05:30 [INF] Response Status : 200
+2025-12-02 17:48:45.296 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 200 null application/json; charset=utf-8 14566.8791ms
+2025-12-02 17:52:25.308 +05:30 [INF] User profile is available. Using 'C:\Users\AalokShailendraChoud\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-02 17:52:25.765 +05:30 [INF] Now listening on: https://localhost:7253
+2025-12-02 17:52:25.769 +05:30 [INF] Now listening on: http://localhost:5276
+2025-12-02 17:52:25.844 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-02 17:52:25.846 +05:30 [INF] Hosting environment: Development
+2025-12-02 17:52:25.848 +05:30 [INF] Content root path: C:\Users\AalokShailendraChoud\Desktop\ExpenSync\expenSync_backend_poc\expenseTrackerPOC
+2025-12-02 17:52:28.316 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/auth/login - null null
+2025-12-02 17:52:28.371 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:28.392 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/auth/login - 204 null null 82.824ms
+2025-12-02 17:52:28.399 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/auth/login - application/json 51
+2025-12-02 17:52:28.411 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:28.486 +05:30 [INF] Incoming Request : POST /api/auth/login
+2025-12-02 17:52:28.492 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-12-02 17:52:28.522 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.LoginResponse]] Login(expenseTrackerPOC.Data.RequestModels.LoginRequest) on controller expenseTrackerPOC.Controllers.Auth.AuthController (expenseTrackerPOC).
+2025-12-02 17:52:30.453 +05:30 [INF] Executed DbCommand (69ms) [Parameters=[@__loginRequest_Email_0='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[UserId], [u].[Email], [u].[HashPassword], [u].[IsOtpVerified], [u].[PasswordResetExpiry], [u].[PasswordResetOtp], [u].[Role], [u].[Username]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__loginRequest_Email_0
+2025-12-02 17:52:30.855 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = DateTime2), @p1='?' (Size = 4000), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 450), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [RefreshTokens] ([Created], [CreatedByIp], [Expires], [ReasonRevoked], [ReplacedByToken], [Revoked], [RevokedByIp], [Token], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-12-02 17:52:30.909 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (DbType = Int32), @__newToken_1='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Created], [r].[CreatedByIp], [r].[Expires], [r].[ReasonRevoked], [r].[ReplacedByToken], [r].[Revoked], [r].[RevokedByIp], [r].[Token], [r].[UserId]
+FROM [RefreshTokens] AS [r]
+WHERE [r].[UserId] = @__userId_0 AND [r].[Token] <> @__newToken_1
+2025-12-02 17:52:30.938 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [RefreshTokens]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-12-02 17:52:40.357 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.LoginResponse'.
+2025-12-02 17:52:40.375 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC) in 11843.8015ms
+2025-12-02 17:52:40.378 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Auth.AuthController.Login (expenseTrackerPOC)'
+2025-12-02 17:52:40.379 +05:30 [INF] Response Status : 200
+2025-12-02 17:52:40.391 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/auth/login - 200 null application/json; charset=utf-8 11992.24ms
+2025-12-02 17:52:42.915 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:52:42.917 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:52:42.917 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:52:42.917 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:52:42.929 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:52:42.930 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:52:42.944 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.948 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.952 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.970 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:52:42.962 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 45.6448ms
+2025-12-02 17:52:42.970 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 53.7216ms
+2025-12-02 17:52:42.952 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.957 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.962 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 46.413ms
+2025-12-02 17:52:42.961 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.971 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:52:42.986 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:52:42.987 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.996 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 79.2922ms
+2025-12-02 17:52:42.998 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:52:43.003 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:52:42.997 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 67.7926ms
+2025-12-02 17:52:43.002 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 72.0862ms
+2025-12-02 17:52:43.004 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:43.007 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:42.998 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:52:43.025 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:43.026 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:43.042 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:52:43.075 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:52:43.075 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:52:43.077 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:52:43.078 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:52:43.080 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:52:43.080 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:52:43.080 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:52:43.080 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:52:43.082 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:52:43.084 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:52:43.085 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:52:43.085 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:52:43.085 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:52:43.086 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:52:43.092 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:52:43.093 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:52:43.102 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:52:43.105 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:52:43.118 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:52:43.131 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:52:43.160 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 66.677ms
+2025-12-02 17:52:43.162 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:52:43.164 +05:30 [INF] Response Status : 200
+2025-12-02 17:52:43.167 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 180.698ms
+2025-12-02 17:52:43.184 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:52:43.195 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:52:43.202 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:52:43.206 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:52:43.209 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 105.1743ms
+2025-12-02 17:52:43.211 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:52:43.212 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:52:43.216 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 119.3884ms
+2025-12-02 17:52:43.216 +05:30 [INF] Response Status : 200
+2025-12-02 17:52:43.218 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:52:43.220 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 216.5448ms
+2025-12-02 17:52:43.221 +05:30 [INF] Response Status : 200
+2025-12-02 17:52:43.229 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 230.5488ms
+2025-12-02 17:52:43.238 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:52:43.254 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 147.9437ms
+2025-12-02 17:52:43.256 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:52:43.258 +05:30 [INF] Response Status : 200
+2025-12-02 17:52:43.260 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 289.5668ms
+2025-12-02 17:52:43.264 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:52:43.271 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:52:43.285 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:52:43.289 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:52:43.292 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 182.7409ms
+2025-12-02 17:52:43.294 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:52:43.296 +05:30 [INF] Response Status : 200
+2025-12-02 17:52:43.296 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 183.0515ms
+2025-12-02 17:52:43.297 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 326.5163ms
+2025-12-02 17:52:43.299 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:52:43.306 +05:30 [INF] Response Status : 200
+2025-12-02 17:52:43.307 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 309.3187ms
+2025-12-02 17:53:07.333 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:53:07.345 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:07.346 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 13.3475ms
+2025-12-02 17:53:07.348 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryiOPJAV0Augia20aA 70532
+2025-12-02 17:53:07.364 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:07.367 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:53:07.369 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:53:07.375 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:53:09.025 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:53:09.034 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:53:09.039 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:53:12.063 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ScanReceiptResponse'.
+2025-12-02 17:53:12.071 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 4691.9589ms
+2025-12-02 17:53:12.074 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:53:12.076 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:12.079 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 200 null application/json; charset=utf-8 4730.6141ms
+2025-12-02 17:53:16.238 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/EditExpense/undefined - null null
+2025-12-02 17:53:16.241 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:16.245 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/EditExpense/undefined - 204 null null 7.2007ms
+2025-12-02 17:53:16.247 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7253/api/transaction/EditExpense/undefined - application/json 202
+2025-12-02 17:53:16.251 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:16.252 +05:30 [INF] Incoming Request : PUT /api/transaction/EditExpense/undefined
+2025-12-02 17:53:16.253 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC)'
+2025-12-02 17:53:16.260 +05:30 [INF] Route matched with {action = "EditExpense", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.EditExpenseResponse]] EditExpense(Int32, expenseTrackerPOC.Data.RequestModels.EditExpenseRequest) on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:16.286 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-12-02 17:53:16.311 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC) in 46.6478ms
+2025-12-02 17:53:16.313 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC)'
+2025-12-02 17:53:16.315 +05:30 [INF] Response Status : 400
+2025-12-02 17:53:16.316 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7253/api/transaction/EditExpense/undefined - 400 null application/problem+json; charset=utf-8 68.8661ms
+2025-12-02 17:53:20.890 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7253/api/transaction/EditExpense/undefined - application/json 202
+2025-12-02 17:53:20.893 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:20.894 +05:30 [INF] Incoming Request : PUT /api/transaction/EditExpense/undefined
+2025-12-02 17:53:20.894 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC)'
+2025-12-02 17:53:20.895 +05:30 [INF] Route matched with {action = "EditExpense", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.EditExpenseResponse]] EditExpense(Int32, expenseTrackerPOC.Data.RequestModels.EditExpenseRequest) on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:20.899 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-12-02 17:53:20.901 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC) in 4.7323ms
+2025-12-02 17:53:20.903 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC)'
+2025-12-02 17:53:20.904 +05:30 [INF] Response Status : 400
+2025-12-02 17:53:20.906 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7253/api/transaction/EditExpense/undefined - 400 null application/problem+json; charset=utf-8 15.8028ms
+2025-12-02 17:53:25.482 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:53:25.488 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.490 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 8.5196ms
+2025-12-02 17:53:25.492 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:53:25.497 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:53:25.497 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:53:25.496 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:53:25.513 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:53:25.513 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:53:25.514 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.519 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.525 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.542 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 44.1523ms
+2025-12-02 17:53:25.549 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 51.7016ms
+2025-12-02 17:53:25.539 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:53:25.529 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.533 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.538 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.557 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:53:25.580 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:53:25.579 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:53:25.573 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:53:25.575 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 79.4705ms
+2025-12-02 17:53:25.576 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 70.668ms
+2025-12-02 17:53:25.577 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 64.6266ms
+2025-12-02 17:53:25.558 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:53:25.579 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:53:25.587 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.591 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.594 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.596 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:25.616 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.619 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:25.621 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:53:25.622 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:53:25.623 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:53:25.627 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:53:25.628 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:53:25.629 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:53:25.630 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:53:25.632 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:53:25.632 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:53:25.633 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:53:25.634 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:53:25.636 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:53:25.638 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:25.640 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:53:25.644 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:53:25.645 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:25.647 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:25.657 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:53:25.653 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:53:25.671 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:53:25.658 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 32.259ms
+2025-12-02 17:53:25.655 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:53:25.678 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:53:25.678 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:53:25.680 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:53:25.680 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 24.9029ms
+2025-12-02 17:53:25.682 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:53:25.686 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:53:25.688 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:53:25.691 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:53:25.693 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 44.2259ms
+2025-12-02 17:53:25.695 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:53:25.697 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:25.700 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 47.4309ms
+2025-12-02 17:53:25.702 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 40.5071ms
+2025-12-02 17:53:25.704 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 36.1003ms
+2025-12-02 17:53:25.706 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:53:25.707 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:25.710 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 217.5907ms
+2025-12-02 17:53:25.712 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:53:25.714 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:53:25.716 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:53:25.717 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:25.719 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 139.9662ms
+2025-12-02 17:53:25.725 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:25.727 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:25.729 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:25.730 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 173.0276ms
+2025-12-02 17:53:25.737 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 157.0149ms
+2025-12-02 17:53:25.738 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 180.4467ms
+2025-12-02 17:53:25.740 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 161.1271ms
+2025-12-02 17:53:31.249 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:53:31.252 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:31.253 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 4.0668ms
+2025-12-02 17:53:31.255 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundary8bazTEgnbXHFzq3s 70532
+2025-12-02 17:53:31.258 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:31.261 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:53:31.263 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:53:31.265 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:53:31.718 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:53:31.722 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:53:31.727 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:53:34.710 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ScanReceiptResponse'.
+2025-12-02 17:53:34.712 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 3444.6521ms
+2025-12-02 17:53:34.715 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:53:34.717 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:34.719 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 200 null application/json; charset=utf-8 3463.5854ms
+2025-12-02 17:53:37.264 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/EditExpense/undefined - null null
+2025-12-02 17:53:37.268 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:37.270 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/EditExpense/undefined - 204 null null 5.5752ms
+2025-12-02 17:53:37.271 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7253/api/transaction/EditExpense/undefined - application/json 207
+2025-12-02 17:53:37.276 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:37.278 +05:30 [INF] Incoming Request : PUT /api/transaction/EditExpense/undefined
+2025-12-02 17:53:37.279 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC)'
+2025-12-02 17:53:37.281 +05:30 [INF] Route matched with {action = "EditExpense", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.EditExpenseResponse]] EditExpense(Int32, expenseTrackerPOC.Data.RequestModels.EditExpenseRequest) on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:37.285 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-12-02 17:53:37.287 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC) in 3.6756ms
+2025-12-02 17:53:37.289 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.EditExpense (expenseTrackerPOC)'
+2025-12-02 17:53:37.290 +05:30 [INF] Response Status : 400
+2025-12-02 17:53:37.292 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7253/api/transaction/EditExpense/undefined - 400 null application/problem+json; charset=utf-8 20.8668ms
+2025-12-02 17:53:48.658 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:53:48.662 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.663 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 5.7871ms
+2025-12-02 17:53:48.666 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:53:48.673 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:53:48.673 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:53:48.675 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:53:48.673 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.676 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:53:48.683 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:53:48.684 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.688 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.691 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.704 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 30.9375ms
+2025-12-02 17:53:48.708 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 33.5547ms
+2025-12-02 17:53:48.693 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:53:48.701 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 28.071ms
+2025-12-02 17:53:48.696 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.699 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.714 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:53:48.715 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:53:48.720 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:53:48.729 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:53:48.735 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 59.1225ms
+2025-12-02 17:53:48.735 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 52.6283ms
+2025-12-02 17:53:48.737 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:53:48.738 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:53:48.738 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.743 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.747 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.748 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:48.760 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.763 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:48.764 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:53:48.765 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:53:48.766 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:53:48.770 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:53:48.771 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:53:48.772 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:53:48.773 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:53:48.775 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:53:48.776 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:53:48.776 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:53:48.778 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:53:48.779 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:48.781 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:48.783 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:53:48.785 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:53:48.786 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:53:48.787 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:48.793 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:53:48.801 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:53:48.796 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 27.791ms
+2025-12-02 17:53:48.795 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:53:48.812 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:53:48.813 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:53:48.809 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:53:48.797 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:53:48.818 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:53:48.819 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:53:48.820 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 21.5ms
+2025-12-02 17:53:48.821 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:48.823 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 34.0972ms
+2025-12-02 17:53:48.827 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:53:48.830 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:53:48.831 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 39.2146ms
+2025-12-02 17:53:48.833 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:53:48.834 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 168.2002ms
+2025-12-02 17:53:48.835 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:53:48.837 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 42.7844ms
+2025-12-02 17:53:48.839 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 37.5321ms
+2025-12-02 17:53:48.841 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:53:48.842 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:48.847 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:48.849 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:53:48.851 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:53:48.852 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:48.853 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 115.553ms
+2025-12-02 17:53:48.854 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 139.8428ms
+2025-12-02 17:53:48.856 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:48.857 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:48.858 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 143.3769ms
+2025-12-02 17:53:48.867 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 146.6073ms
+2025-12-02 17:53:48.868 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 130.6102ms
+2025-12-02 17:53:57.286 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:53:57.288 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:53:57.288 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:53:57.288 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:53:57.289 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:53:57.289 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:53:57.294 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.300 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.305 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.310 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.324 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:53:57.322 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:53:57.336 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 47.9024ms
+2025-12-02 17:53:57.320 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 34.3739ms
+2025-12-02 17:53:57.322 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 33.5229ms
+2025-12-02 17:53:57.314 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.319 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.323 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 34.6759ms
+2025-12-02 17:53:57.336 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:53:57.348 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:53:57.351 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.356 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.374 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 84.8482ms
+2025-12-02 17:53:57.375 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 86.0242ms
+2025-12-02 17:53:57.378 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:53:57.378 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:53:57.385 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.389 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.391 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:53:57.393 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:53:57.407 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.411 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:53:57.413 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:53:57.414 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:53:57.415 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:53:57.416 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:53:57.417 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:53:57.419 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:53:57.420 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:53:57.421 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:53:57.422 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:57.424 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:57.426 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:53:57.427 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:53:57.429 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:57.430 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:53:57.435 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:53:57.437 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:53:57.440 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:53:57.442 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:53:57.447 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:53:57.450 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:53:57.451 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:53:57.456 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:53:57.460 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:53:57.464 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:53:57.465 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:53:57.469 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:53:57.470 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 36.7889ms
+2025-12-02 17:53:57.476 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:53:57.478 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 41.5935ms
+2025-12-02 17:53:57.482 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:53:57.484 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 39.559ms
+2025-12-02 17:53:57.486 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 38.8353ms
+2025-12-02 17:53:57.488 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:53:57.492 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 38.5173ms
+2025-12-02 17:53:57.494 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:53:57.496 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 34.5421ms
+2025-12-02 17:53:57.498 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:53:57.500 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:53:57.502 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:57.504 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:53:57.506 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:57.508 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:53:57.510 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:57.512 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:57.513 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 189.8242ms
+2025-12-02 17:53:57.516 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:57.517 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 195.5024ms
+2025-12-02 17:53:57.519 +05:30 [INF] Response Status : 200
+2025-12-02 17:53:57.521 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 185.0763ms
+2025-12-02 17:53:57.522 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 173.9604ms
+2025-12-02 17:53:57.530 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 151.4868ms
+2025-12-02 17:53:57.536 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 158.173ms
+2025-12-02 17:54:26.112 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/upload - null null
+2025-12-02 17:54:26.116 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:54:26.117 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/upload - 204 null null 5.1139ms
+2025-12-02 17:54:26.123 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/upload - multipart/form-data; boundary=----WebKitFormBoundaryd3bvFqTJ1KPNZbPH 70532
+2025-12-02 17:54:26.132 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:54:26.134 +05:30 [INF] Incoming Request : POST /api/Receipt/upload
+2025-12-02 17:54:26.134 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC)'
+2025-12-02 17:54:26.140 +05:30 [INF] Route matched with {action = "ProcessReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:54:34.218 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:54:34.232 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC) in 8089.578ms
+2025-12-02 17:54:34.234 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC)'
+2025-12-02 17:54:34.234 +05:30 [INF] Response Status : 200
+2025-12-02 17:54:34.235 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/upload - 200 null application/json; charset=utf-8 8111.5733ms
+2025-12-02 17:55:35.198 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:55:35.205 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:55:35.235 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.209 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:55:35.249 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 51.7437ms
+2025-12-02 17:55:35.248 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.216 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:55:35.227 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:55:35.236 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:55:35.259 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:55:35.262 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.269 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 65.6365ms
+2025-12-02 17:55:35.289 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 80.1124ms
+2025-12-02 17:55:35.274 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.279 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.283 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.287 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.310 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:55:35.309 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:55:35.311 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:55:35.307 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 90.668ms
+2025-12-02 17:55:35.308 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 81.4699ms
+2025-12-02 17:55:35.309 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 73.9503ms
+2025-12-02 17:55:35.273 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:55:35.297 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:55:35.318 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:55:35.321 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.325 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.328 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.344 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.347 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:35.348 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:55:35.350 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:55:35.350 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:55:35.351 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:55:35.353 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:55:35.354 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:55:35.356 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:35.356 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:55:35.358 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:55:35.359 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:55:35.360 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:55:35.362 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:55:35.366 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:55:35.368 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:55:35.370 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:35.371 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:35.373 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:35.379 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:55:35.381 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:55:35.382 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:55:35.393 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:55:35.397 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:55:35.401 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:55:35.395 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:55:35.405 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:55:35.408 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:55:35.408 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:55:35.409 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 33.3621ms
+2025-12-02 17:55:35.412 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 33.0001ms
+2025-12-02 17:55:35.414 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 49.5312ms
+2025-12-02 17:55:35.418 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:55:35.419 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 35.2012ms
+2025-12-02 17:55:35.423 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:55:35.424 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:55:35.426 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:55:35.428 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:55:35.430 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 49.0742ms
+2025-12-02 17:55:35.432 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:55:35.434 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 47.9402ms
+2025-12-02 17:55:35.437 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:35.438 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:35.440 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:35.442 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:55:35.443 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:35.445 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:55:35.446 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 136.5262ms
+2025-12-02 17:55:35.447 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 138.1219ms
+2025-12-02 17:55:35.448 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 188.9103ms
+2025-12-02 17:55:35.450 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:35.451 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 178.9545ms
+2025-12-02 17:55:35.453 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:35.468 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 157.252ms
+2025-12-02 17:55:35.473 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 176.647ms
+2025-12-02 17:55:38.819 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:55:38.820 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:55:38.820 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:55:38.824 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:38.829 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:38.833 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:38.835 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:55:38.835 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:55:38.835 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:55:38.836 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:55:38.837 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:55:38.839 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:55:38.843 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:38.848 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:38.853 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:38.854 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:55:38.855 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:55:38.856 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:55:38.858 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:55:38.860 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:55:38.861 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:55:38.863 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:38.865 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:38.867 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:38.869 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:55:38.870 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:55:38.871 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:55:38.878 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:55:38.879 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:55:38.881 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:55:38.882 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:55:38.884 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:55:38.886 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:55:38.890 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:55:38.893 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:55:38.898 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:55:38.899 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:55:38.905 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:55:38.907 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:55:38.908 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 33.0339ms
+2025-12-02 17:55:38.910 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 32.6759ms
+2025-12-02 17:55:38.914 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:55:38.915 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 35.3925ms
+2025-12-02 17:55:38.919 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:55:38.923 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:55:38.924 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:55:38.927 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:55:38.929 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 33.26ms
+2025-12-02 17:55:38.931 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:55:38.933 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 31.1656ms
+2025-12-02 17:55:38.935 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 30.0118ms
+2025-12-02 17:55:38.937 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:38.939 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:38.941 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:55:38.943 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:38.945 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:55:38.947 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:55:38.949 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 129.7316ms
+2025-12-02 17:55:38.950 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 130.3766ms
+2025-12-02 17:55:38.952 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:38.954 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 134.291ms
+2025-12-02 17:55:38.956 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:38.957 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:38.968 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 133.5312ms
+2025-12-02 17:55:38.975 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 140.6384ms
+2025-12-02 17:55:38.977 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 142.0105ms
+2025-12-02 17:55:43.585 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/upload - null null
+2025-12-02 17:55:43.589 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:43.590 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/upload - 204 null null 5.1962ms
+2025-12-02 17:55:43.594 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/upload - multipart/form-data; boundary=----WebKitFormBoundaryod9Ccz3AQC3IY8SP 70532
+2025-12-02 17:55:43.598 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:55:43.600 +05:30 [INF] Incoming Request : POST /api/Receipt/upload
+2025-12-02 17:55:43.603 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC)'
+2025-12-02 17:55:43.605 +05:30 [INF] Route matched with {action = "ProcessReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:55:52.461 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.UploadFileResponse'.
+2025-12-02 17:55:52.466 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC) in 8858.5899ms
+2025-12-02 17:55:52.468 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ProcessReceipt (expenseTrackerPOC)'
+2025-12-02 17:55:52.469 +05:30 [INF] Response Status : 200
+2025-12-02 17:55:52.470 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/upload - 200 null application/json; charset=utf-8 8876.1887ms
+2025-12-02 17:56:06.636 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:56:06.639 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:56:06.637 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:56:06.639 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:56:06.639 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:56:06.651 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.651 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:56:06.665 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.669 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.693 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 54.5376ms
+2025-12-02 17:56:06.705 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllExpenseTypes - 204 null null 67.5593ms
+2025-12-02 17:56:06.673 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.677 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.678 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 42.8646ms
+2025-12-02 17:56:06.692 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.689 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:56:06.704 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:56:06.714 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - null null
+2025-12-02 17:56:06.725 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetAllModeOfPayments - 204 null null 86.3486ms
+2025-12-02 17:56:06.726 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllIcons - 204 null null 87.7449ms
+2025-12-02 17:56:06.728 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - null null
+2025-12-02 17:56:06.728 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllIcons - null null
+2025-12-02 17:56:06.733 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 82.5627ms
+2025-12-02 17:56:06.736 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:56:06.738 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.741 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.745 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.761 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.765 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.775 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:06.777 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:56:06.778 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:56:06.780 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllExpenseTypes
+2025-12-02 17:56:06.781 +05:30 [INF] Incoming Request : GET /api/transaction/GetAllModeOfPayments
+2025-12-02 17:56:06.783 +05:30 [INF] Incoming Request : GET /api/category/getAllIcons
+2025-12-02 17:56:06.784 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:56:06.785 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:56:06.787 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:56:06.788 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:56:06.789 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:56:06.791 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:56:06.792 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:56:06.794 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:56:06.795 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:56:06.797 +05:30 [INF] Route matched with {action = "FetchAllExpenseTypes", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ExpenseType]]] FetchAllExpenseTypes() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:56:06.799 +05:30 [INF] Route matched with {action = "FetchAllModeOfPayment", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[expenseTrackerPOC.Models.ModeOfPayment]]] FetchAllModeOfPayment() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:56:06.801 +05:30 [INF] Route matched with {action = "GetAllIcons", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse]] GetAllIcons() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:56:06.802 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:56:06.816 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:56:06.817 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:56:06.817 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:56:06.821 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[IconId], [c].[IconImageUrl]
+FROM [CategoryIcons] AS [c]
+2025-12-02 17:56:06.821 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:56:06.821 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:56:06.822 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:56:06.825 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ModeOfPayment, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:56:06.828 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[expenseTrackerPOC.Models.ExpenseType, expenseTrackerPOC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-02 17:56:06.830 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchAllIconsResponse'.
+2025-12-02 17:56:06.833 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:56:06.837 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:56:06.838 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 30.5905ms
+2025-12-02 17:56:06.840 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC) in 27.5478ms
+2025-12-02 17:56:06.843 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC) in 32.2882ms
+2025-12-02 17:56:06.845 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC) in 28.8949ms
+2025-12-02 17:56:06.847 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 41.774ms
+2025-12-02 17:56:06.849 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 30.5197ms
+2025-12-02 17:56:06.851 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:56:06.853 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllModeOfPayment (expenseTrackerPOC)'
+2025-12-02 17:56:06.855 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.FetchAllExpenseTypes (expenseTrackerPOC)'
+2025-12-02 17:56:06.858 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllIcons (expenseTrackerPOC)'
+2025-12-02 17:56:06.859 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:56:06.861 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:56:06.862 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:06.864 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:06.866 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:06.867 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:06.869 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:06.871 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:06.872 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 167.9044ms
+2025-12-02 17:56:06.873 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllModeOfPayments - 200 null application/json; charset=utf-8 145.2256ms
+2025-12-02 17:56:06.874 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetAllExpenseTypes - 200 null application/json; charset=utf-8 160.8538ms
+2025-12-02 17:56:06.876 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllIcons - 200 null application/json; charset=utf-8 147.4632ms
+2025-12-02 17:56:06.877 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 188.2579ms
+2025-12-02 17:56:06.879 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 143.0178ms
+2025-12-02 17:56:09.554 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - null null
+2025-12-02 17:56:09.557 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:09.559 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/Receipt/scan - 204 null null 4.4042ms
+2025-12-02 17:56:09.560 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/Receipt/scan - multipart/form-data; boundary=----WebKitFormBoundaryVFLlBL6OhMwuMzFt 70532
+2025-12-02 17:56:09.564 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:09.567 +05:30 [INF] Incoming Request : POST /api/Receipt/scan
+2025-12-02 17:56:09.568 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:56:09.570 +05:30 [INF] Route matched with {action = "ScanReceipt", controller = "Receipt"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ScanReceipt(Microsoft.AspNetCore.Http.IFormFile) on controller expenseTrackerPOC.Controllers.Receipt.ReceiptController (expenseTrackerPOC).
+2025-12-02 17:56:10.045 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Categories] AS [c]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+2025-12-02 17:56:10.051 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[ExpenseTypeId], [e].[ExpenseTypeName]
+FROM [ExpenseTypes] AS [e]
+2025-12-02 17:56:10.060 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ModeOfPaymentId], [m].[ModeOfPaymentName]
+FROM [ModeOfPayments] AS [m]
+2025-12-02 17:56:13.010 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.ScanReceiptResponse'.
+2025-12-02 17:56:13.013 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC) in 3439.9893ms
+2025-12-02 17:56:13.015 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Receipt.ReceiptController.ScanReceipt (expenseTrackerPOC)'
+2025-12-02 17:56:13.018 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:13.019 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/Receipt/scan - 200 null application/json; charset=utf-8 3459.156ms
+2025-12-02 17:56:15.687 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/AddNewExpense - null null
+2025-12-02 17:56:15.691 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:15.692 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/AddNewExpense - 204 null null 5.1948ms
+2025-12-02 17:56:15.694 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7253/api/transaction/AddNewExpense - application/json 206
+2025-12-02 17:56:15.699 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:15.701 +05:30 [INF] Incoming Request : POST /api/transaction/AddNewExpense
+2025-12-02 17:56:15.702 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.AddNewExpense (expenseTrackerPOC)'
+2025-12-02 17:56:15.707 +05:30 [INF] Route matched with {action = "AddNewExpense", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.AddNewExpenseResponse]] AddNewExpense(expenseTrackerPOC.Data.RequestModels.AddNewExpenseRequest) on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:56:15.761 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = DateTime2), @p7='?' (Size = 255), @p8='?' (DbType = DateTime2), @p9='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([CategoryId], [CreatedOn], [ExpenseTypeId], [ModeOfPaymentId], [ReciverSenderName], [TransactionAmount], [TransactionDate], [TransactionDescription], [UpdatedOn], [UserId])
+OUTPUT INSERTED.[TransactionId]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9);
+2025-12-02 17:56:15.773 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.AddNewExpenseResponse'.
+2025-12-02 17:56:15.780 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.AddNewExpense (expenseTrackerPOC) in 70.9846ms
+2025-12-02 17:56:15.783 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.AddNewExpense (expenseTrackerPOC)'
+2025-12-02 17:56:15.783 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:15.785 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7253/api/transaction/AddNewExpense - 200 null application/json; charset=utf-8 90.8884ms
+2025-12-02 17:56:16.802 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:56:16.803 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:56:16.807 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:16.808 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetGraphData - 204 null null 4.9426ms
+2025-12-02 17:56:16.803 +05:30 [INF] Request starting HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:56:16.814 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:16.815 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/transaction/GetRecentTransactions - 204 null null 11.6534ms
+2025-12-02 17:56:16.806 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:16.820 +05:30 [INF] Request finished HTTP/2 OPTIONS https://localhost:7253/api/category/getAllCategories - 204 null null 17.3993ms
+2025-12-02 17:56:16.818 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - null null
+2025-12-02 17:56:16.824 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:16.826 +05:30 [INF] Incoming Request : GET /api/transaction/GetRecentTransactions
+2025-12-02 17:56:16.812 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - null null
+2025-12-02 17:56:16.821 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7253/api/category/getAllCategories - null null
+2025-12-02 17:56:16.829 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:56:16.835 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:16.839 +05:30 [INF] CORS policy execution successful.
+2025-12-02 17:56:16.841 +05:30 [INF] Route matched with {action = "GetRecentTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse]] GetRecentTransactions() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:56:16.843 +05:30 [INF] Incoming Request : GET /api/transaction/GetGraphData
+2025-12-02 17:56:16.845 +05:30 [INF] Incoming Request : GET /api/category/getAllCategories
+2025-12-02 17:56:16.852 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:56:16.853 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(@__p_1) [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId]
+FROM [Transactions] AS [t]
+WHERE [t].[UserId] = @__userId_0
+ORDER BY [t].[TransactionDate] DESC
+2025-12-02 17:56:16.853 +05:30 [INF] Executing endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:56:16.854 +05:30 [INF] Route matched with {action = "GetGraphData", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse]] GetGraphData() on controller expenseTrackerPOC.Controllers.Core.TransactionController (expenseTrackerPOC).
+2025-12-02 17:56:16.858 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetRecentTransactionsResponse'.
+2025-12-02 17:56:16.860 +05:30 [INF] Route matched with {action = "GetAllCategories", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse]] GetAllCategories() on controller expenseTrackerPOC.Controllers.Core.CategoryController (expenseTrackerPOC).
+2025-12-02 17:56:16.866 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC) in 17.936ms
+2025-12-02 17:56:16.867 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[TransactionId], [t].[CategoryId], [t].[CreatedOn], [t].[ExpenseTypeId], [t].[ModeOfPaymentId], [t].[ReciverSenderName], [t].[TransactionAmount], [t].[TransactionDate], [t].[TransactionDescription], [t].[UpdatedOn], [t].[UserId], [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId]
+FROM [Transactions] AS [t]
+INNER JOIN [Categories] AS [c] ON [t].[CategoryId] = [c].[CategoryId]
+WHERE [t].[UserId] = @__userId_0
+2025-12-02 17:56:16.871 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[CategoryId], [c].[CategoryName], [c].[IconId], [c].[IsDefault], [c].[UserId], [c0].[IconId], [c0].[IconImageUrl]
+FROM [Categories] AS [c]
+INNER JOIN [CategoryIcons] AS [c0] ON [c].[IconId] = [c0].[IconId]
+WHERE [c].[IsDefault] = 1 OR [c].[UserId] = @__userId_0
+ORDER BY [c].[CategoryName]
+2025-12-02 17:56:16.873 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetRecentTransactions (expenseTrackerPOC)'
+2025-12-02 17:56:16.878 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.GetGraphDataResponse'.
+2025-12-02 17:56:16.883 +05:30 [INF] Executing OkObjectResult, writing value of type 'expenseTrackerPOC.Data.ResponseModels.FetchCategoriesResponse'.
+2025-12-02 17:56:16.885 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:16.887 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC) in 23.345ms
+2025-12-02 17:56:16.888 +05:30 [INF] Executed action expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC) in 18.8103ms
+2025-12-02 17:56:16.889 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetRecentTransactions - 200 null application/json; charset=utf-8 71.0733ms
+2025-12-02 17:56:16.891 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.TransactionController.GetGraphData (expenseTrackerPOC)'
+2025-12-02 17:56:16.894 +05:30 [INF] Executed endpoint 'expenseTrackerPOC.Controllers.Core.CategoryController.GetAllCategories (expenseTrackerPOC)'
+2025-12-02 17:56:16.900 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:16.902 +05:30 [INF] Response Status : 200
+2025-12-02 17:56:16.903 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/transaction/GetGraphData - 200 null application/json; charset=utf-8 90.7422ms
+2025-12-02 17:56:16.904 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7253/api/category/getAllCategories - 200 null application/json; charset=utf-8 82.9617ms
